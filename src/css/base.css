@@ -95,7 +95,7 @@ body {
   }
 }
 
-a {
+/* a {
   text-decoration: none;
   color: var(--color-link);
   outline: none;
@@ -119,7 +119,39 @@ a {
       background: transparent;
     }
   }
+} */
+
+a {
+  position: relative;
+  display: inline-block;
+  color: var(--color-link, #222);
+  padding: 0.2rem 0.4rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
+
+a::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+}
+
+a:hover {
+  color: var(--color-link-hover, #000);
+}
+
+a:hover::after {
+  transform: scaleX(1);
+  transform-origin: right; /* makes the underline shrink smoothly on mouse leave */
+}
+
 
 /* .frame {
   display: grid;
@@ -245,7 +277,9 @@ header {
     to bottom,
     #fffef4,
     #fffef490,
-    #fffef430,
+    #fffef480,
+    #fffef470,
+    #fffef460,
     #fffef400
   );
 
