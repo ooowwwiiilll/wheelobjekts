@@ -43,7 +43,7 @@ export default function App() {
     <main>
       <header className="frame">
         <h1 className="frame__title">
-          wheel objekts
+          Wheel Objekts
         </h1>
 
         <div className="frame__links">

@@ -72,11 +72,11 @@
     height: 100%;
     object-fit: contain;
     will-change: transform;
-    transition: transform 300ms ease-in-out;
+    transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   :hover {
-    transform: scale(1.05);
+    transform: scale(1.2);
   }
 }
 
@@ -89,7 +89,7 @@
   width: 50vw;
   height: 100vh;
   padding: 3vw 4vw;
-  background-color: #f7e0b1;
+  background-color: #e2dccf;
 
   transform: translate3d(50vw, 0, 0);
   /* transform: translateX(50vw); */
