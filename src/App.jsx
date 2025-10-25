@@ -41,6 +41,22 @@ export default function App() {
 
   return (
     <main>
+
+      <div className="mobile-blocker">
+        <p className="mobile__desc">
+          don’t break my site!<br />
+          pls view it on a larger screen.
+        </p>
+        
+        <h1 className="mobile__title">(wob)</h1>
+
+        <div className="mobile__desc2">
+          <a href="https://linkedin.com/in/owil/" target="_blank" rel="noreferrer">{"> corporate"}</a>
+          <a href="https://drive.google.com/file/d/1ELcFvAMh2aRTnOf0iTbIWlac8juFh987/view?usp=drive_link" target="_blank" rel="noreferrer">{"> pause"}</a>
+          <a href="mailto:owilhm@gmail.com" target="_blank" rel="noreferrer">{"> message"}</a>
+        </div>
+      </div>
+
       <div className="overlay" id="overlay"></div>
 
       <header className="frame">
@@ -49,11 +65,11 @@ export default function App() {
         </h1>
 
         <div className="frame__links">
-          <a className="frame__back" href="">reads</a>
-          <a className="frame__back" href="">tldr</a>
-          <a className="frame__back" href="https://linkedin.com/in/owil/" target="_blank" rel="noreferrer">corporate</a>
-          <a className="frame__back" href="https://drive.google.com/file/d/1ELcFvAMh2aRTnOf0iTbIWlac8juFh987/view?usp=drive_link" target="_blank" rel="noreferrer">pause</a>
-          <a className="frame__back" href="mailto:owilhm@gmail.com" target="_blank" rel="noreferrer">message</a>
+          <a href="">reads</a>
+          <a href="">tldr</a>
+          <a href="https://linkedin.com/in/owil/" target="_blank" rel="noreferrer">corporate</a>
+          <a href="https://drive.google.com/file/d/1ELcFvAMh2aRTnOf0iTbIWlac8juFh987/view?usp=drive_link" target="_blank" rel="noreferrer">pause</a>
+          <a href="mailto:owilhm@gmail.com" target="_blank" rel="noreferrer">message</a>
         </div>
       </header>
 
