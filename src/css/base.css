@@ -361,6 +361,10 @@ header {
   }
 }
 
+.mobile-blocker {
+  display: none;
+}
+
 /* MOBILE BLOCKER VIEW */
 @media only screen and (max-width: 680px) {
   .mobile-blocker {
