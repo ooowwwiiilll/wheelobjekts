@@ -13,92 +13,92 @@ export default function Grid() {
       <div className="grid">
         {/* Column 1 */}
         <div className="column">
-          <div className="product"><div data-id="1"><img src="/public/img-1.png" alt="" /></div></div>
-          <div className="product"><div data-id="6"><img src="/public/img-6.png" alt="" /></div></div>
-          <div className="product"><div data-id="3"><img src="/public/img-3.png" alt="" /></div></div>
-          <div className="product"><div data-id="8"><img src="/public/img-8.png" alt="" /></div></div>
-          <div className="product"><div data-id="5"><img src="/public/img-5.png" alt="" /></div></div>
+          <div className="product"><div data-id="1"><img src="/img-1.png" alt="" /></div></div>
+          <div className="product"><div data-id="6"><img src="/img-6.png" alt="" /></div></div>
+          <div className="product"><div data-id="3"><img src="/img-3.png" alt="" /></div></div>
+          <div className="product"><div data-id="8"><img src="/img-8.png" alt="" /></div></div>
+          <div className="product"><div data-id="5"><img src="/img-5.png" alt="" /></div></div>
         </div>
 
         {/* Column 9 (was 2) */}
         <div className="column">
-          <div className="product"><div data-id="9"><img src="/public/img-9.png" alt="" /></div></div>
-          <div className="product"><div data-id="2"><img src="/public/img-2.png" alt="" /></div></div>
-          <div className="product"><div data-id="8"><img src="/public/img-8.png" alt="" /></div></div>
-          <div className="product"><div data-id="3"><img src="/public/img-3.png" alt="" /></div></div>
-          <div className="product"><div data-id="7"><img src="/public/img-7.png" alt="" /></div></div>
+          <div className="product"><div data-id="9"><img src="/img-9.png" alt="" /></div></div>
+          <div className="product"><div data-id="2"><img src="/img-2.png" alt="" /></div></div>
+          <div className="product"><div data-id="8"><img src="/img-8.png" alt="" /></div></div>
+          <div className="product"><div data-id="3"><img src="/img-3.png" alt="" /></div></div>
+          <div className="product"><div data-id="7"><img src="/img-7.png" alt="" /></div></div>
         </div>
 
         {/* Column 3 */}
         <div className="column">
-          <div className="product"><div data-id="3"><img src="/public/img-3.png" alt="" /></div></div>
-          <div className="product"><div data-id="8"><img src="/public/img-8.png" alt="" /></div></div>
-          <div className="product"><div data-id="5"><img src="/public/img-5.png" alt="" /></div></div>
-          <div className="product"><div data-id="10"><img src="/public/img-10.png" alt="" /></div></div>
-          <div className="product"><div data-id="1"><img src="/public/img-1.png" alt="" /></div></div>
+          <div className="product"><div data-id="3"><img src="/img-3.png" alt="" /></div></div>
+          <div className="product"><div data-id="8"><img src="/img-8.png" alt="" /></div></div>
+          <div className="product"><div data-id="5"><img src="/img-5.png" alt="" /></div></div>
+          <div className="product"><div data-id="10"><img src="/img-10.png" alt="" /></div></div>
+          <div className="product"><div data-id="1"><img src="/img-1.png" alt="" /></div></div>
         </div>
 
         {/* Column 4 */}
         <div className="column">
-          <div className="product"><div data-id="4"><img src="/public/img-4.png" alt="" /></div></div>
-          <div className="product"><div data-id="9"><img src="/public/img-9.png" alt="" /></div></div>
-          <div className="product"><div data-id="2"><img src="/public/img-2.png" alt="" /></div></div>
-          <div className="product"><div data-id="7"><img src="/public/img-7.png" alt="" /></div></div>
-          <div className="product"><div data-id="6"><img src="/public/img-6.png" alt="" /></div></div>
+          <div className="product"><div data-id="4"><img src="/img-4.png" alt="" /></div></div>
+          <div className="product"><div data-id="9"><img src="/img-9.png" alt="" /></div></div>
+          <div className="product"><div data-id="2"><img src="/img-2.png" alt="" /></div></div>
+          <div className="product"><div data-id="7"><img src="/img-7.png" alt="" /></div></div>
+          <div className="product"><div data-id="6"><img src="/img-6.png" alt="" /></div></div>
         </div>
 
         {/* Column 10 (was 5) */}
         <div className="column">
-          <div className="product"><div data-id="10"><img src="/public/img-10.png" alt="" /></div></div>
-          <div className="product"><div data-id="5"><img src="/public/img-5.png" alt="" /></div></div>
-          <div className="product"><div data-id="6"><img src="/public/img-6.png" alt="" /></div></div>
-          <div className="product"><div data-id="1"><img src="/public/img-1.png" alt="" /></div></div>
-          <div className="product"><div data-id="4"><img src="/public/img-4.png" alt="" /></div></div>
+          <div className="product"><div data-id="10"><img src="/img-10.png" alt="" /></div></div>
+          <div className="product"><div data-id="5"><img src="/img-5.png" alt="" /></div></div>
+          <div className="product"><div data-id="6"><img src="/img-6.png" alt="" /></div></div>
+          <div className="product"><div data-id="1"><img src="/img-1.png" alt="" /></div></div>
+          <div className="product"><div data-id="4"><img src="/img-4.png" alt="" /></div></div>
         </div>
 
         {/* Column 6 */}
         <div className="column">
-          <div className="product"><div data-id="6"><img src="/public/img-6.png" alt="" /></div></div>
-          <div className="product"><div data-id="1"><img src="/public/img-1.png" alt="" /></div></div>
-          <div className="product"><div data-id="7"><img src="/public/img-7.png" alt="" /></div></div>
-          <div className="product"><div data-id="2"><img src="/public/img-2.png" alt="" /></div></div>
-          <div className="product"><div data-id="9"><img src="/public/img-9.png" alt="" /></div></div>
+          <div className="product"><div data-id="6"><img src="/img-6.png" alt="" /></div></div>
+          <div className="product"><div data-id="1"><img src="/img-1.png" alt="" /></div></div>
+          <div className="product"><div data-id="7"><img src="/img-7.png" alt="" /></div></div>
+          <div className="product"><div data-id="2"><img src="/img-2.png" alt="" /></div></div>
+          <div className="product"><div data-id="9"><img src="/img-9.png" alt="" /></div></div>
         </div>
 
         {/* Column 7 */}
         <div className="column">
-          <div className="product"><div data-id="7"><img src="/public/img-7.png" alt="" /></div></div>
-          <div className="product"><div data-id="3"><img src="/public/img-3.png" alt="" /></div></div>
-          <div className="product"><div data-id="10"><img src="/public/img-10.png" alt="" /></div></div>
-          <div className="product"><div data-id="4"><img src="/public/img-4.png" alt="" /></div></div>
-          <div className="product"><div data-id="8"><img src="/public/img-8.png" alt="" /></div></div>
+          <div className="product"><div data-id="7"><img src="/img-7.png" alt="" /></div></div>
+          <div className="product"><div data-id="3"><img src="/img-3.png" alt="" /></div></div>
+          <div className="product"><div data-id="10"><img src="/img-10.png" alt="" /></div></div>
+          <div className="product"><div data-id="4"><img src="/img-4.png" alt="" /></div></div>
+          <div className="product"><div data-id="8"><img src="/img-8.png" alt="" /></div></div>
         </div>
 
         {/* Column 8 */}
         <div className="column">
-          <div className="product"><div data-id="8"><img src="/public/img-8.png" alt="" /></div></div>
-          <div className="product"><div data-id="4"><img src="/public/img-4.png" alt="" /></div></div>
-          <div className="product"><div data-id="9"><img src="/public/img-9.png" alt="" /></div></div>
-          <div className="product"><div data-id="5"><img src="/public/img-5.png" alt="" /></div></div>
-          <div className="product"><div data-id="2"><img src="/public/img-2.png" alt="" /></div></div>
+          <div className="product"><div data-id="8"><img src="/img-8.png" alt="" /></div></div>
+          <div className="product"><div data-id="4"><img src="/img-4.png" alt="" /></div></div>
+          <div className="product"><div data-id="9"><img src="/img-9.png" alt="" /></div></div>
+          <div className="product"><div data-id="5"><img src="/img-5.png" alt="" /></div></div>
+          <div className="product"><div data-id="2"><img src="/img-2.png" alt="" /></div></div>
         </div>
 
         {/* Column 2 (was 9) */}
         <div className="column">
-          <div className="product"><div data-id="2"><img src="/public/img-2.png" alt="" /></div></div>
-          <div className="product"><div data-id="7"><img src="/public/img-7.png" alt="" /></div></div>
-          <div className="product"><div data-id="4"><img src="/public/img-4.png" alt="" /></div></div>
-          <div className="product"><div data-id="9"><img src="/public/img-9.png" alt="" /></div></div>
-          <div className="product"><div data-id="10"><img src="/public/img-10.png" alt="" /></div></div>
+          <div className="product"><div data-id="2"><img src="/img-2.png" alt="" /></div></div>
+          <div className="product"><div data-id="7"><img src="/img-7.png" alt="" /></div></div>
+          <div className="product"><div data-id="4"><img src="/img-4.png" alt="" /></div></div>
+          <div className="product"><div data-id="9"><img src="/img-9.png" alt="" /></div></div>
+          <div className="product"><div data-id="10"><img src="/img-10.png" alt="" /></div></div>
         </div>
 
         {/* Column 5 (was 10) */}
         <div className="column">
-          <div className="product"><div data-id="5"><img src="/public/img-5.png" alt="" /></div></div>
-          <div className="product"><div data-id="10"><img src="/public/img-10.png" alt="" /></div></div>
-          <div className="product"><div data-id="1"><img src="/public/img-1.png" alt="" /></div></div>
-          <div className="product"><div data-id="6"><img src="/public/img-6.png" alt="" /></div></div>
-          <div className="product"><div data-id="3"><img src="/public/img-3.png" alt="" /></div></div>
+          <div className="product"><div data-id="5"><img src="/img-5.png" alt="" /></div></div>
+          <div className="product"><div data-id="10"><img src="/img-10.png" alt="" /></div></div>
+          <div className="product"><div data-id="1"><img src="/img-1.png" alt="" /></div></div>
+          <div className="product"><div data-id="6"><img src="/img-6.png" alt="" /></div></div>
+          <div className="product"><div data-id="3"><img src="/img-3.png" alt="" /></div></div>
         </div>
       </div>
 
@@ -207,10 +207,10 @@ export default function Grid() {
             </p>
           </div>
 
-          <img class="detail__img" src="/public/img-2.png" alt="" />
-          <img class="detail__img" src="/public/img-1.png" alt="" />
-          <img class="detail__img" src="/public/img-4.png" alt="" />
-          <img class="detail__img" src="/public/img-3.png" alt="" />
+          <img class="detail__img" src="/img-2.png" alt="" />
+          <img class="detail__img" src="/img-1.png" alt="" />
+          <img class="detail__img" src="/img-4.png" alt="" />
+          <img class="detail__img" src="/img-3.png" alt="" />
         </div>
       </div>
 
