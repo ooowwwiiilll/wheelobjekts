@@ -149,7 +149,7 @@ a:hover {
 
 a:hover::after {
   transform: scaleX(1);
-  transform-origin: right; /* makes the underline shrink smoothly on mouse leave */
+  transform-origin: right; 
 }
 
 
@@ -237,18 +237,19 @@ header {
 
 .frame {
   display: flex;
-  z-index: 90;
+  z-index: 10;
   grid-row-gap: 1.2rem;
   grid-column-gap: 2rem;
   pointer-events: none;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   padding: var(--page-padding);
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 140px;
+  height: 200px;
+  padding-top: 5vh;
   grid-template-columns: auto auto auto 1fr;
   grid-template-rows: auto auto;
   grid-template-areas:
@@ -272,30 +273,32 @@ header {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 
-  /* bg */
+  /* ✅ Slightly warmer, more consistent frosted background */
   background: linear-gradient(
     to bottom,
-    #fffef4,
-    #fffef490,
-    #fffef480,
-    #fffef470,
-    #fffef460,
-    #fffef400
+    #fffef4ff 0%,    /* fully opaque at the top */
+    #fffef4e6 20%,   /* still quite visible */
+    #fffef4cc 30%,   
+    #fffef4cc 40%,   
+    #fffef499 60%,   
+    #fffef466 85%,   
+    #fffef400 100%   /* transparent bottom */
   );
 
-  /* blur */
   mask-image: linear-gradient(
     to bottom,
-    #ffffff,
-    #ffffff00
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0.85) 50%,
+    rgba(255, 255, 255, 0) 100%
   );
-  /* -webkit-mask-image: linear-gradient(
+  -webkit-mask-image: linear-gradient(
     to bottom,
-    #ffffff,
-    #ffffff80,
-    #ffffff00
-  ); */
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0.85) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
 }
+
 
 .frame {
   #cdawrap {
@@ -310,7 +313,7 @@ header {
 
   .frame__title {
     grid-area: title;
-    font-size: 200;
+    font-size: 100;
     margin: 0;
   }
 

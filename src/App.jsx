@@ -41,6 +41,8 @@ export default function App() {
 
   return (
     <main>
+      <div className="overlay" id="overlay"></div>
+
       <header className="frame">
         <h1 className="frame__title">
           Wheel Objekts
@@ -56,7 +58,7 @@ export default function App() {
       </header>
 
       <div className="container">
-        <div className="overlay"></div>
+        {/* <div className="overlay"></div> */}
 
         <div className="grid">
           {/* Column 1 */}
@@ -245,7 +247,7 @@ export default function App() {
             </p>
           </div>
 
-          <img className="details__img" src="/public/img-2.png" alt="" />
+          <img className="details__img" src="/public/img-1.png" alt="" />
           <img className="details__img" src="/public/img-1.png" alt="" />
           <img className="details__img" src="/public/img-1.png" alt="" />
           <img className="details__img" src="/public/img-1.png" alt="" />

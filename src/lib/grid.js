@@ -396,6 +396,15 @@ class Grid {
 
   init() {
     this.intro();
+    this.overlay = document.getElementById("overlay");
+    this.overlay.addEventListener("click", () => {
+      if (this.SHOW_DETAILS) this.hideDetails();
+    });
+    window.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && this.SHOW_DETAILS) {
+        this.hideDetails();
+      }
+    });
   }
 
   intro() {
@@ -633,6 +642,7 @@ class Grid {
     this.SHOW_DETAILS = true;
     this.details.classList.add("--is-showing");
     this.dom.classList.add("--is-details-showing");
+    document.body.classList.add("--is-details-showing");
 
     gsap.to(this.dom, {
       x: "-50vw",
@@ -673,17 +683,20 @@ class Grid {
 
     // Animate any image inside .details__body
     const detailImg = this.details.querySelector(".details__img");
+    // detailImg.forEach((img, index) => {
     if (detailImg) {
       gsap.fromTo(detailImg,
         {
           opacity: 0,
           y: 30,
-          scale: 0.95
+          scale: 0.95,
+          filter: "blur(30px)"
         },
         {
           opacity: 1,
           y: 0,
           scale: 1,
+          filter: "blur(0px)",
           duration: 1.2,
           delay: 0.5,
           ease: "power3.out"
@@ -700,6 +713,7 @@ class Grid {
     this.SHOW_DETAILS = false;
 
     this.dom.classList.remove("--is-details-showing");
+    document.body.classList.remove("--is-details-showing");
 
     gsap.to(this.dom, {
       x: 0,
