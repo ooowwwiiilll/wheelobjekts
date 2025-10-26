@@ -44,24 +44,24 @@ export default function App() {
 
       <div className="mobile-blocker">
         <p className="mobile__desc">
-          don’t break my site!<br />
-          pls view it on a larger screen.
+          pls don’t break my site!<br />
+          view on bigger screen
         </p>
         
         <h1 className="mobile__title">(wob)</h1>
 
         <div className="mobile__desc2">
-          <a href="https://linkedin.com/in/owil/" target="_blank" rel="noreferrer">{"> corporate"}</a>
-          <a href="https://drive.google.com/file/d/1ELcFvAMh2aRTnOf0iTbIWlac8juFh987/view?usp=drive_link" target="_blank" rel="noreferrer">{"> pause"}</a>
-          <a href="mailto:owilhm@gmail.com" target="_blank" rel="noreferrer">{"> message"}</a>
+          <a href="https://linkedin.com/in/owil/" target="_blank" rel="noreferrer">{"corporate"}</a>
+          <a href="https://drive.google.com/file/d/1ELcFvAMh2aRTnOf0iTbIWlac8juFh987/view?usp=drive_link" target="_blank" rel="noreferrer">{"pause"}</a>
+          <a href="mailto:owilhm@gmail.com" target="_blank" rel="noreferrer">{"message"}</a>
         </div>
       </div>
-
+      
       <div className="overlay" id="overlay"></div>
 
       <header className="frame">
         <h1 className="frame__title">
-          Wheel Objekts
+          ( WheelObjekts )
         </h1>
 
         <div className="frame__links">
@@ -71,6 +71,13 @@ export default function App() {
           <a href="https://drive.google.com/file/d/1ELcFvAMh2aRTnOf0iTbIWlac8juFh987/view?usp=drive_link" target="_blank" rel="noreferrer">pause</a>
           <a href="mailto:owilhm@gmail.com" target="_blank" rel="noreferrer">message</a>
         </div>
+        {/* <div class="frame__links">
+          <a class="frame__back" data-filter="all">all</a>
+          <a class="frame__back" data-filter="A">visuals</a>
+          <a class="frame__back" data-filter="B">reads</a>
+          <a class="frame__back" data-filter="C">codes</a>
+        </div> */}
+
       </header>
 
       <div className="container">
@@ -171,16 +178,16 @@ export default function App() {
 
       <div className="details">
         <div className="details__title">
-          <p data-title="1" data-text>overengineered himekuri</p>
-          <p data-title="2" data-text>telkomsel wec</p>
-          <p data-title="3" data-text>kix</p>
-          <p data-title="4" data-text>samosynth</p>
-          <p data-title="5" data-text>tring</p>
-          <p data-title="6" data-text>vietinbank efast</p>
-          <p data-title="7" data-text>pavel</p>
-          <p data-title="8" data-text>kubible</p>
-          <p data-title="9" data-text>axisnet</p>
-          <p data-title="10" data-text>focalé</p>
+          <p data-title="1" data-text> overengineered himekuri</p>
+          <p data-title="2" data-text> telkomsel wec</p>
+          <p data-title="3" data-text> kix</p>
+          <p data-title="4" data-text> samosynth</p>
+          <p data-title="5" data-text> tring</p>
+          <p data-title="6" data-text> vietinbank efast</p>
+          <p data-title="7" data-text> pavel</p>
+          <p data-title="8" data-text> kubible</p>
+          <p data-title="9" data-text> axisnet</p>
+          <p data-title="10" data-text> focalé</p>
         </div>
         <div className="details__body">
           <div className="details__thumb"></div>
@@ -190,14 +197,14 @@ export default function App() {
               This bold red vase stands out with its vibrant hue, a perfect centerpiece to add passion and energy to any
               room. Its smooth surface and classic silhouette make it versatile, equally suited for modern interiors or
               traditional spaces, bringing warmth and a touch of drama wherever it is placed.
-              <button>Add to cart</button>
+              {/* <button>Add to cart</button> */}
             </p>
             <p data-desc="2" data-text>
               <span>$220,00</span>
               With its earthy tones and natural speckled finish, this rustic vase evokes the charm of handcrafted
               pottery. Its organic look and timeless shape give a sense of authenticity, making it an ideal piece to
               display dried flowers or simply as a decorative object that adds warmth and artisanal beauty to your home.
-              <button>Add to cart</button>
+              {/* <button>Add to cart</button> */}
             </p>
             <p data-desc="3" data-text>
               <span>$240,00</span>
@@ -205,14 +212,14 @@ export default function App() {
               creating a lively focal point in any setting. Perfect for fresh blooms or displayed on its own, this vase
               captures the essence of sunshine and joy, effortlessly transforming spaces with a vibrant, uplifting touch
               of color.
-              <button>Add to cart</button>
+              {/* <button>Add to cart</button> */}
             </p>
             <p data-desc="4" data-text>
               <span>$300,00</span>
               Generous in size and striking in presence, the large yellow vase makes a bold decorative statement. Its
               smooth curves and sunny shade are perfect for standing on the floor or dressing up a wide console. Both
               functional and eye-catching, it brings vitality and a contemporary edge to your interior design.
-              <button>Add to cart</button>
+              {/* <button>Add to cart</button> */}
             </p>
             <p data-desc="5" data-text>
               <span>$390,00</span>
@@ -220,14 +227,12 @@ export default function App() {
               versatile, pairing effortlessly with minimalist or luxurious décors. Whether holding fresh greenery or
               standing alone as a sculptural accent, this piece exudes modern refinement and bold simplicity, creating
               contrast and balance within any interior style.
-              <button>Add to cart</button>
+              {/* <button>Add to cart</button> */}
             </p>
             <p data-desc="6" data-text>
               <span>$340,00</span>
-              A playful mix of texture and color, the speckled yellow vase is both lively and unique. Its dotted surface
-              creates movement and character, while the bright golden base ensures it remains eye-catching. Perfect for
-              adding personality to your shelf or table, it combines artistic charm with a cheerful, inviting presence.
-              <button>Add to cart</button>
+              A playful mix of texture and color, the speckled yellow vase is both lively and unique. Its dotted surface creates movement and character, while the bright golden base ensures it remains eye-catching. Perfect for adding personality to your shelf or table, it combines artistic charm with a cheerful, inviting presence.
+              {/* <button>Add to cart</button> */}
             </p>
             <p data-desc="7" data-text>
               <span>$240,00</span>
@@ -235,7 +240,7 @@ export default function App() {
               smooth grain bring an earthy elegance to interiors. Perfect for dried arrangements or as a stand-alone
               piece, it highlights craftsmanship and natural textures, making it a versatile addition to rustic, modern,
               or eclectic décors.
-              <button>Add to cart</button>
+              {/* <button>Add to cart</button> */}
             </p>
             <p data-desc="8" data-text>
               <span>$240,00</span>
@@ -243,7 +248,7 @@ export default function App() {
               smooth grain bring an earthy elegance to interiors. Perfect for dried arrangements or as a stand-alone
               piece, it highlights craftsmanship and natural textures, making it a versatile addition to rustic, modern,
               or eclectic décors.
-              <button>Add to cart</button>
+              {/* <button>Add to cart</button> */}
             </p>
             <p data-desc="9" data-text>
               <span>$240,00</span>
@@ -251,7 +256,7 @@ export default function App() {
               smooth grain bring an earthy elegance to interiors. Perfect for dried arrangements or as a stand-alone
               piece, it highlights craftsmanship and natural textures, making it a versatile addition to rustic, modern,
               or eclectic décors.
-              <button>Add to cart</button>
+              {/* <button>Add to cart</button> */}
             </p>
             <p data-desc="10" data-text>
               <span>$240,00</span>
@@ -259,7 +264,7 @@ export default function App() {
               smooth grain bring an earthy elegance to interiors. Perfect for dried arrangements or as a stand-alone
               piece, it highlights craftsmanship and natural textures, making it a versatile addition to rustic, modern,
               or eclectic décors.
-              <button>Add to cart</button>
+              {/* <button>Add to cart</button> */}
             </p>
           </div>
 
