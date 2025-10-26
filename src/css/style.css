@@ -89,7 +89,8 @@
   width: 50vw;
   height: 100vh;
   padding: 3vw 4vw;
-  background-color: #e2dccf;
+  background-color: #ebebeb;
+  /* background-color: #e2dccf; */
 
   transform: translate3d(50vw, 0, 0);
   /* transform: translateX(50vw); */
@@ -143,7 +144,7 @@
 .details__body {
   display: flex;
   /* flex-direction: column; */
-  /* height: auto; */
+  height: auto;
   flex-wrap: wrap;
   align-items: center;
   gap: 2vw;
@@ -257,7 +258,7 @@ p {
   /* height: 100vh; */
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  background: rgba(245, 243, 223, 0.4); /* match your bg tone */
+  background: #f9f9f910; 
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.45s cubic-bezier(0.33, 1, 0.68, 1);

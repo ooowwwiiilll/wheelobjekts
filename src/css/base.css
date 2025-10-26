@@ -4,7 +4,9 @@
   src: url('../public2/HalideRouterNeue.otf') format('otf');
 } */
 
-@import url('https://fonts.cdnfonts.com/css/libre-baskerville');
+/* @import url('https://fonts.cdnfonts.com/css/libre-baskerville'); */
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+
 
 *,
 *::after,
@@ -18,7 +20,7 @@
   font-size: 12px;
   letter-spacing: 0.02em;
   --color-text: #1a1a1a;
-  --color-bg: #fffef4;
+  --color-bg: #f9f9f9;
   --color-link: #1a1a1a;
   --color-link-hover: #1a1a1a;
   --page-padding: 1.5rem;
@@ -29,6 +31,7 @@ body {
   color: var(--color-text);
   background-color: var(--color-bg);
   font-family: 'Libre Baskerville';
+  font-style: normal; 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -276,13 +279,13 @@ header {
   /* ✅ Slightly warmer, more consistent frosted background */
   background: linear-gradient(
     to bottom,
-    #fffef4ff 0%,
-    #fffef4e6 10%,
-    #fffef4cc 20%,
-    #fffef4cc 30%,
-    #fffef499 50%,
-    #fffef466 85%,
-    #fffef400 100%
+    #f9f9f9ff 0%,
+    #f9f9f9e6 10%,
+    #f9f9f9cc 20%,
+    #f9f9f9cc 30%,
+    #f9f9f999 50%,
+    #f9f9f966 85%,
+    #f9f9f900 100%
   );
 
   mask-image: linear-gradient(
@@ -371,7 +374,7 @@ header {
     position: fixed;
     inset: 0;
     z-index: 99999;
-    background-color: #fffef4;
+    background-color: #f9f9f9;
     color: #1e1e1e;
     display: flex;
     flex-direction: column;

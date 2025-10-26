@@ -72,10 +72,10 @@ export default function App() {
           <a href="mailto:owilhm@gmail.com" target="_blank" rel="noreferrer">message</a>
         </div> */}
         <div class="frame__links">
-          <a class="frame__back" data-filter="all">all</a>
-          <a class="frame__back" data-filter="A">visuals</a>
-          <a class="frame__back" data-filter="B">reads</a>
-          <a class="frame__back" data-filter="C">codes</a>
+          <a class="active" data-filter="all">all</a>
+          <a data-filter="A">visuals</a>
+          <a data-filter="B">reads</a>
+          <a data-filter="C">codes</a>
         </div>
 
       </header>

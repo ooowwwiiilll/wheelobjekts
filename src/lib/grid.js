@@ -398,6 +398,8 @@ class Grid {
     this.observer = null;
     this.currentProduct = null;
     this.originalParent = null;
+    // this.activeCategory = "all";
+
   }
 
   // init() {
@@ -483,8 +485,8 @@ class Grid {
         gsap.to(item, {
           opacity: 0.6,
           filter: "blur(40px) saturate(0)",
-          scale: 0.95,
-          duration: 0.6,
+          scale: 0.6,
+          duration: 0.4,
           ease: "power2.out",
           pointerEvents: "none",
         });
@@ -686,19 +688,19 @@ class Grid {
         } else if (!matches) {
           // keep filtered state
           gsap.to(item, {
-            opacity: 0.1,
+            opacity: 0.6,
             filter: "blur(40px) saturate(0)",
-            scale: 0.95,
-            duration: 0.5,
+            scale: 0.6,
+            duration: 0.4,
             ease: "power2.in",
           });
         } else if (!entry.isIntersecting) {
           // for visible category only
           gsap.to(item, {
-            opacity: 0,
-            scale: 0.5,
-            filter: "blur(10px) saturate(0.5)",
-            duration: 0.5,
+            opacity: 0.6,
+            scale: 0.6,
+            filter: "blur(40px) saturate(0)",
+            duration: 0.4,
             ease: "power2.in",
           });
         }
