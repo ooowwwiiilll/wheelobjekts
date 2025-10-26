@@ -373,6 +373,12 @@ import { gsap } from "gsap";
 import { Flip } from "gsap/Flip";
 import { Draggable } from "gsap/Draggable";
 import { SplitText } from "gsap/SplitText";
+import { animate, spring } from "animejs";
+
+const springEase = spring({
+  bounce: -0.19,
+  duration: 300
+});
 
 gsap.registerPlugin(Draggable, Flip, SplitText);
 
@@ -394,19 +400,99 @@ class Grid {
     this.originalParent = null;
   }
 
+  // init() {
+  //   this.intro();
+  //   this.overlay = document.getElementById("overlay");
+  //   this.overlay.addEventListener("click", () => {
+  //     if (this.SHOW_DETAILS) this.hideDetails();
+  //   });
+  //   window.addEventListener("keydown", (event) => {
+  //     if (event.key === "Escape" && this.SHOW_DETAILS) {
+  //       this.hideDetails();
+  //     }
+  //   });
+  // }
+
   init() {
     this.intro();
     this.overlay = document.getElementById("overlay");
+  
     this.overlay.addEventListener("click", () => {
       if (this.SHOW_DETAILS) this.hideDetails();
     });
+  
     window.addEventListener("keydown", (event) => {
       if (event.key === "Escape" && this.SHOW_DETAILS) {
         this.hideDetails();
       }
     });
-  }
+  
+    // ✅ collect all product items
+    this.products = document.querySelectorAll(".product div");
+    // this.products.forEach((p) => (p.style.display = "block"));
 
+  
+    // ✅ assign categories to each product
+    const catMap = {
+      A: [1, 2, 3],
+      B: [4, 5],
+      C: [6, 7, 8],
+    };
+    this.products.forEach((el) => {
+      const id = Number(el.dataset.id);
+      const cat = Object.keys(catMap).find((key) => catMap[key].includes(id)) || "none";
+      el.dataset.cat = cat;
+    });
+  
+    // ✅ handle category filter clicks
+    document.querySelectorAll(".frame__links a[data-filter]").forEach((link) => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        const category = e.currentTarget.dataset.filter;
+        this.filterItems(category);
+  
+        // toggle active style
+        document.querySelectorAll(".frame__links a").forEach((l) => l.classList.remove("active"));
+        e.currentTarget.classList.add("active");
+      });
+    });
+  }
+  
+  filterItems(category) {
+    const products = document.querySelectorAll(".product div");
+    this.activeCategory = category;
+  
+    products.forEach((item) => {
+      const matches =
+        category === "all" ||
+        item.dataset.cat === category ||
+        item.dataset.cat === "none";
+  
+      if (matches) {
+        // Visible category — restore clarity
+        gsap.to(item, {
+          opacity: 1,
+          filter: "blur(0px) saturate(1)",
+          scale: 1,
+          duration: 0.6,
+          ease: "power2.out",
+          pointerEvents: "auto",
+        });
+      } else {
+        // Blurred category — fade it but keep it in view
+        gsap.to(item, {
+          opacity: 0.6,
+          filter: "blur(40px) saturate(0)",
+          scale: 0.95,
+          duration: 0.6,
+          ease: "power2.out",
+          pointerEvents: "none",
+        });
+      }
+    });
+  }
+  
+  
   intro() {
     this.centerGrid();
 
@@ -542,41 +628,90 @@ class Grid {
     }
   }
 
+  // observeProducts() {
+  //   const observer = new IntersectionObserver(
+  //     (entries) => {
+  //       entries.forEach((entry) => {
+  //         if (entry.target === this.currentProduct) return;
+
+  //         if (entry.isIntersecting) {
+  //           gsap.to(entry.target, {
+  //             scale: 1,
+  //             opacity: 1,
+  //             duration: 0.5,
+  //             ease: "power2.out",
+  //           });
+  //         } else {
+  //           gsap.to(entry.target, {
+  //             opacity: 0,
+  //             scale: 0.5,
+  //             duration: 0.5,
+  //             ease: "power2.in",
+  //           });
+  //         }
+  //       });
+  //     },
+  //     {
+  //       root: null,
+  //       threshold: 0.1,
+  //     }
+  //   );
+
+  //   this.products.forEach((product) => {
+  //     observer.observe(product);
+  //   });
+
+  //   this.observer = observer;
+  // }
+
   observeProducts() {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.target === this.currentProduct) return;
-
-          if (entry.isIntersecting) {
-            gsap.to(entry.target, {
-              scale: 1,
-              opacity: 1,
-              duration: 0.5,
-              ease: "power2.out",
-            });
-          } else {
-            gsap.to(entry.target, {
-              opacity: 0,
-              scale: 0.5,
-              duration: 0.5,
-              ease: "power2.in",
-            });
-          }
-        });
-      },
-      {
-        root: null,
-        threshold: 0.1,
-      }
-    );
-
-    this.products.forEach((product) => {
-      observer.observe(product);
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const item = entry.target;
+        const currentCategory = this.activeCategory || "all";
+        const matches =
+          currentCategory === "all" ||
+          item.dataset.cat === currentCategory ||
+          item.dataset.cat === "none";
+  
+        // Only animate intersecting if not filtered out
+        if (entry.isIntersecting && matches) {
+          gsap.to(item, {
+            scale: 1,
+            opacity: 1,
+            filter: "blur(0px) saturate(1)",
+            duration: 0.5,
+            ease: "power2.out",
+          });
+        } else if (!matches) {
+          // keep filtered state
+          gsap.to(item, {
+            opacity: 0.1,
+            filter: "blur(40px) saturate(0)",
+            scale: 0.95,
+            duration: 0.5,
+            ease: "power2.in",
+          });
+        } else if (!entry.isIntersecting) {
+          // for visible category only
+          gsap.to(item, {
+            opacity: 0,
+            scale: 0.5,
+            filter: "blur(10px) saturate(0.5)",
+            duration: 0.5,
+            ease: "power2.in",
+          });
+        }
+      });
+    }, {
+      root: null,
+      threshold: 0.1,
     });
-
+  
+    this.products.forEach((product) => observer.observe(product));
     this.observer = observer;
   }
+  
 
   handleDetails() {
     this.SHOW_DETAILS = false;

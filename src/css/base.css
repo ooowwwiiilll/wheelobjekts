@@ -412,19 +412,31 @@ header {
     display: none !important;
   }
 }
-/* 
+
+
 .product div {
-  transition: opacity 0.4s ease, filter 0.4s ease, transform 0.4s ease;
+  transition: opacity 0.4s ease, filter 0.4s ease, transform 0.4s ease-in-out;
   will-change: opacity, filter, transform;
 }
 
 .frame__links a {
   cursor: pointer;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease-in-out;
 }
 
 .frame__links a.active {
-  color: #000;
-  text-decoration: underline;
-  font-weight: 600;
-} */
+  color: #bca76e;
+  /* text-decoration: underline; */
+}
+
+/* .product div.is-hidden {
+  opacity: 0.1;
+  filter: blur(40px);
+  transform: scale(0.1);
+  height: 0 !important;
+  margin: 0 !important;
+  pointer-events: none;
+  display: none !important;
+  transition: all 0.3s ease;
+}
+ */

@@ -64,19 +64,19 @@ export default function App() {
           ( WheelObjekts )
         </h1>
 
-        <div className="frame__links">
+        {/* <div className="frame__links">
           <a href="">reads</a>
           <a href="">tldr</a>
           <a href="https://linkedin.com/in/owil/" target="_blank" rel="noreferrer">corporate</a>
           <a href="https://drive.google.com/file/d/1ELcFvAMh2aRTnOf0iTbIWlac8juFh987/view?usp=drive_link" target="_blank" rel="noreferrer">pause</a>
           <a href="mailto:owilhm@gmail.com" target="_blank" rel="noreferrer">message</a>
-        </div>
-        {/* <div class="frame__links">
+        </div> */}
+        <div class="frame__links">
           <a class="frame__back" data-filter="all">all</a>
           <a class="frame__back" data-filter="A">visuals</a>
           <a class="frame__back" data-filter="B">reads</a>
           <a class="frame__back" data-filter="C">codes</a>
-        </div> */}
+        </div>
 
       </header>
 
