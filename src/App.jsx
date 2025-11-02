@@ -1,36 +1,3 @@
-// import { useState } from 'react'
-// // import reactLogo from './assets/react.svg'
-// // import viteLogo from '/vite.svg'
-// import React from 'react';
-// import './App.css'
-// import "./css/base.css";
-// import "./css/style.css";
-// import Grid from "./components/Grid";
-
-// function App() {
-//   // const [count, setCount] = useState(0)
-
-//   return (
-//     <main>
-//       <header className="frame">
-//         <h1 className="frame__title">wheel objekts</h1>
-
-//         <div className="frame__links">
-//           <a className="frame__back" href="#">reads</a>
-//           <a className="frame__back" href="#">tldr</a>
-//           <a className="frame__back" href="https://linkedin.com/in/owil/" target="_blank" rel="noreferrer">corporate</a>
-//           <a className="frame__back" href="https://drive.google.com/file/d/1ELcFvAMh2aRTnOf0iTbIWlac8juFh987/view?usp=drive_link" target="_blank" rel="noreferrer">pause</a>
-//           <a className="frame__back" href="mailto:owilhm@gmail.com" target="_blank" rel="noreferrer">message</a>
-//         </div>
-//       </header>
-
-//       <Grid />
-//     </main>
-//   )
-// }
-
-// export default App
-
 import React, { useEffect } from "react";
 import { initGrid } from "./lib/grid.js";
 
