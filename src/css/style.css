@@ -34,7 +34,7 @@
   width: max-content;
   height: max-content;
   display: flex;
-  gap: 5vw;
+  gap: 10vw;
 }
 
 .--is-loaded {
@@ -49,11 +49,11 @@
 .column {
   display: flex;
   flex-direction: column;
-  gap: 5vw;
+  gap: 10vw;
 }
 
 .column:nth-child(even) {
-  margin-top: 10vw;
+  margin-top: 15vw;
 }
 
 .product {
