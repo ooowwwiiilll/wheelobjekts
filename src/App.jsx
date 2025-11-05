@@ -64,7 +64,7 @@ export default function App() {
           <div className="column">
             <div className="product"><div data-id="9"><img src="/wob.gif" alt="" /></div></div>
             <div className="product"><div data-id="2"><img src="/osamo.png" alt="" /></div></div>
-            <div className="product"><div data-id="8"><img src="/img-8.png" alt="" /></div></div>
+            <div className="product"><div data-id="8"><img src="/ofast.png" alt="" /></div></div>
             <div className="product"><div data-id="3"><img src="/omtb.png" alt="" /></div></div>
             {/* <div className="product"><div data-id="7"><img src="/img-7.png" alt="" /></div></div> */}
           </div>
@@ -89,7 +89,7 @@ export default function App() {
 
           {/* Column 10 (was 5) */}
           <div className="column">
-            <div className="product"><div data-id="10"><img src="/img-6.png" alt="" /></div></div>
+            <div className="product"><div data-id="10"><img src="/ofast.png" alt="" /></div></div>
             <div className="product"><div data-id="5"><img src="/img-5.png" alt="" /></div></div>
             <div className="product"><div data-id="6"><img src="/wob.gif" alt="" /></div></div>
             <div className="product"><div data-id="1"><img src="/oaxis.png" alt="" /></div></div>
