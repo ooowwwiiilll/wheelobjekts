@@ -212,7 +212,7 @@
 
 p {
   font-size: 1rem;
-  margin-bottom: 1vw;
+  /* margin-bottom: 1vw; */
 
   @media (max-width: 820px) {
     font-size: 0.75rem;

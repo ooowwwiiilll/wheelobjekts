@@ -45,6 +45,24 @@ export default function App() {
           <a data-filter="C">codes</a>
         </div>
 
+        <div className="hud">
+          <p>office</p>
+          <div className="hud2">
+            <p>settle</p>
+            <div className="hud2__radar">
+              <svg width="51" height="51" viewBox="0 0 51 51" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="0.125" y="0.125" width="25" height="25" stroke="#111111" stroke-width="0.25"/>
+              <rect x="25.125" y="0.125" width="25" height="25" stroke="#111111" stroke-width="0.25"/>
+              <rect x="0.125" y="25.125" width="25" height="25" stroke="#111111" stroke-width="0.25"/>
+              <rect x="25.125" y="25.125" width="25" height="25" stroke="#111111" stroke-width="0.25"/>
+              </svg>
+              <img id="radar-rocky" className="rocky" src="/rocky.png" />
+            </div>
+            <p>interact</p>
+          </div>
+          <p>plays</p>
+        </div>
+
       </header>
 
       <div className="container">
