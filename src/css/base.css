@@ -209,7 +209,6 @@ header {
   );
 }
 
-
 .frame {
   #cdawrap {
     max-width: 260px;
@@ -223,7 +222,7 @@ header {
 
   .frame__title {
     /* grid-area: title; */
-    font-size: 4rem;
+    font-size: 3rem;
     margin: 0;
   }
 
@@ -267,12 +266,49 @@ header {
   gap: 2rem;
   bottom: 0;
   width: 100%;
-  height: auto;
+  height: 200px;
   /* background-color: #776a47; */
   padding-bottom: 2vh;
   padding-top: 2vh;
 }
 
+.hud::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -99; 
+
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  /* ✅ Slightly warmer, more consistent frosted background */
+  background: linear-gradient(
+    to top,
+    #f9f9f9ff 0%,
+    /* #f9f9f9e6 10%, */
+    /* #f9f9f9cc 20%, */
+    /* #f9f9f9cc 30%, */
+    /* #f9f9f999 50%, */
+    #f9f9f966 85%,
+    #f9f9f900 100%,
+    #f9f9f900 100%
+  );
+
+  mask-image: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0.85) 50%,
+    rgba(255, 255, 255, 0.6) 70%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0.85) 50%,
+    rgba(255, 255, 255, 0.6) 70%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
 
 .hud2 {
   display: flex;
@@ -382,7 +418,7 @@ header {
 }
 
 .frame__links a.active {
-  color: #bca76e;
+  color: #ab783d;
   /* text-decoration: underline; */
 }
 

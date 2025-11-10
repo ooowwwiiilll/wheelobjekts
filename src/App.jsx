@@ -16,7 +16,6 @@ export default function App() {
         </p>
         
         <h1 className="mobile__title">(wob)</h1>
-
         <div className="mobile__desc2">
           <a href="https://linkedin.com/in/owil/" target="_blank" rel="noreferrer">{"corporate"}</a>
           <a href="https://drive.google.com/file/d/1ELcFvAMh2aRTnOf0iTbIWlac8juFh987/view?usp=drive_link" target="_blank" rel="noreferrer">{"pause"}</a>
@@ -50,12 +49,11 @@ export default function App() {
           <div className="hud2">
             <p>settle</p>
             <div className="hud2__radar">
+
               <svg width="51" height="51" viewBox="0 0 51 51" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="0.125" y="0.125" width="25" height="25" stroke="#111111" stroke-width="0.25"/>
-              <rect x="25.125" y="0.125" width="25" height="25" stroke="#111111" stroke-width="0.25"/>
-              <rect x="0.125" y="25.125" width="25" height="25" stroke="#111111" stroke-width="0.25"/>
-              <rect x="25.125" y="25.125" width="25" height="25" stroke="#111111" stroke-width="0.25"/>
+              <path d="M25.25 0.25H0.25V25.25M25.25 0.25V25.25M25.25 0.25H50.25V25.25M25.25 25.25H0.25M25.25 25.25H50.25M25.25 25.25V50.25M0.25 25.25V50.25H25.25M50.25 25.25V50.25H25.25" stroke="#111111" stroke-width="0.5"/>
               </svg>
+
               <img id="radar-rocky" className="rocky" src="/rocky.png" />
             </div>
             <p>interact</p>
