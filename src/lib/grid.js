@@ -4,13 +4,15 @@ import { Flip } from "gsap/Flip";
 import { Draggable } from "gsap/Draggable";
 import { SplitText } from "gsap/SplitText";
 import { animate, spring } from "animejs";
+import { pixelateImage } from "./pixelate.js";
+
+
+gsap.registerPlugin(Draggable, Flip, SplitText);
 
 const springEase = spring({
   bounce: -0.19,
   duration: 300
 });
-
-gsap.registerPlugin(Draggable, Flip, SplitText);
 
 class Grid {
   constructor() {
@@ -88,6 +90,12 @@ class Grid {
         e.currentTarget.classList.add("active");
       });
     });
+
+    // this.pixelatedImages = [];
+    // document.querySelectorAll(".product img").forEach((img) => {
+    //   const instance = pixelateImage(img, { boxes: 10 });
+    //   this.pixelatedImages.push(instance);
+    // });
   }
   
   filterItems(category) {
@@ -304,7 +312,7 @@ class Grid {
     const gridY = gsap.getProperty(this.grid, "y");
     const bounds = this.draggable.vars.bounds;
   
-    const radarSize = 51;
+    const radarSize = 44;
     const rockySize = 20;
   
     const progressX = gsap.utils.mapRange(
@@ -333,45 +341,7 @@ class Grid {
       ease: "power2.out",
     });
   }
-  
-  
-
-  // observeProducts() {
-  //   const observer = new IntersectionObserver(
-  //     (entries) => {
-  //       entries.forEach((entry) => {
-  //         if (entry.target === this.currentProduct) return;
-
-  //         if (entry.isIntersecting) {
-  //           gsap.to(entry.target, {
-  //             scale: 1,
-  //             opacity: 1,
-  //             duration: 0.5,
-  //             ease: "power2.out",
-  //           });
-  //         } else {
-  //           gsap.to(entry.target, {
-  //             opacity: 0,
-  //             scale: 0.5,
-  //             duration: 0.5,
-  //             ease: "power2.in",
-  //           });
-  //         }
-  //       });
-  //     },
-  //     {
-  //       root: null,
-  //       threshold: 0.1,
-  //     }
-  //   );
-
-  //   this.products.forEach((product) => {
-  //     observer.observe(product);
-  //   });
-
-  //   this.observer = observer;
-  // }
-
+ 
   observeProducts() {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -550,6 +520,8 @@ class Grid {
     this.observeDetailImages();
     window.addEventListener("mousemove", this._boundHandleCursor = (e) => this.handleCursor(e));
 
+    // document.body.classList.add("--is-details-showing");
+    // this.pixelatedImages.forEach((p) => p.disable());
   }
 
   hideDetails() {
@@ -599,6 +571,9 @@ class Grid {
       });
     });
     window.removeEventListener("mousemove", this._boundHandleCursor);
+
+    // document.body.classList.remove("--is-details-showing");
+    // this.pixelatedImages.forEach((p) => p.enable());
   }
 
   flipProduct(product) {

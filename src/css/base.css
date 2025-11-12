@@ -158,7 +158,7 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  height: 250px;
+  height: 240px;
   padding-top: 5vh;
   grid-template-columns: auto auto auto 1fr;
   grid-template-rows: auto auto;
@@ -221,58 +221,39 @@ header {
   }
 
   .frame__title {
-    /* grid-area: title; */
     font-size: 3rem;
     margin: 0;
-  }
-
-  /* .frame__back {
-    grid-area: back;
-    justify-self: start;
-  }
-
-  .frame__archive {
-    grid-area: archive;
-    justify-self: start;
-  }
-
-  .frame__github {
-    grid-area: github;
-  } */
-
-  .frame__tags {
-    grid-area: tags;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  .frame__demos {
-    grid-area: demos;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
   }
 }
 
 .hud {
   pointer-events: none;
   z-index: 10;
-  position: fixed;
+  /* position: fixed; */
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   gap: 2rem;
-  bottom: 0;
-  width: 100%;
-  height: 200px;
-  /* background-color: #776a47; */
-  padding-bottom: 2vh;
-  padding-top: 2vh;
+  padding-bottom: 4vh;
+  /* padding-top: 2vh; */
 }
 
-.hud::before {
+.hud__bg {
+  pointer-events: none;
+  z-index: 10;
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  align-items: end;
+  justify-content: center;
+  gap: 2rem;
+  bottom: 0;
+  width: 100%;
+  height: 240px;
+}
+
+.hud__bg::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -297,15 +278,15 @@ header {
   mask-image: linear-gradient(
     to top,
     rgba(255, 255, 255, 1) 0%,
-    rgba(255, 255, 255, 0.85) 50%,
-    rgba(255, 255, 255, 0.6) 70%,
+    rgba(255, 255, 255, 0.9) 33%,
+    rgba(255, 255, 255, 0.7) 66%,
     rgba(255, 255, 255, 0) 100%
   );
   -webkit-mask-image: linear-gradient(
     to top,
     rgba(255, 255, 255, 1) 0%,
-    rgba(255, 255, 255, 0.85) 50%,
-    rgba(255, 255, 255, 0.6) 70%,
+    rgba(255, 255, 255, 0.9) 33%,
+    rgba(255, 255, 255, 0.7) 66%,
     rgba(255, 255, 255, 0) 100%
   );
 }
@@ -315,13 +296,12 @@ header {
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  /* background-color: #bca76e; */
 }
 
 .hud2__radar {
   position: relative;
-  width: 51px;
-  height: 51px;
+  width: 44px;
+  height: 44px;
 }
 
 .hud2__radar svg {

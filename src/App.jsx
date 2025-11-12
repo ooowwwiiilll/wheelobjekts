@@ -44,21 +44,24 @@ export default function App() {
           <a data-filter="C">codes</a>
         </div>
 
-        <div className="hud">
-          <p>office</p>
-          <div className="hud2">
-            <p>static</p>
-            <div className="hud2__radar">
+        <div className="hud__bg">
+          <div className="hud">
+            <p>office</p>
+            <div className="hud2">
+              <p>static</p>
+              <div className="hud2__radar">
 
-              <svg width="51" height="51" viewBox="0 0 51 51" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M25.25 0.25H0.25V25.25M25.25 0.25V25.25M25.25 0.25H50.25V25.25M25.25 25.25H0.25M25.25 25.25H50.25M25.25 25.25V50.25M0.25 25.25V50.25H25.25M50.25 25.25V50.25H25.25" stroke="#111111" stroke-width="0.5"/>
+              <svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22.25 0.25H0.25V22.25M22.25 0.25V22.25M22.25 0.25H44.25V22.25M22.25 22.25H0.25M22.25 22.25H44.25M22.25 22.25V44.25M0.25 22.25V44.25H22.25M44.25 22.25V44.25H22.25" stroke="#111111" stroke-width="0.5"/>
               </svg>
 
-              <img id="radar-rocky" className="rocky" src="/rocky.png" />
+
+                <img id="radar-rocky" className="rocky" src="/rocky.png" />
+              </div>
+              <p>lively</p>
             </div>
-            <p>lively</p>
+            <p>outpost</p>
           </div>
-          <p>outpost</p>
         </div>
 
       </header>
@@ -67,110 +70,77 @@ export default function App() {
         {/* <div className="overlay"></div> */}
 
         <div className="grid">
-          {/* Column 1 */}
           <div className="column">
-            <div className="product"><div data-id="1"><img src="/oaxis.png" alt="" /></div></div>
-            <div className="product"><div data-id="6"><img src="/img-6.png" alt="" /></div></div>
-            <div className="product"><div data-id="3"><img src="/omtb.png" alt="" /></div></div>
-            <div className="product"><div data-id="8"><img src="/img-8.png" alt="" /></div></div>
-            {/* <div className="product"><div data-id="5"><img src="/img-5.png" alt="" /></div></div> */}
+            <div className="product"><div data-id="1"><img src="/saxis.png" alt="" /></div></div>
+            <div className="product"><div data-id="2"><img src="/sfast.png" alt="" /></div></div>
+            <div className="product"><div data-id="3"><img src="/sgop.png" alt="" /></div></div>
+            <div className="product"><div data-id="4"><img src="/skix.png" alt="" /></div></div>
           </div>
 
-          {/* Column 9 (was 2) */}
           <div className="column">
-            <div className="product"><div data-id="9"><img src="/wob.gif" alt="" /></div></div>
-            <div className="product"><div data-id="2"><img src="/osamo.png" alt="" /></div></div>
-            <div className="product"><div data-id="8"><img src="/ofast.png" alt="" /></div></div>
-            <div className="product"><div data-id="3"><img src="/omtb.png" alt="" /></div></div>
-            {/* <div className="product"><div data-id="7"><img src="/img-7.png" alt="" /></div></div> */}
+            <div className="product"><div data-id="5"><img src="/smtb.png" alt="" /></div></div>
+            <div className="product"><div data-id="6"><img src="/ssamo.png" alt="" /></div></div>
+            <div className="product"><div data-id="7"><img src="/wob.gif" alt="" /></div></div>
+            <div className="product"><div data-id="8"><img src="/sthuy.png" alt="" /></div></div>
           </div>
 
-          {/* Column 3 */}
           <div className="column">
-            <div className="product"><div data-id="3"><img src="/omtb.png" alt="" /></div></div>
-            <div className="product"><div data-id="8"><img src="/img-8.png" alt="" /></div></div>
-            <div className="product"><div data-id="5"><img src="/img-5.png" alt="" /></div></div>
-            <div className="product"><div data-id="10"><img src="/oaxis.png" alt="" /></div></div>
-            {/* <div className="product"><div data-id="1"><img src="/oaxis.png" alt="" /></div></div> */}
+            <div className="product"><div data-id="9"><img src="/sviet.png" alt="" /></div></div>
+            <div className="product"><div data-id="8"><img src="/sthuy.png" alt="" /></div></div>
+            <div className="product"><div data-id="6"><img src="/ssamo.png" alt="" /></div></div>
+            <div className="product"><div data-id="5"><img src="/smtb.png" alt="" /></div></div>
           </div>
 
-          {/* Column 4 */}
           <div className="column">
-            <div className="product"><div data-id="4"><img src="/ogop.png" alt="" /></div></div>
-            <div className="product"><div data-id="9"><img src="/img-9.png" alt="" /></div></div>
-            <div className="product"><div data-id="2"><img src="/osamo.png" alt="" /></div></div>
-            <div className="product"><div data-id="7"><img src="/img-7.png" alt="" /></div></div>
-            {/* <div className="product"><div data-id="6"><img src="/img-6.png" alt="" /></div></div> */}
+            <div className="product"><div data-id="4"><img src="/skix.png" alt="" /></div></div>
+            <div className="product"><div data-id="3"><img src="/sgop.png" alt="" /></div></div>
+            <div className="product"><div data-id="2"><img src="/sfast.png" alt="" /></div></div>
+            <div className="product"><div data-id="1"><img src="/saxis.png" alt="" /></div></div>
           </div>
 
-          {/* Column 10 (was 5) */}
           <div className="column">
-            <div className="product"><div data-id="10"><img src="/ofast.png" alt="" /></div></div>
-            <div className="product"><div data-id="5"><img src="/img-5.png" alt="" /></div></div>
-            <div className="product"><div data-id="6"><img src="/wob.gif" alt="" /></div></div>
-            <div className="product"><div data-id="1"><img src="/oaxis.png" alt="" /></div></div>
-            {/* <div className="product"><div data-id="4"><img src="/ogop.png" alt="" /></div></div> */}
+            <div className="product"><div data-id="1"><img src="/saxis.png" alt="" /></div></div>
+            <div className="product"><div data-id="2"><img src="/sfast.png" alt="" /></div></div>
+            <div className="product"><div data-id="3"><img src="/sgop.png" alt="" /></div></div>
+            <div className="product"><div data-id="4"><img src="/skix.png" alt="" /></div></div>
           </div>
 
-          {/* Column 6 */}
           <div className="column">
-            <div className="product"><div data-id="6"><img src="/img-6.png" alt="" /></div></div>
-            <div className="product"><div data-id="1"><img src="/oaxis.png" alt="" /></div></div>
-            <div className="product"><div data-id="7"><img src="/img-7.png" alt="" /></div></div>
-            <div className="product"><div data-id="2"><img src="/osamo.png" alt="" /></div></div>
-            {/* <div className="product"><div data-id="9"><img src="/img-9.png" alt="" /></div></div> */}
+            <div className="product"><div data-id="5"><img src="/smtb.png" alt="" /></div></div>
+            <div className="product"><div data-id="6"><img src="/ssamo.png" alt="" /></div></div>
+            <div className="product"><div data-id="7"><img src="/wob.gif" alt="" /></div></div>
+            <div className="product"><div data-id="8"><img src="/sthuy.png" alt="" /></div></div>
           </div>
 
-          {/* Column 7 */}
-          {/* <div className="column">
-            <div className="product"><div data-id="7"><img src="/img-7.png" alt="" /></div></div>
-            <div className="product"><div data-id="3"><img src="/omtb.png" alt="" /></div></div>
-            <div className="product"><div data-id="10"><img src="/oaxis0.png" alt="" /></div></div>
-            <div className="product"><div data-id="4"><img src="/ogop.png" alt="" /></div></div>
-            <div className="product"><div data-id="8"><img src="/img-8.png" alt="" /></div></div>
-          </div> */}
+          <div className="column">
+            <div className="product"><div data-id="9"><img src="/sviet.png" alt="" /></div></div>
+            <div className="product"><div data-id="8"><img src="/sthuy.png" alt="" /></div></div>
+            <div className="product"><div data-id="6"><img src="/ssamo.png" alt="" /></div></div>
+            <div className="product"><div data-id="5"><img src="/smtb.png" alt="" /></div></div>
+          </div>
 
-          {/* Column 8 */}
-          {/* <div className="column">
-            <div className="product"><div data-id="8"><img src="/img-8.png" alt="" /></div></div>
-            <div className="product"><div data-id="4"><img src="/ogop.png" alt="" /></div></div>
-            <div className="product"><div data-id="9"><img src="/img-9.png" alt="" /></div></div>
-            <div className="product"><div data-id="5"><img src="/img-5.png" alt="" /></div></div>
-            <div className="product"><div data-id="2"><img src="/osamo.png" alt="" /></div></div>
-          </div> */}
+          <div className="column">
+            <div className="product"><div data-id="4"><img src="/skix.png" alt="" /></div></div>
+            <div className="product"><div data-id="3"><img src="/sgop.png" alt="" /></div></div>
+            <div className="product"><div data-id="2"><img src="/sfast.png" alt="" /></div></div>
+            <div className="product"><div data-id="1"><img src="/saxis.png" alt="" /></div></div>
+          </div>
 
-          {/* Column 2 (was 9) */}
-          {/* <div className="column">
-            <div className="product"><div data-id="2"><img src="/osamo.png" alt="" /></div></div>
-            <div className="product"><div data-id="7"><img src="/img-7.png" alt="" /></div></div>
-            <div className="product"><div data-id="4"><img src="/ogop.png" alt="" /></div></div>
-            <div className="product"><div data-id="9"><img src="/img-9.png" alt="" /></div></div>
-            <div className="product"><div data-id="10"><img src="/oaxis0.png" alt="" /></div></div>
-          </div> */}
-
-          {/* Column 5 (was 10) */}
-          {/* <div className="column">
-            <div className="product"><div data-id="5"><img src="/img-5.png" alt="" /></div></div>
-            <div className="product"><div data-id="10"><img src="/oaxis0.png" alt="" /></div></div>
-            <div className="product"><div data-id="1"><img src="/oaxis.png" alt="" /></div></div>
-            <div className="product"><div data-id="6"><img src="/img-6.png" alt="" /></div></div>
-            <div className="product"><div data-id="3"><img src="/omtb.png" alt="" /></div></div>
-          </div> */}
         </div>
       </div>
 
       <div className="details">
         <div className="details__title">
-          <p data-title="1" data-text> overengineered himekuri</p>
-          <p data-title="2" data-text> telkomsel wec</p>
-          <p data-title="3" data-text> kix</p>
-          <p data-title="4" data-text> samosynth</p>
-          <p data-title="5" data-text> tring</p>
-          <p data-title="6" data-text> vietinbank efast</p>
-          <p data-title="7" data-text> pavel</p>
-          <p data-title="8" data-text> kubible</p>
-          <p data-title="9" data-text> axisnet</p>
-          <p data-title="10" data-text> focalé</p>
+          <p data-title="1" data-text> axisnet</p>
+          <p data-title="2" data-text> vietinbank efast</p>
+          <p data-title="3" data-text> gopay</p>
+          <p data-title="4" data-text> kix</p>
+          <p data-title="5" data-text> mytelkomsel basic</p>
+          <p data-title="6" data-text> samosynth</p>
+          <p data-title="7" data-text> owillhem.art</p>
+          <p data-title="8" data-text> thanh uy art gallery</p>
+          <p data-title="9" data-text> viettel</p>
+          {/* <p data-title="10" data-text> focalé</p> */}
         </div>
         <div className="details__body">
           <div className="details__thumb"></div>
@@ -180,14 +150,12 @@ export default function App() {
               This bold red vase stands out with its vibrant hue, a perfect centerpiece to add passion and energy to any
               room. Its smooth surface and classic silhouette make it versatile, equally suited for modern interiors or
               traditional spaces, bringing warmth and a touch of drama wherever it is placed.
-              {/* <button>Add to cart</button> */}
             </p>
             <p data-desc="2" data-text>
               <span>$220,00</span>
               With its earthy tones and natural speckled finish, this rustic vase evokes the charm of handcrafted
               pottery. Its organic look and timeless shape give a sense of authenticity, making it an ideal piece to
               display dried flowers or simply as a decorative object that adds warmth and artisanal beauty to your home.
-              {/* <button>Add to cart</button> */}
             </p>
             <p data-desc="3" data-text>
               <span>$240,00</span>
@@ -195,14 +163,12 @@ export default function App() {
               creating a lively focal point in any setting. Perfect for fresh blooms or displayed on its own, this vase
               captures the essence of sunshine and joy, effortlessly transforming spaces with a vibrant, uplifting touch
               of color.
-              {/* <button>Add to cart</button> */}
             </p>
             <p data-desc="4" data-text>
               <span>$300,00</span>
               Generous in size and striking in presence, the large yellow vase makes a bold decorative statement. Its
               smooth curves and sunny shade are perfect for standing on the floor or dressing up a wide console. Both
               functional and eye-catching, it brings vitality and a contemporary edge to your interior design.
-              {/* <button>Add to cart</button> */}
             </p>
             <p data-desc="5" data-text>
               <span>$390,00</span>
@@ -210,12 +176,10 @@ export default function App() {
               versatile, pairing effortlessly with minimalist or luxurious décors. Whether holding fresh greenery or
               standing alone as a sculptural accent, this piece exudes modern refinement and bold simplicity, creating
               contrast and balance within any interior style.
-              {/* <button>Add to cart</button> */}
             </p>
             <p data-desc="6" data-text>
               <span>$340,00</span>
               A playful mix of texture and color, the speckled yellow vase is both lively and unique. Its dotted surface creates movement and character, while the bright golden base ensures it remains eye-catching. Perfect for adding personality to your shelf or table, it combines artistic charm with a cheerful, inviting presence.
-              {/* <button>Add to cart</button> */}
             </p>
             <p data-desc="7" data-text>
               <span>$240,00</span>
@@ -223,7 +187,6 @@ export default function App() {
               smooth grain bring an earthy elegance to interiors. Perfect for dried arrangements or as a stand-alone
               piece, it highlights craftsmanship and natural textures, making it a versatile addition to rustic, modern,
               or eclectic décors.
-              {/* <button>Add to cart</button> */}
             </p>
             <p data-desc="8" data-text>
               <span>$240,00</span>
@@ -231,7 +194,6 @@ export default function App() {
               smooth grain bring an earthy elegance to interiors. Perfect for dried arrangements or as a stand-alone
               piece, it highlights craftsmanship and natural textures, making it a versatile addition to rustic, modern,
               or eclectic décors.
-              {/* <button>Add to cart</button> */}
             </p>
             <p data-desc="9" data-text>
               <span>$240,00</span>
@@ -239,7 +201,6 @@ export default function App() {
               smooth grain bring an earthy elegance to interiors. Perfect for dried arrangements or as a stand-alone
               piece, it highlights craftsmanship and natural textures, making it a versatile addition to rustic, modern,
               or eclectic décors.
-              {/* <button>Add to cart</button> */}
             </p>
             <p data-desc="10" data-text>
               <span>$240,00</span>
@@ -247,14 +208,10 @@ export default function App() {
               smooth grain bring an earthy elegance to interiors. Perfect for dried arrangements or as a stand-alone
               piece, it highlights craftsmanship and natural textures, making it a versatile addition to rustic, modern,
               or eclectic décors.
-              {/* <button>Add to cart</button> */}
             </p>
           </div>
 
-          <img className="details__img" src="/oaxis.png" alt="" />
-          <img className="details__img" src="/oaxis.png" alt="" />
-          <img className="details__img" src="/oaxis.png" alt="" />
-          <img className="details__img" src="/oaxis.png" alt="" />
+          {/* add images here */}
         </div>
       </div>
 
