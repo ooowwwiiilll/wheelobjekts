@@ -47,7 +47,7 @@ export default function App() {
         <div className="hud">
           <p>office</p>
           <div className="hud2">
-            <p>settle</p>
+            <p>static</p>
             <div className="hud2__radar">
 
               <svg width="51" height="51" viewBox="0 0 51 51" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -56,9 +56,9 @@ export default function App() {
 
               <img id="radar-rocky" className="rocky" src="/rocky.png" />
             </div>
-            <p>interact</p>
+            <p>lively</p>
           </div>
-          <p>plays</p>
+          <p>outpost</p>
         </div>
 
       </header>
