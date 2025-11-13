@@ -15,7 +15,7 @@
 }
 
 :root {
-  font-size: 12px;
+  font-size: 10px;
   letter-spacing: 0.02em;
   --color-text: #1a1a1a;
   --color-bg: #f9f9f9;
@@ -135,7 +135,7 @@ header {
 .frame__links {
   display: flex;
   flex-direction: row;
-  gap: 1.5rem;
+  gap: 3rem;
 }
 
 .frame {
@@ -349,6 +349,7 @@ header {
     display: flex;
     flex-direction: column;
     font-size: 1rem;
+    gap: 1rem;
     line-height: 1.4;
     color: #1a1a1a;
     max-width: 80%;

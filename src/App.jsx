@@ -208,9 +208,12 @@ export default function App() {
                 <p>adam neely</p>
                 <p>tim rodenbröker</p>
                 <p>chan karunamuni</p>
+                <p>maison martin margiela</p>
+                <p>seth mcfarlane</p>
                 <p>leo chang</p>
-                <p>four tet kieran</p>
+                <p>keiran hebden / four tet</p>
                 <p>doug lemoine</p>
+                <p>mike schneider</p>
                 <p>FKJ</p>
               </span>
               <span>
