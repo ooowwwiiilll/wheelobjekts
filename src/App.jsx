@@ -40,8 +40,9 @@ export default function App() {
         <div className="frame__links">
           <a className="active" data-filter="all">all</a>
           <a data-filter="A">visuals</a>
-          <a data-filter="B">reads</a>
-          <a data-filter="C">codes</a>
+          <a data-filter="B">products</a>
+          <a data-filter="C">reads</a>
+          <a data-filter="D">codes</a>
         </div>
 
         <div className="hud__bg">
