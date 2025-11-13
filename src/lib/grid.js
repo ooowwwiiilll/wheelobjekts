@@ -4,7 +4,7 @@ import { Flip } from "gsap/Flip";
 import { Draggable } from "gsap/Draggable";
 import { SplitText } from "gsap/SplitText";
 import { animate, spring } from "animejs";
-import { pixelateImage } from "./pixelate.js";
+// import { pixelateImage } from "./pixelate.js";
 
 
 gsap.registerPlugin(Draggable, Flip, SplitText);
@@ -30,22 +30,8 @@ class Grid {
     this.observer = null;
     this.currentProduct = null;
     this.originalParent = null;
-    // this.activeCategory = "all";
 
   }
-
-  // init() {
-  //   this.intro();
-  //   this.overlay = document.getElementById("overlay");
-  //   this.overlay.addEventListener("click", () => {
-  //     if (this.SHOW_DETAILS) this.hideDetails();
-  //   });
-  //   window.addEventListener("keydown", (event) => {
-  //     if (event.key === "Escape" && this.SHOW_DETAILS) {
-  //       this.hideDetails();
-  //     }
-  //   });
-  // }
 
   init() {
     this.intro();
@@ -61,12 +47,8 @@ class Grid {
       }
     });
   
-    // ✅ collect all product items
     this.products = document.querySelectorAll(".product div");
-    // this.products.forEach((p) => (p.style.display = "block"));
-
   
-    // ✅ assign categories to each product
     const catMap = {
       A: [1, 2, 3],
       B: [4, 5],
@@ -78,7 +60,6 @@ class Grid {
       el.dataset.cat = cat;
     });
   
-    // ✅ handle category filter clicks
     document.querySelectorAll(".frame__links a[data-filter]").forEach((link) => {
       link.addEventListener("click", (e) => {
         e.preventDefault();
@@ -90,12 +71,6 @@ class Grid {
         e.currentTarget.classList.add("active");
       });
     });
-
-    // this.pixelatedImages = [];
-    // document.querySelectorAll(".product img").forEach((img) => {
-    //   const instance = pixelateImage(img, { boxes: 10 });
-    //   this.pixelatedImages.push(instance);
-    // });
   }
   
   filterItems(category) {
@@ -109,7 +84,6 @@ class Grid {
         item.dataset.cat === "none";
   
       if (matches) {
-        // Visible category — restore clarity
         gsap.to(item, {
           opacity: 1,
           filter: "blur(0px) saturate(1)",
@@ -119,7 +93,6 @@ class Grid {
           pointerEvents: "auto",
         });
       } else {
-        // Blurred category — fade it but keep it in view
         gsap.to(item, {
           opacity: 0.6,
           filter: "blur(40px) saturate(0)",
@@ -164,7 +137,6 @@ class Grid {
         this.observeProducts();
         this.handleDetails();
         this.updateRadar();
-        // requestAnimationFrame(() => this.updateRadar());
       },
     });
   }
@@ -183,33 +155,6 @@ class Grid {
       y: centerY,
     });
   }
-
-  // setupDraggable() {
-  //   this.dom.classList.add("--is-loaded");
-
-  //   this.draggable = Draggable.create(this.grid, {
-  //     type: "x,y",
-  //     bounds: {
-  //       minX: -(this.grid.offsetWidth - window.innerWidth) - 200,
-  //       maxX: 200,
-  //       minY: -(this.grid.offsetHeight - window.innerHeight) - 100,
-  //       maxY: 100,
-  //     },
-  //     inertia: true,
-  //     allowEventDefault: true,
-  //     edgeResistance: 0.9,
-
-  //     onDragStart: () => {
-  //       this.isDragging = true;
-  //       this.grid.classList.add("--is-dragging");
-  //     },
-
-  //     onDragEnd: () => {
-  //       this.isDragging = false;
-  //       this.grid.classList.remove("--is-dragging");
-  //     },
-  //   })[0];
-  // }
 
   setupDraggable() {
     this.dom.classList.add("--is-loaded");
@@ -239,8 +184,6 @@ class Grid {
         this.updateRadar();
       },
     })[0];
-
-    // requestAnimationFrame(() => this.updateRadar());
   }
   
 
@@ -251,7 +194,6 @@ class Grid {
         e.preventDefault();
 
         if (!this.SHOW_DETAILS) {
-          // Grid scrolling when details is closed
           const deltaX = -e.deltaX * 7;
           const deltaY = -e.deltaY * 7;
 
@@ -289,8 +231,6 @@ class Grid {
         this.handleCursor(e);
       }
     });
-
-    // window.addEventListener("mousemove", (e) => this.handleCursor(e));
   }
 
   updateBounds() {
