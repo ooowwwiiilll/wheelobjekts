@@ -1,10 +1,8 @@
-
 /* @font-face {
   font-family: 'Halide Router Neue';
   src: url('../public2/HalideRouterNeue.otf') format('otf');
 } */
 
-/* @import url('https://fonts.cdnfonts.com/css/libre-baskerville'); */
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
 
 
@@ -41,10 +39,6 @@ body {
   max-width: 100vw;
   overflow-x: hidden;
   /* font-family: monospace; */
-}
-
-body {
-  margin: 0;
 }
 
 @media (scripting: enabled) {
@@ -101,7 +95,7 @@ body {
 a {
   position: relative;
   display: inline-block;
-  color: var(--color-link, #222);
+  color: var(--color-link, #1a1a1a);
   padding: 0.2rem 0.4rem;
   text-decoration: none;
   transition: color 0.3s ease;
@@ -129,27 +123,26 @@ a:hover::after {
   transform-origin: right; 
 }
 
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  align-self: stretch;
+}
+
 .frame__links {
   display: flex;
   flex-direction: row;
   gap: 1.5rem;
 }
 
-
-header {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  align-self: stretch;
-}
-
 .frame {
   display: flex;
   z-index: 10;
-  grid-row-gap: 1.2rem;
-  grid-column-gap: 2rem;
+  /* grid-row-gap: 1.2rem;
+  grid-column-gap: 2rem; */
   pointer-events: none;
   justify-content: start;
   align-items: center;
@@ -160,16 +153,20 @@ header {
   width: 100%;
   height: 240px;
   padding-top: 5vh;
-  grid-template-columns: auto auto auto 1fr;
-  grid-template-rows: auto auto;
-  grid-template-areas:
-    'title title title title'
-    'back github archive ...';
-  overflow: hidden; /* ensures ::before doesn’t leak out */
+  overflow: hidden; 
 
-  /* so your links/buttons can still be clicked */
   a, button {
     pointer-events: auto;
+  }
+
+  /* #cdawrap {
+    max-width: 260px;
+    align-self: end;
+  } */
+
+  .frame__title {
+    font-size: 3rem;
+    margin: 0;
   }
 }
 
@@ -183,7 +180,6 @@ header {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 
-  /* ✅ Slightly warmer, more consistent frosted background */
   background: linear-gradient(
     to bottom,
     #f9f9f9ff 0%,
@@ -209,32 +205,15 @@ header {
   );
 }
 
-.frame {
-  #cdawrap {
-    max-width: 260px;
-    align-self: end;
-  }
-
-  a,
-  button {
-    pointer-events: auto;
-  }
-
-  .frame__title {
-    font-size: 3rem;
-    margin: 0;
-  }
-}
-
 .hud {
-  pointer-events: none;
+  /* pointer-events: none; */
   z-index: 10;
   /* position: fixed; */
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
+  gap: 1.5rem;
   padding-bottom: 4vh;
   /* padding-top: 2vh; */
 }
@@ -247,7 +226,6 @@ header {
   flex-direction: row;
   align-items: end;
   justify-content: center;
-  gap: 2rem;
   bottom: 0;
   width: 100%;
   height: 240px;
@@ -295,7 +273,7 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .hud2__radar {
@@ -376,7 +354,7 @@ header {
     max-width: 80%;
   }
 
-  /* Hide everything else except the blocker */
+
   main > *:not(.mobile-blocker),
   header,
   .container,
@@ -398,18 +376,6 @@ header {
 }
 
 .frame__links a.active {
-  color: #ab783d;
+  color: #a08c74;
   /* text-decoration: underline; */
 }
-
-/* .product div.is-hidden {
-  opacity: 0.1;
-  filter: blur(40px);
-  transform: scale(0.1);
-  height: 0 !important;
-  margin: 0 !important;
-  pointer-events: none;
-  display: none !important;
-  transition: all 0.3s ease;
-}
- */

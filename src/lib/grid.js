@@ -6,7 +6,6 @@ import { SplitText } from "gsap/SplitText";
 import { animate, spring } from "animejs";
 // import { pixelateImage } from "./pixelate.js";
 
-
 gsap.registerPlugin(Draggable, Flip, SplitText);
 
 const springEase = spring({
@@ -215,7 +214,6 @@ class Grid {
             onUpdate: () => this.updateRadar(),
           });
         } else {
-          // Scroll the details panel when open
           this.details.scrollTop += e.deltaY;
         }
       },
@@ -292,7 +290,6 @@ class Grid {
           item.dataset.cat === currentCategory ||
           item.dataset.cat === "none";
   
-        // Only animate intersecting if not filtered out
         if (entry.isIntersecting && matches) {
           gsap.to(item, {
             scale: 1,
@@ -302,7 +299,6 @@ class Grid {
             ease: "power2.out",
           });
         } else if (!matches) {
-          // keep filtered state
           gsap.to(item, {
             opacity: 0.6,
             filter: "blur(40px) saturate(0)",
@@ -311,7 +307,6 @@ class Grid {
             ease: "power2.in",
           });
         } else if (!entry.isIntersecting) {
-          // for visible category only
           gsap.to(item, {
             opacity: 0.6,
             scale: 0.6,
@@ -434,9 +429,7 @@ class Grid {
       });
     }
 
-    // Animate any image inside .details__body
     const detailImg = this.details.querySelector(".details__img");
-    // detailImg.forEach((img, index) => {
     if (detailImg) {
       gsap.fromTo(detailImg,
         {
@@ -459,9 +452,6 @@ class Grid {
 
     this.observeDetailImages();
     window.addEventListener("mousemove", this._boundHandleCursor = (e) => this.handleCursor(e));
-
-    // document.body.classList.add("--is-details-showing");
-    // this.pixelatedImages.forEach((p) => p.disable());
   }
 
   hideDetails() {
@@ -511,9 +501,6 @@ class Grid {
       });
     });
     window.removeEventListener("mousemove", this._boundHandleCursor);
-
-    // document.body.classList.remove("--is-details-showing");
-    // this.pixelatedImages.forEach((p) => p.enable());
   }
 
   flipProduct(product) {

@@ -11,8 +11,8 @@ export default function App() {
 
       <div className="mobile-blocker">
         <p className="mobile__desc">
-          pls don’t break my site!<br />
-          view on bigger screen
+          optimized for larger screen<br />
+          please view this site from desktop
         </p>
         
         <h1 className="mobile__title">(wob)</h1>
@@ -37,8 +37,8 @@ export default function App() {
           <a href="https://drive.google.com/file/d/1ELcFvAMh2aRTnOf0iTbIWlac8juFh987/view?usp=drive_link" target="_blank" rel="noreferrer">pause</a>
           <a href="mailto:owilhm@gmail.com" target="_blank" rel="noreferrer">message</a>
         </div> */}
-        <div class="frame__links">
-          <a class="active" data-filter="all">all</a>
+        <div className="frame__links">
+          <a className="active" data-filter="all">all</a>
           <a data-filter="A">visuals</a>
           <a data-filter="B">reads</a>
           <a data-filter="C">codes</a>
@@ -50,12 +50,13 @@ export default function App() {
             <div className="hud2">
               <p>static</p>
               <div className="hud2__radar">
+                <svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M22.25 0.25L22.25 44.25M44.25 21.25L0.25 21.25M0.250009 0.25H44.25V44.25H0.250009V0.25Z" stroke="#1A1A1A" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 3"/>
+                </svg>
 
-              <svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M22.25 0.25H0.25V22.25M22.25 0.25V22.25M22.25 0.25H44.25V22.25M22.25 22.25H0.25M22.25 22.25H44.25M22.25 22.25V44.25M0.25 22.25V44.25H22.25M44.25 22.25V44.25H22.25" stroke="#111111" stroke-width="0.5"/>
-              </svg>
-
-
+                {/* <svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M22.25 0.25H0.25V22.25M22.25 0.25V22.25M22.25 0.25H44.25V22.25M22.25 22.25H0.25M22.25 22.25H44.25M22.25 22.25V44.25M0.25 22.25V44.25H22.25M44.25 22.25V44.25H22.25" stroke="#1a1a1a" strokeWidth="0.5"/>
+                </svg> */}
                 <img id="radar-rocky" className="rocky" src="/rocky.png" />
               </div>
               <p>lively</p>
@@ -146,68 +147,94 @@ export default function App() {
           <div className="details__thumb"></div>
           <div className="details__texts">
             <p data-desc="1" data-text>
-              <span>$300,00</span>
-              This bold red vase stands out with its vibrant hue, a perfect centerpiece to add passion and energy to any
-              room. Its smooth surface and classic silhouette make it versatile, equally suited for modern interiors or
-              traditional spaces, bringing warmth and a touch of drama wherever it is placed.
+              <span>
+                <p>📍 indonesia</p>
+                <p>🕰️ 2024</p>
+              </span>
+              A self-care application for AXIS customers that allows them to manage their accounts, top up credits & internet packages. 
+              <span>T B U</span>
             </p>
             <p data-desc="2" data-text>
-              <span>$220,00</span>
-              With its earthy tones and natural speckled finish, this rustic vase evokes the charm of handcrafted
-              pottery. Its organic look and timeless shape give a sense of authenticity, making it an ideal piece to
-              display dried flowers or simply as a decorative object that adds warmth and artisanal beauty to your home.
+              <span>
+                <p>📍 vietnam</p>
+                <p>🕰️ 2025</p>
+              </span>
+              A digital B2B banking service offered by the Vietnam Joint Stock Commercial Bank for Industry and Trade. Allows corporate clients to manage accounts, conduct transactions, and approve payments anytime and anywhere via an internet connection. 
+              <span>T B U</span>
             </p>
             <p data-desc="3" data-text>
-              <span>$240,00</span>
-              Bright and cheerful, the yellow vase radiates positivity. Its glossy surface reflects light beautifully,
-              creating a lively focal point in any setting. Perfect for fresh blooms or displayed on its own, this vase
-              captures the essence of sunshine and joy, effortlessly transforming spaces with a vibrant, uplifting touch
-              of color.
+              <span>
+                <p>📍 indonesia</p>
+                <p>🕰️ 2025</p>
+              </span>
+              A recent GoPay digital wallet service integration for Telkomsel users via the MyTelkomsel app, offering convenience and efficiency in transacting Telkomsel services. 
+              <span>T B U</span>
             </p>
             <p data-desc="4" data-text>
-              <span>$300,00</span>
-              Generous in size and striking in presence, the large yellow vase makes a bold decorative statement. Its
-              smooth curves and sunny shade are perfect for standing on the floor or dressing up a wide console. Both
-              functional and eye-catching, it brings vitality and a contemporary edge to your interior design.
+              {/* <span className="">indonesia</span> */}
+              <span>
+                <p>📍 global</p>
+                <p>🕰️ 2023</p>
+              </span>
+              <span>T B U</span>
             </p>
             <p data-desc="5" data-text>
-              <span>$390,00</span>
-              Sleek and sophisticated, the black vase embodies timeless elegance. Its deep, rich tone makes it
-              versatile, pairing effortlessly with minimalist or luxurious décors. Whether holding fresh greenery or
-              standing alone as a sculptural accent, this piece exudes modern refinement and bold simplicity, creating
-              contrast and balance within any interior style.
+              <span>
+                <p>📍 indonesia</p>
+                <p>🕰️ 2024</p>
+              </span>
+              A lightweight application from Telkomsel, designed for users with limited memory or in areas with unstable internet connections. Provides essential functions such as credit & data balance monitoring, internet & phone package shop, and making payments. 
+              <span>T B U</span>
             </p>
             <p data-desc="6" data-text>
-              <span>$340,00</span>
-              A playful mix of texture and color, the speckled yellow vase is both lively and unique. Its dotted surface creates movement and character, while the bright golden base ensures it remains eye-catching. Perfect for adding personality to your shelf or table, it combines artistic charm with a cheerful, inviting presence.
+              {/* <span className="">indonesia</span> */}
+              <span>
+                <p>📍 global</p>
+                <p>🕰️ 2025</p>
+              </span>
+              <span>T B U</span>
             </p>
             <p data-desc="7" data-text>
-              <span>$240,00</span>
-              Crafted from natural wood, this vase celebrates organic beauty and timeless simplicity. The warm tones and
-              smooth grain bring an earthy elegance to interiors. Perfect for dried arrangements or as a stand-alone
-              piece, it highlights craftsmanship and natural textures, making it a versatile addition to rustic, modern,
-              or eclectic décors.
+              an unorthodox generalist wannabe. obsessed about the possible cross function of haute-couture-post-modern-fine-arts + creative tech innovations.
+              <br />
+              <span>
+                <p>paid professional money at 16, worked full-time at 18, dropped out of college at 21,5. <br />not sure what the fuck ahead.</p>
+              </span>
+              <span>
+                <p><strong>notable figures from interdisciplinary spaces that molded me;</strong></p>
+                <p>michael stevens / vsauce</p>
+                <p>virgil abloh</p>
+                <p>adam neely</p>
+                <p>tim rodenbröker</p>
+                <p>chan karunamuni</p>
+                <p>leo chang</p>
+                <p>four tet kieran</p>
+                <p>doug lemoine</p>
+                <p>FKJ</p>
+              </span>
+              <span>
+                <a href="https://linkedin.com/in/owil/" target="_blank" rel="noreferrer">{"corporate  | "}</a>
+                <a href="https://drive.google.com/file/d/1ELcFvAMh2aRTnOf0iTbIWlac8juFh987/view?usp=drive_link" target="_blank" rel="noreferrer">{"pause  | "}</a>
+                <a href="mailto:owilhm@gmail.com" target="_blank" rel="noreferrer">{"message"}</a>
+              </span>
             </p>
             <p data-desc="8" data-text>
-              <span>$240,00</span>
-              Crafted from natural wood, this vase celebrates organic beauty and timeless simplicity. The warm tones and
-              smooth grain bring an earthy elegance to interiors. Perfect for dried arrangements or as a stand-alone
-              piece, it highlights craftsmanship and natural textures, making it a versatile addition to rustic, modern,
-              or eclectic décors.
+              <span>
+                <p>📍 vietnam</p>
+                <p>🕰️ 2025</p>
+              </span>
+              An edgy printmaking gallery and studio + coffee shop in Ha Noi, showcasing Viet's rich history during propaganda and renewal period through contemporary ancient & modern fine arts.
+              <br />
+              <span>T B U</span>
             </p>
             <p data-desc="9" data-text>
-              <span>$240,00</span>
-              Crafted from natural wood, this vase celebrates organic beauty and timeless simplicity. The warm tones and
-              smooth grain bring an earthy elegance to interiors. Perfect for dried arrangements or as a stand-alone
-              piece, it highlights craftsmanship and natural textures, making it a versatile addition to rustic, modern,
-              or eclectic décors.
-            </p>
-            <p data-desc="10" data-text>
-              <span>$240,00</span>
-              Crafted from natural wood, this vase celebrates organic beauty and timeless simplicity. The warm tones and
-              smooth grain bring an earthy elegance to interiors. Perfect for dried arrangements or as a stand-alone
-              piece, it highlights craftsmanship and natural textures, making it a versatile addition to rustic, modern,
-              or eclectic décors.
+              <span>
+                <p>📍 vietnam</p>
+                <p>🕰️ 2025</p>
+              </span>
+              A comprehensive super app for Viettel customers in Vietnam that allows you to manage your mobile account, internet, as well as television services, entertainment, and loyalty program.
+              <br />
+              <span>T B U</span>
             </p>
           </div>
 
@@ -217,8 +244,8 @@ export default function App() {
 
       <div className="cross">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M18 6L6 18" stroke="#313131" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-          <path d="M6 6L18 18" stroke="#313131" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M18 6L6 18" stroke="#1a1a1a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M6 6L18 18" stroke="#1a1a1a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </div>
     </main>
