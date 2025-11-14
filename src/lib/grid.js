@@ -49,10 +49,10 @@ class Grid {
     this.products = document.querySelectorAll(".product div");
   
     const catMap = {
-      A: [8, 9],
-      B: [1, 2, 3, 5],
+      A: [8, 9, 10],
+      B: [1, 2, 3, 5, 12],
       C: [],
-      D: [4, 6]
+      D: [4, 6, 11]
     };
     this.products.forEach((el) => {
       const id = Number(el.dataset.id);

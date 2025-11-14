@@ -19,7 +19,7 @@ export default function App() {
         <div className="mobile__desc2">
           <a href="https://linkedin.com/in/owil/" target="_blank" rel="noreferrer">{"corporate"}</a>
           <a href="https://drive.google.com/file/d/1ELcFvAMh2aRTnOf0iTbIWlac8juFh987/view?usp=drive_link" target="_blank" rel="noreferrer">{"pause"}</a>
-          <a href="mailto:owilhm@gmail.com" target="_blank" rel="noreferrer">{"message"}</a>
+          <a href="mailto:owilhm@gmail.com" target="_blank" rel="noreferrer">{"hmu"}</a>
         </div>
       </div>
       
@@ -88,16 +88,9 @@ export default function App() {
 
           <div className="column">
             <div className="product"><div data-id="9"><img src="/sviet.png" alt="" /></div></div>
-            <div className="product"><div data-id="8"><img src="/sthuy.png" alt="" /></div></div>
-            <div className="product"><div data-id="6"><img src="/ssamo.png" alt="" /></div></div>
-            <div className="product"><div data-id="5"><img src="/smtb.png" alt="" /></div></div>
-          </div>
-
-          <div className="column">
-            <div className="product"><div data-id="4"><img src="/skix.png" alt="" /></div></div>
-            <div className="product"><div data-id="3"><img src="/sgop.png" alt="" /></div></div>
-            <div className="product"><div data-id="2"><img src="/sfast.png" alt="" /></div></div>
-            <div className="product"><div data-id="1"><img src="/saxis.png" alt="" /></div></div>
+            <div className="product"><div data-id="10"><img src="/szbloom.png" alt="" /></div></div>
+            <div className="product"><div data-id="11"><img src="/szkutt.png" alt="" /></div></div>
+            <div className="product"><div data-id="12"><img src="/szted.png" alt="" /></div></div>
           </div>
 
           <div className="column">
@@ -116,32 +109,27 @@ export default function App() {
 
           <div className="column">
             <div className="product"><div data-id="9"><img src="/sviet.png" alt="" /></div></div>
-            <div className="product"><div data-id="8"><img src="/sthuy.png" alt="" /></div></div>
-            <div className="product"><div data-id="6"><img src="/ssamo.png" alt="" /></div></div>
-            <div className="product"><div data-id="5"><img src="/smtb.png" alt="" /></div></div>
+            <div className="product"><div data-id="10"><img src="/szbloom.png" alt="" /></div></div>
+            <div className="product"><div data-id="11"><img src="/szkutt.png" alt="" /></div></div>
+            <div className="product"><div data-id="12"><img src="/szted.png" alt="" /></div></div>
           </div>
-
-          <div className="column">
-            <div className="product"><div data-id="4"><img src="/skix.png" alt="" /></div></div>
-            <div className="product"><div data-id="3"><img src="/sgop.png" alt="" /></div></div>
-            <div className="product"><div data-id="2"><img src="/sfast.png" alt="" /></div></div>
-            <div className="product"><div data-id="1"><img src="/saxis.png" alt="" /></div></div>
-          </div>
-
         </div>
       </div>
 
       <div className="details">
         <div className="details__title">
-          <p data-title="1" data-text> axisnet</p>
-          <p data-title="2" data-text> vietinbank efast</p>
-          <p data-title="3" data-text> gopay</p>
-          <p data-title="4" data-text> kix</p>
-          <p data-title="5" data-text> mytelkomsel basic</p>
-          <p data-title="6" data-text> samosynth</p>
-          <p data-title="7" data-text> owillhem.art</p>
-          <p data-title="8" data-text> thanh uy art gallery</p>
-          <p data-title="9" data-text> viettel</p>
+          <p data-title="1" data-text>axisnet</p>
+          <p data-title="2" data-text>vietinbank efast</p>
+          <p data-title="3" data-text>gopay</p>
+          <p data-title="4" data-text>kix</p>
+          <p data-title="5" data-text>mytelkomsel basic</p>
+          <p data-title="6" data-text>samosynth</p>
+          <p data-title="7" data-text>owillhem</p>
+          <p data-title="8" data-text>thanh uy art gallery</p>
+          <p data-title="9" data-text>viettel</p>
+          <p data-title="10" data-text>blooms</p>
+          <p data-title="11" data-text>kuttaib</p>
+          <p data-title="12" data-text>ted</p>
           {/* <p data-title="10" data-text> focalé</p> */}
         </div>
         <div className="details__body">
@@ -155,6 +143,7 @@ export default function App() {
               A self-care application for AXIS customers that allows them to manage their accounts, top up credits & internet packages. 
               <span>T B U</span>
             </p>
+
             <p data-desc="2" data-text>
               <span>
                 <p>📍 vietnam</p>
@@ -163,6 +152,7 @@ export default function App() {
               A digital B2B banking service offered by the Vietnam Joint Stock Commercial Bank for Industry and Trade. Allows corporate clients to manage accounts, conduct transactions, and approve payments anytime and anywhere via an internet connection. 
               <span>T B U</span>
             </p>
+
             <p data-desc="3" data-text>
               <span>
                 <p>📍 indonesia</p>
@@ -177,8 +167,11 @@ export default function App() {
                 <p>📍 global</p>
                 <p>🕰️ 2023</p>
               </span>
+
+              <a href="https://www.wwdcscholars.com/s/53FA3940-93F5-480B-9224-2B0613AEDA6D/2024">{"public press media here"}</a>
               <span>T B U</span>
             </p>
+
             <p data-desc="5" data-text>
               <span>
                 <p>📍 indonesia</p>
@@ -187,6 +180,7 @@ export default function App() {
               A lightweight application from Telkomsel, designed for users with limited memory or in areas with unstable internet connections. Provides essential functions such as credit & data balance monitoring, internet & phone package shop, and making payments. 
               <span>T B U</span>
             </p>
+
             <p data-desc="6" data-text>
               {/* <span className="">indonesia</span> */}
               <span>
@@ -195,11 +189,15 @@ export default function App() {
               </span>
               <span>T B U</span>
             </p>
+
             <p data-desc="7" data-text>
-              an unorthodox generalist wannabe. obsessed about the possible cross function of haute-couture-post-modern-fine-arts + creative tech innovations.
+              <span>
+                <p>currently at AKQA.</p>
+              </span>
+              an asian unorthodox-generalist wannabe. obsessed about the possible cross function of haute-couture-post-modern-fine-arts ++ creative tech innovations.
               <br />
               <span>
-                <p>paid professional money at 16, worked full-time at 18, dropped out of college at 21,5. <br />not sure what the fuck ahead.</p>
+                <p>paid professional money at 16, worked full-time at 18, dropped out of college at 21 ½. <br />not sure what the fuck ahead.</p>
               </span>
               <span>
                 <p><strong>notable figures from interdisciplinary spaces that molded me;</strong></p>
@@ -220,9 +218,10 @@ export default function App() {
               <span>
                 <a href="https://linkedin.com/in/owil/" target="_blank" rel="noreferrer">{"corporate  | "}</a>
                 <a href="https://drive.google.com/file/d/1ELcFvAMh2aRTnOf0iTbIWlac8juFh987/view?usp=drive_link" target="_blank" rel="noreferrer">{"pause  | "}</a>
-                <a href="mailto:owilhm@gmail.com" target="_blank" rel="noreferrer">{"message"}</a>
+                <a href="mailto:owilhm@gmail.com" target="_blank" rel="noreferrer">{"hmu"}</a>
               </span>
             </p>
+
             <p data-desc="8" data-text>
               <span>
                 <p>📍 vietnam</p>
@@ -232,6 +231,7 @@ export default function App() {
               <br />
               <span>T B U</span>
             </p>
+
             <p data-desc="9" data-text>
               <span>
                 <p>📍 vietnam</p>
@@ -241,6 +241,37 @@ export default function App() {
               <br />
               <span>T B U</span>
             </p>
+
+            <p data-desc="10" data-text>
+              <span>
+                <p>📍 australia</p>
+                <p>🕰️ 2025</p>
+              </span>
+              An Australian retail pharmacy group with a network of independently owned and operated pharmacies, also includes a certified B Corp management services arm. The pharmacies offer health & wellness prescription, pharmacist consultations, and medication ordering. 
+              <br />
+              <span>T B U</span>
+            </p>
+
+            <p data-desc="11" data-text>
+              <span>
+                <p>📍 indonesia</p>
+                <p>🕰️ 2023</p>
+              </span>
+              {"A muslim faith-driven digital journal I designed & developed as a non-muslim myself :)"}
+              <br />
+              <span>T B U</span>
+            </p>
+
+            <p data-desc="12" data-text>
+              <span>
+                <p>📍 indonesia</p>
+                <p>🕰️ 2024</p>
+              </span>
+              The B2B unit of Telkomsel that provides digital solutions and connectivity for corporations to support their digital transformation. Offering advanced network services, communication & collaboration tools, IoT solutions, and CX insights tools. 
+              <br />
+              <span>T B U</span>
+            </p>
+
           </div>
 
           {/* add images here */}

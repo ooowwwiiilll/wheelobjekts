@@ -41,6 +41,12 @@ body {
   /* font-family: monospace; */
 }
 
+body.loading .container,
+body.loading .grid {
+  opacity: 0;
+  pointer-events: none;
+}
+
 @media (scripting: enabled) {
   .loading {
     &::before,
