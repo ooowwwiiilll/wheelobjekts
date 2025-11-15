@@ -597,6 +597,7 @@ export function initGrid() {
 
   preloadImages(".grid img").then(() => {
     grid.init();
+    initAsciiFilter();
     document.body.classList.remove("loading");
   });
 }

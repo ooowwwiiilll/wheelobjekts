@@ -4,6 +4,7 @@ import { initGrid } from "./lib/grid.js";
 export default function App() {
   useEffect(() => {
     initGrid();
+    // initAscii();
   }, []);
 
   return (
@@ -72,16 +73,27 @@ export default function App() {
         {/* <div className="overlay"></div> */}
 
         <div className="grid">
+
           <div className="column">
             <div className="product"><div data-id="1"><img src="/saxis.png" alt="" /></div></div>
             <div className="product"><div data-id="2"><img src="/sfast.png" alt="" /></div></div>
             <div className="product"><div data-id="3"><img src="/sgop.png" alt="" /></div></div>
-            <div className="product"><div data-id="4"><img src="/skix.png" alt="" /></div></div>
+            <div className="product">
+              <div data-id="4">
+                <img src="/skix_ascii.png" alt="" />
+                <img className="img-hover" src="/skix.png" alt="" />
+              </div>
+            </div>
           </div>
 
           <div className="column">
             <div className="product"><div data-id="5"><img src="/smtb.png" alt="" /></div></div>
-            <div className="product"><div data-id="6"><img src="/ssamo.png" alt="" /></div></div>
+            <div className="product">
+              <div data-id="6">
+                <img src="/ssamo_ascii.png" alt="" />
+                <img className="img-hover" src="/ssamo.png" alt="" />
+              </div>
+            </div>
             <div className="product"><div data-id="7"><img src="/wob.gif" alt="" /></div></div>
             <div className="product"><div data-id="8"><img src="/sthuy.png" alt="" /></div></div>
           </div>
@@ -89,7 +101,12 @@ export default function App() {
           <div className="column">
             <div className="product"><div data-id="9"><img src="/sviet.png" alt="" /></div></div>
             <div className="product"><div data-id="10"><img src="/szbloom.png" alt="" /></div></div>
-            <div className="product"><div data-id="11"><img src="/szkutt.png" alt="" /></div></div>
+            <div className="product">
+              <div data-id="11">
+                <img src="/szkutt_ascii.png" alt="" />
+                <img className="img-hover" src="/szkutt.png" alt="" />
+              </div>
+            </div>
             <div className="product"><div data-id="12"><img src="/szted.png" alt="" /></div></div>
           </div>
 
@@ -97,12 +114,22 @@ export default function App() {
             <div className="product"><div data-id="1"><img src="/saxis.png" alt="" /></div></div>
             <div className="product"><div data-id="2"><img src="/sfast.png" alt="" /></div></div>
             <div className="product"><div data-id="3"><img src="/sgop.png" alt="" /></div></div>
-            <div className="product"><div data-id="4"><img src="/skix.png" alt="" /></div></div>
+            <div className="product">
+              <div data-id="4">
+                <img src="/skix_ascii.png" alt="" />
+                <img className="img-hover" src="/skix.png" alt="" />
+              </div>
+            </div>
           </div>
 
           <div className="column">
             <div className="product"><div data-id="5"><img src="/smtb.png" alt="" /></div></div>
-            <div className="product"><div data-id="6"><img src="/ssamo.png" alt="" /></div></div>
+            <div className="product">
+              <div data-id="6">
+                <img src="/ssamo_ascii.png" alt="" />
+                <img className="img-hover" src="/ssamo.png" alt="" />
+              </div>
+            </div>
             <div className="product"><div data-id="7"><img src="/wob.gif" alt="" /></div></div>
             <div className="product"><div data-id="8"><img src="/sthuy.png" alt="" /></div></div>
           </div>
@@ -110,9 +137,15 @@ export default function App() {
           <div className="column">
             <div className="product"><div data-id="9"><img src="/sviet.png" alt="" /></div></div>
             <div className="product"><div data-id="10"><img src="/szbloom.png" alt="" /></div></div>
-            <div className="product"><div data-id="11"><img src="/szkutt.png" alt="" /></div></div>
+            <div className="product">
+              <div data-id="11">
+                <img src="/szkutt_ascii.png" alt="" />
+                <img className="img-hover" src="/szkutt.png" alt="" />
+              </div>
+            </div>
             <div className="product"><div data-id="12"><img src="/szted.png" alt="" /></div></div>
           </div>
+
         </div>
       </div>
 
