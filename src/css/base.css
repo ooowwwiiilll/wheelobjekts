@@ -237,7 +237,6 @@ header {
   }
 }
 
-/* bg blur layer */
 .frame::before {
   content: "";
   position: absolute;
