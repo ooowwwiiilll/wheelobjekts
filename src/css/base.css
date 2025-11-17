@@ -202,6 +202,9 @@ header {
   color: #161616;
 }
 
+.frame__links a:hover {
+  background-color: #ffffff40;
+}
 
 
 
