@@ -5,6 +5,30 @@ export default function App() {
   useEffect(() => {
     initGrid();
     // initAscii();
+    
+    const links = document.querySelectorAll(".frame__links a");
+    const bg = document.querySelector(".frame__links .link-bg");
+
+    function moveBg(target) {
+      const rect = target.getBoundingClientRect();
+      const parent = target.parentElement.getBoundingClientRect();
+
+      bg.style.width = rect.width + "px";
+      bg.style.transform = `translateX(${rect.left - parent.left}px)`;
+    }
+
+    links.forEach((link) => {
+      link.addEventListener("click", () => {
+        document.querySelector(".frame__links a.active")?.classList.remove("active");
+        link.classList.add("active");
+        moveBg(link);
+      });
+    });
+
+    window.addEventListener("load", () => {
+      const active = document.querySelector(".frame__links a.active");
+      if (active) moveBg(active);
+    });
   }, []);
 
   return (
@@ -38,13 +62,25 @@ export default function App() {
           <a href="https://drive.google.com/file/d/1ELcFvAMh2aRTnOf0iTbIWlac8juFh987/view?usp=drive_link" target="_blank" rel="noreferrer">pause</a>
           <a href="mailto:owilhm@gmail.com" target="_blank" rel="noreferrer">message</a>
         </div> */}
-        <div className="frame__links">
+
+        {/* <div className="frame__links">
           <a className="active" data-filter="all">all</a>
           <a data-filter="A">visuals</a>
           <a data-filter="B">products</a>
           <a data-filter="C">reads</a>
           <a data-filter="D">codes</a>
+        </div> */}
+
+        <div class="frame__links">
+          <span class="link-bg"></span>
+
+          <a class="active" data-filter="all">all</a>
+          <a data-filter="A">visuals</a>
+          <a data-filter="B">products</a>
+          <a data-filter="C">reads</a>
+          <a data-filter="D">codes</a>
         </div>
+
 
         <div className="hud__bg">
           <div className="hud">

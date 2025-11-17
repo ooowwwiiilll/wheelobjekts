@@ -120,29 +120,90 @@ a::after {
   transition: transform 0.35s ease;
 }
 
-a:hover {
+/* a:hover {
   color: var(--color-link-hover, #000);
 }
 
 a:hover::after {
   transform: scaleX(1);
   transform-origin: right; 
-}
+} */
 
 header {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1.5rem;
+  gap: 2rem;
   align-self: stretch;
 }
 
-.frame__links {
+/* .frame__links {
   display: flex;
   flex-direction: row;
-  gap: 3rem;
+  padding: 0.5rem;
+  background-color: #1a1a1a10;
+  border-radius: 100px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  a {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    border-radius: 100px;
+  }
 }
+
+.frame__links a {
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+}
+
+.frame__links a.active {
+  background-color: #fff;
+} */
+
+
+.frame__links {
+  position: relative;
+  display: flex;
+  padding: 0.5rem;
+  background-color: #16161610;
+  border-radius: 100px;
+  backdrop-filter: blur(10px);
+}
+
+.frame__links a {
+  position: relative;
+  z-index: 2;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  border-radius: 100px;
+  transition: color 0.35s ease;
+}
+
+.frame__links .link-bg {
+  position: absolute;
+  top: 0.5rem;
+  left: 0;
+  width: 0;
+  height: calc(100% - 1rem);
+  background: white;
+  border-radius: 100px;
+  z-index: 1;
+  transition:
+    transform 0.45s cubic-bezier(0.33, 1, 0.68, 1),
+    width 0.45s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.frame__links a.active {
+  color: #161616;
+}
+
+
+
 
 .frame {
   display: flex;
@@ -377,12 +438,4 @@ header {
   will-change: opacity, filter, transform;
 }
 
-.frame__links a {
-  cursor: pointer;
-  transition: color 0.3s ease-in-out;
-}
 
-.frame__links a.active {
-  color: #a08c74;
-  /* text-decoration: underline; */
-}
