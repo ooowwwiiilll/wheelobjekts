@@ -256,26 +256,62 @@ export default function App() {
                 <p>📍 global</p>
                 <p>🕰️ 2025</p>
               </span>
-              <span>T B U</span>
+              <span>
+                <img className="details__media" src="./ssamo_dsimulator.png"/>
+              </span>
+              <span>
+                <p>
+                samosynth is a mini mpc / sampler that celebrates the bataknese culture, by pouring relevant bataknese elements and including easter-eggs into the music experience. the drum kit contains a mix of hip-hop drum samples + processed bataknese traditional instruments (taganing, kulcapi and gordang) one-shots.
+                </p>
+              </span>
+              <span>pad mechanism</span>
+              <span>
+                <video autoplay loop playsinline controls className="details__media" src="./ssamo_dpads.mp4"></video>
+              </span>
+              <span>
+                <p>
+                i wanted to introduce bataknese music & visuals holistically in a pleasurable manner. 
+                <br />
+                <br />this mechanism was inspired by the gorogoa game, which i adore a lot. the individual drumpads is a puzzle piece, that when rotated in a certain angle forms a combination that will unlock a new drum presets & patterns inspired from some key bataknese cultural elements. 
+                <br />
+                <br />each preset represents a region from north sumatera region, with the sound and pattern is inspired from those region.
+                <br />
+                <br />you can play with the drumpads as it is, or unlock other drum presets by completing the puzzle on the drumpads. 
+                </p>
+              </span>
+              <span>tiles</span>
+              <span>
+                <video autoplay loop playsinline controls className="details__media" src="./ssamo_dtiles.mp4"></video>
+              </span>
+              <span>
+                <p>
+                  i spent a good amount of time exploring and experimenting on different tile patterns and grid sizes. 
+                </p>
+              </span>
+              <span>
+                <img className="details__media" src="./ssamo_dgrid.png"/>
+              </span>
             </p>
 
             <p data-desc="7" data-text>
               <span>
                 <p>currently at AKQA.</p>
               </span>
-              an asian unorthodox-generalist wannabe. obsessed about the possible cross function of haute-couture-post-modern-fine-arts ++ creative tech innovations.
+              an asian unorthodox-generalist wannabe. obsessed about the possible cross function of avant-garde-haute-couture-post-modern-applied-fine-arts ++ creative tech innovations.
               <br />
               <span>
-                <p>paid professional money at 16, worked full-time at 18, dropped out of college at 21 ½. <br />not sure what the fuck ahead.</p>
+                <p>paid professional money at 16, worked full-time at 18, dropped out of college at 21,5. <br />not sure what the fuck ahead.</p>
               </span>
               <span>
                 <p><strong>notable figures from interdisciplinary spaces that molded me;</strong></p>
                 <p>michael stevens / vsauce</p>
                 <p>virgil abloh</p>
                 <p>adam neely</p>
+                <p>jesper kouthoofd</p>
+                <p>carl pei</p>
                 <p>tim rodenbröker</p>
                 <p>chan karunamuni</p>
-                <p>maison martin margiela</p>
+                <p>martin margiela</p>
                 <p>edouard manet</p>
                 <p>seth mcfarlane</p>
                 <p>leo chang</p>
@@ -348,10 +384,23 @@ export default function App() {
       </div>
 
       <div className="cross">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        {/* <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M18 6L6 18" stroke="#1a1a1a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
           <path d="M6 6L18 18" stroke="#1a1a1a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg> */}
+        <svg width="52" height="52" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          {/* <path d="M0 2.13709L0.432567 1.36051L2.9244 2.87755L2.85129 0H3.71642L3.64331 2.87153L6.13514 1.36051L6.56771 2.13709L4.02714 3.50363L6.56771 4.87016L6.13514 5.64674L3.64331 4.13572L3.71642 7.01327H2.85129L2.9244 4.13572L0.432567 5.64674L0 4.87016L2.53448 3.50363L0 2.13709Z" fill="#161616"/> */}
+          <path d="M9.35807 11.3838L9.79064 10.6072L12.2825 12.1242L12.2094 9.24668H13.0745L13.0014 12.1182L15.4932 10.6072L15.9258 11.3838L13.3852 12.7503L15.9258 14.1168L15.4932 14.8934L13.0014 13.3824L13.0745 16.26H12.2094L12.2825 13.3824L9.79064 14.8934L9.35807 14.1168L11.8926 12.7503L9.35807 11.3838Z" fill="#161616"/>
+          <path d="M18.7161 20.6305L19.1487 19.8539L21.6405 21.3709L21.5674 18.4934H22.4326L22.3595 21.3649L24.8513 19.8539L25.2839 20.6305L22.7433 21.997L25.2839 23.3635L24.8513 24.1401L22.3595 22.6291L22.4326 25.5066H21.5674L21.6405 22.6291L19.1487 24.1401L18.7161 23.3635L21.2506 21.997L18.7161 20.6305Z" fill="#161616"/>
+          <path d="M28.0742 29.8771L28.5068 29.1006L30.9986 30.6176L30.9255 27.74H31.7906L31.7175 30.6116L34.2094 29.1006L34.6419 29.8771L32.1014 31.2437L34.6419 32.6102L34.2094 33.3868L31.7175 31.8758L31.7906 34.7533H30.9255L30.9986 31.8758L28.5068 33.3868L28.0742 32.6102L30.6087 31.2437L28.0742 29.8771Z" fill="#161616"/>
+          {/* <path d="M37.4323 39.1238L37.8649 38.3472L40.3567 39.8643L40.2836 36.9867H41.1487L41.0756 39.8583L43.5674 38.3472L44 39.1238L41.4594 40.4904L44 41.8569L43.5674 42.6335L41.0756 41.1225L41.1487 44H40.2836L40.3567 41.1225L37.8649 42.6335L37.4323 41.8569L39.9668 40.4904L37.4323 39.1238Z" fill="#161616"/> */}
+          {/* <path d="M37.4323 2.13709L37.8649 1.36051L40.3567 2.87755L40.2836 0H41.1487L41.0756 2.87153L43.5674 1.36051L44 2.13709L41.4594 3.50363L44 4.87016L43.5674 5.64674L41.0756 4.13572L41.1487 7.01327H40.2836L40.3567 4.13572L37.8649 5.64674L37.4323 4.87016L39.9668 3.50363L37.4323 2.13709Z" fill="#161616"/> */}
+          <path d="M28.0742 11.3838L28.5068 10.6072L30.9986 12.1242L30.9255 9.24668H31.7906L31.7175 12.1182L34.2094 10.6072L34.6419 11.3838L32.1014 12.7503L34.6419 14.1168L34.2094 14.8934L31.7175 13.3824L31.7906 16.26H30.9255L30.9986 13.3824L28.5068 14.8934L28.0742 14.1168L30.6087 12.7503L28.0742 11.3838Z" fill="#161616"/>
+          {/* <path d="M0 39.1238L0.432567 38.3472L2.9244 39.8643L2.85129 36.9867H3.71642L3.64331 39.8583L6.13514 38.3472L6.56771 39.1238L4.02714 40.4904L6.56771 41.8569L6.13514 42.6335L3.64331 41.1225L3.71642 44H2.85129L2.9244 41.1225L0.432567 42.6335L0 41.8569L2.53448 40.4904L0 39.1238Z" fill="#161616"/> */}
+          <path d="M9.35807 29.8771L9.79064 29.1006L12.2825 30.6176L12.2094 27.74H13.0745L13.0014 30.6116L15.4932 29.1006L15.9258 29.8771L13.3852 31.2437L15.9258 32.6102L15.4932 33.3868L13.0014 31.8758L13.0745 34.7533H12.2094L12.2825 31.8758L9.79064 33.3868L9.35807 32.6102L11.8926 31.2437L9.35807 29.8771Z" fill="#161616"/>
         </svg>
+
+
       </div>
     </main>
   );

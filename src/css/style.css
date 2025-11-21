@@ -58,11 +58,11 @@
 
 .product {
   position: relative;
-  width: 18.5vw;
+  width: 22vw;
   aspect-ratio: 1 / 1;
 
   div {
-    width: 18.5vw;
+    width: 22vw;
     aspect-ratio: 1 / 1;
   }
 
@@ -185,6 +185,11 @@
   align-items: center;
   gap: 4vw;
   /* overflow-y: auto; */
+
+  .details__media {
+    width: 100%;
+    height: auto;
+  }
 }
 
 .details__texts {
@@ -198,8 +203,7 @@
   span {
     display: block;
     font-size: 1.5rem;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    padding: 1.5rem 0rem;
   }
 
   button {
@@ -265,10 +269,10 @@ p {
 
   transform: scale(0);
 
-  svg {
+  /* svg {
     width: 3vw;
     height: 3vw;
-  }
+  } */
 }
 
 .--is-details-showing {
