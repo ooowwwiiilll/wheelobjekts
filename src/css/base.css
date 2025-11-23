@@ -3,8 +3,14 @@
   src: url('../public2/HalideRouterNeue.otf') format('otf');
 } */
 
-@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+@font-face {
+  font-family: 'Exposure';
+  src: url('./Exposure.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 
+/* @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap'); */
 
 *,
 *::after,
@@ -15,7 +21,7 @@
 }
 
 :root {
-  font-size: 10.5px;
+  font-size: 11px;
   letter-spacing: 0.02em;
   --color-text: #1a1a1a;
   --color-bg: #f9f9f9;
@@ -28,7 +34,8 @@ body {
   margin: 0;
   color: var(--color-text);
   background-color: var(--color-bg);
-  font-family: 'Libre Baskerville';
+  /* font-family: 'Libre Baskerville'; */
+  font-family: 'Exposure', sans-serif;
   font-style: normal; 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -170,7 +177,7 @@ header {
   position: relative;
   display: flex;
   padding: 0.5rem;
-  background-color: #16161620;
+  background-color: #16161610;
   border-radius: 100px;
   backdrop-filter: blur(10px);
 }
@@ -198,15 +205,9 @@ header {
     width 0.45s cubic-bezier(0.33, 1, 0.68, 1);
 }
 
-.frame__links a.active {
-  color: #161616;
-}
-
 .frame__links a:hover {
-  background-color: #ffffff40;
+  background-color: #ffffff50;
 }
-
-
 
 .frame {
   display: flex;

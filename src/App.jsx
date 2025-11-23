@@ -253,8 +253,9 @@ export default function App() {
             <p data-desc="6" data-text>
               {/* <span className="">indonesia</span> */}
               <span>
-                <p>📍 global</p>
-                <p>🕰️ 2025</p>
+                📍 global
+                <br />
+                🕰️ 2025
               </span>
               <span>
                 <img className="details__media" src="./ssamo_dsimulator.png"/>
