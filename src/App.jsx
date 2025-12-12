@@ -193,7 +193,7 @@ export default function App() {
           <p data-title="4" data-text>kix</p>
           <p data-title="5" data-text>mytelkomsel basic</p>
           <p data-title="6" data-text>samosynth</p>
-          <p data-title="7" data-text>imprint</p>
+          <p data-title="7" data-text>owillhem</p>
           <p data-title="8" data-text>thanh uy art gallery</p>
           <p data-title="9" data-text>viettel</p>
           <p data-title="10" data-text>blooms</p>
@@ -298,13 +298,13 @@ export default function App() {
               <span>
                 <p>currently at AKQA.</p>
               </span>
-              an asian unorthodox-generalist wannabe. obsessed about any cross function form between avant-garde-haute-couture-post-modern-applied-fine-arts ++ creative tech innovations.
+              an asian unorthodox-generalist wannabe. obsessed about the possible cross function of avant-garde-haute-couture-post-modern-applied-fine-arts ++ creative tech innovations.
               <br />
               <span>
-                <p>paid professional money at 16, worked full-time at 18, dropped out of college at 21,5. <br />not sure what's ahead.</p>
+                <p>paid professional money at 16, worked full-time at 18, dropped out of college at 21,5. <br />not sure what the fuck ahead.</p>
               </span>
               <span>
-                <p><strong>idols from interdisciplinary spaces;</strong></p>
+                <p><strong>notable figures from interdisciplinary spaces that molded me;</strong></p>
                 <p>michael stevens / vsauce</p>
                 <p>virgil abloh</p>
                 <p>adam neely</p>

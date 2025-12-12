@@ -5,7 +5,8 @@
 
 @font-face {
   font-family: 'Exposure';
-  src: url('./Exposure.ttf') format('truetype');
+  /* Served from Vite public/ so load from the site root */
+  src: url('/Exposure.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
