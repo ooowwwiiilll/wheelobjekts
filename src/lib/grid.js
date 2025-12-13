@@ -33,6 +33,9 @@ class Grid {
   }
 
   init() {
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/74707fa5-ac2c-4e51-b5e5-e9cceb5efc6c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'grid.js:36',message:'grid.init called, starting intro',data:{hasLoadingClass:document.body.classList.contains('loading')},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
+    // #endregion
     this.intro();
     this.overlay = document.getElementById("overlay");
   
@@ -593,11 +596,20 @@ class Grid {
 }
 
 export function initGrid() {
+  // #region agent log
+  fetch('http://127.0.0.1:7242/ingest/74707fa5-ac2c-4e51-b5e5-e9cceb5efc6c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'grid.js:596',message:'initGrid called',data:{hasLoadingClass:document.body.classList.contains('loading'),gridVisible:document.querySelector('.grid')?.offsetParent!==null},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
+  // #endregion
   const grid = new Grid();
 
   preloadImages(".grid img").then(() => {
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/74707fa5-ac2c-4e51-b5e5-e9cceb5efc6c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'grid.js:600',message:'preload complete, starting grid init',data:{hasLoadingClass:document.body.classList.contains('loading')},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
+    // #endregion
     grid.init();
     initAsciiFilter();
     document.body.classList.remove("loading");
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/74707fa5-ac2c-4e51-b5e5-e9cceb5efc6c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'grid.js:604',message:'loading class removed',data:{hasLoadingClass:document.body.classList.contains('loading')},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
+    // #endregion
   });
 }

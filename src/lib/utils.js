@@ -19,6 +19,14 @@ import imagesLoaded from "imagesloaded";
 
 export const preloadImages = (selector = "img") =>
   new Promise((resolve) => {
-    imagesLoaded(document.querySelectorAll(selector), { background: true }, resolve);
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/74707fa5-ac2c-4e51-b5e5-e9cceb5efc6c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'utils.js:22',message:'preloadImages started',data:{selector,hasLoadingClass:document.body.classList.contains('loading'),imageCount:document.querySelectorAll(selector).length},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+    // #endregion
+    imagesLoaded(document.querySelectorAll(selector), { background: true }, () => {
+      // #region agent log
+      fetch('http://127.0.0.1:7242/ingest/74707fa5-ac2c-4e51-b5e5-e9cceb5efc6c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'utils.js:25',message:'preloadImages completed',data:{selector,hasLoadingClass:document.body.classList.contains('loading')},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+      // #endregion
+      resolve();
+    });
   }
 );

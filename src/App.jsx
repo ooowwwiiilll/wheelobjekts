@@ -253,9 +253,8 @@ export default function App() {
             <p data-desc="6" data-text>
               {/* <span className="">indonesia</span> */}
               <span>
-                📍 global
-                <br />
-                🕰️ 2025
+                <p>📍 global</p>
+                <p>🕰️ 2025</p>
               </span>
               <span>
                 <img className="details__media" src="./ssamo_dsimulator.png"/>
@@ -304,7 +303,7 @@ export default function App() {
                 <p>paid professional money at 16, worked full-time at 18, dropped out of college at 21,5. <br />not sure what the fuck ahead.</p>
               </span>
               <span>
-                <p><strong>notable figures from interdisciplinary spaces that molded me;</strong></p>
+                <p><strong>notable idols from interdisciplinary spaces;</strong></p>
                 <p>michael stevens / vsauce</p>
                 <p>virgil abloh</p>
                 <p>adam neely</p>

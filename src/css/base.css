@@ -52,7 +52,13 @@ body {
 body.loading .container,
 body.loading .grid {
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
+}
+
+body.loading .grid img {
+  opacity: 0;
+  visibility: hidden;
 }
 
 @media (scripting: enabled) {
