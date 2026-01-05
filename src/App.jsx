@@ -76,10 +76,10 @@ export default function App() {
           <span className="link-bg"></span>
 
           <a className="active" data-filter="all">all</a>
-          <a data-filter="A">visuals</a>
-          <a data-filter="B">products</a>
-          <a data-filter="C">reads</a>
-          <a data-filter="D">codes</a>
+          <a data-filter="A">visual</a>
+          <a data-filter="B">product</a>
+          <a data-filter="C">read</a>
+          <a data-filter="D">coded</a>
         </div>
 
 
@@ -296,12 +296,12 @@ export default function App() {
 
             <p data-desc="7" data-text>
               <span>
-                <p>currently at AKQA.</p>
+                <p>currently at aleph-labs, AKQA.</p>
               </span>
-              an asian unorthodox-generalist wannabe. obsessed about the possible cross function of avant-garde-post-modern-applied-fine-arts ++ creative tech innovations.
+              asian unorthodox-generalist wannabe. obsessed about the possible cross function of avant-garde-haute-couture-post-modern-applied-fine-arts ++ creative tech innovations.
               <br />
               <span>
-                <p>paid professional at 16, worked full-time at 18, dropped out of college at 21,5. <br />still navigating what the fuck ahead.</p>
+                <p>paid professional at 16, worked full-time at 18, dropped out of college at 21,5. <br />still navigating what the fuck to do ahead.</p>
               </span>
               <span>
                 <p><strong>notable idols from interdisciplinary spaces;</strong></p>
@@ -322,8 +322,8 @@ export default function App() {
                 <p>FKJ</p>
               </span>
               <span>
-                <a href="https://linkedin.com/in/owil/" target="_blank" rel="noreferrer">{"corporate  | "}</a>
-                <a href="https://drive.google.com/file/d/1ELcFvAMh2aRTnOf0iTbIWlac8juFh987/view?usp=drive_link" target="_blank" rel="noreferrer">{"pause  | "}</a>
+                <a href="https://linkedin.com/in/owil/" target="_blank" rel="noreferrer">{"corporate"}</a>
+                <a href="https://drive.google.com/file/d/1ELcFvAMh2aRTnOf0iTbIWlac8juFh987/view?usp=drive_link" target="_blank" rel="noreferrer">{"pause"}</a>
                 <a href="mailto:owilhm@gmail.com" target="_blank" rel="noreferrer">{"hmu"}</a>
               </span>
             </p>

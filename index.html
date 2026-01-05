@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>owillhem.art</title>
     <link rel="icon" href="src/assets/favicOn.png">
+    <style>
+      /* Hide images immediately before React loads */
+      body.loading .grid img,
+      body.loading .container,
+      body.loading .grid {
+        opacity: 0 !important;
+        visibility: hidden !important;
+      }
+    </style>
   </head>
   <body className="loading">
   <!-- <body className="loading" oncontextmenu="return false"> -->
