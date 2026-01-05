@@ -57,8 +57,8 @@ body.loading .grid {
 }
 
 body.loading .grid img {
-  opacity: 0;
-  visibility: hidden;
+  opacity: 0 !important;
+  visibility: hidden !important;
 }
 
 @media (scripting: enabled) {
@@ -76,6 +76,7 @@ body.loading .grid img {
       width: 100%;
       height: 100%;
       background: var(--color-bg);
+      pointer-events: all;
     }
 
     &::after {
