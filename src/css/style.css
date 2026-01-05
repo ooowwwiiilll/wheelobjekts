@@ -77,11 +77,11 @@
   }
 
   .img-hover {
-    opacity: 0;
+    opacity: 1;
   }
 
   .img-hover:hover {
-    opacity: 1;
+    opacity: 0;
   }
 
   :hover img {
