@@ -51,6 +51,12 @@ export default function App() {
         </div>
       </div>
       
+      <div className="loading-overlay" id="loading-overlay">
+        <div className="loading-overlay__content">
+          <div className="loading-overlay__progress">0</div>
+        </div>
+      </div>
+      
       <div className="overlay" id="overlay"></div>
 
       <header className="frame">

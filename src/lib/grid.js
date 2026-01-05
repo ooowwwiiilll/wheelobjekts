@@ -601,15 +601,38 @@ export function initGrid() {
   // #endregion
   const grid = new Grid();
 
-  preloadImages(".grid img").then(() => {
+  const loadingOverlay = document.getElementById("loading-overlay");
+  const progressText = loadingOverlay?.querySelector(".loading-overlay__progress");
+
+  const handleProgress = (progress) => {
+    if (progressText) {
+      progressText.textContent = progress;
+    }
+  };
+
+  preloadImages(".grid img", handleProgress).then(() => {
     // #region agent log
     fetch('http://127.0.0.1:7242/ingest/74707fa5-ac2c-4e51-b5e5-e9cceb5efc6c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'grid.js:600',message:'preload complete, starting grid init',data:{hasLoadingClass:document.body.classList.contains('loading')},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
     // #endregion
-    grid.init();
-    initAsciiFilter();
-    document.body.classList.remove("loading");
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/74707fa5-ac2c-4e51-b5e5-e9cceb5efc6c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'grid.js:604',message:'loading class removed',data:{hasLoadingClass:document.body.classList.contains('loading')},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
-    // #endregion
+    
+    // Fade out loading overlay
+    if (loadingOverlay) {
+      loadingOverlay.classList.add("--hidden");
+      
+      // Wait for fade out animation, then start intro
+      setTimeout(() => {
+        grid.init();
+        initAsciiFilter();
+        document.body.classList.remove("loading");
+        // #region agent log
+        fetch('http://127.0.0.1:7242/ingest/74707fa5-ac2c-4e51-b5e5-e9cceb5efc6c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'grid.js:604',message:'loading class removed',data:{hasLoadingClass:document.body.classList.contains('loading')},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
+        // #endregion
+      }, 600); // Match CSS transition duration
+    } else {
+      // Fallback if overlay doesn't exist
+      grid.init();
+      initAsciiFilter();
+      document.body.classList.remove("loading");
+    }
   });
 }
