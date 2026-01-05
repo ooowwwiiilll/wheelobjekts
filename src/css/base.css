@@ -65,7 +65,9 @@ body.loading .grid img {
   position: fixed;
   inset: 0;
   z-index: 100000;
-  background-color: var(--color-bg);
+  background-color: rgba(249, 249, 249, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   display: flex;
   align-items: center;
   justify-content: center;
