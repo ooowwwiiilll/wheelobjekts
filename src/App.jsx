@@ -25,10 +25,11 @@ export default function App() {
       });
     });
 
-    window.addEventListener("load", () => {
-      const active = document.querySelector(".frame__links a.active");
-      if (active) moveBg(active);
-    });
+    // Position the background under the default active link ("all") on initial render
+    const initialActive = document.querySelector(".frame__links a.active");
+    if (initialActive) {
+      moveBg(initialActive);
+    }
   }, []);
 
   return (
@@ -36,8 +37,10 @@ export default function App() {
 
       <div className="mobile-blocker">
         <p className="mobile__desc">
-          optimized for larger screen<br />
-          please view this site from desktop
+          {/* optimized for larger screen<br />
+          please view this site from desktop */}
+          this piece is best viewed<br />
+          on desktop screen.
         </p>
         
         <h1 className="mobile__title">(wob)</h1>
@@ -63,18 +66,10 @@ export default function App() {
           <a href="mailto:owilhm@gmail.com" target="_blank" rel="noreferrer">message</a>
         </div> */}
 
-        {/* <div className="frame__links">
+        <div className="frame__links">
+          <span className="link-bg"></span>
+
           <a className="active" data-filter="all">all</a>
-          <a data-filter="A">visuals</a>
-          <a data-filter="B">products</a>
-          <a data-filter="C">reads</a>
-          <a data-filter="D">codes</a>
-        </div> */}
-
-        <div class="frame__links">
-          <span class="link-bg"></span>
-
-          <a class="active" data-filter="all">all</a>
           <a data-filter="A">visuals</a>
           <a data-filter="B">products</a>
           <a data-filter="C">reads</a>
@@ -297,10 +292,10 @@ export default function App() {
               <span>
                 <p>currently at AKQA.</p>
               </span>
-              an asian unorthodox-generalist wannabe. obsessed about the possible cross function of avant-garde-haute-couture-post-modern-applied-fine-arts ++ creative tech innovations.
+              an asian unorthodox-generalist wannabe. obsessed about the possible cross function of avant-garde-post-modern-applied-fine-arts ++ creative tech innovations.
               <br />
               <span>
-                <p>paid professional money at 16, worked full-time at 18, dropped out of college at 21,5. <br />not sure what the fuck ahead.</p>
+                <p>paid professional at 16, worked full-time at 18, dropped out of college at 21,5. <br />still navigating what the fuck ahead.</p>
               </span>
               <span>
                 <p><strong>notable idols from interdisciplinary spaces;</strong></p>
@@ -354,6 +349,7 @@ export default function App() {
               </span>
               An Australian retail pharmacy group with a network of independently owned and operated pharmacies, also includes a certified B Corp management services arm. The pharmacies offer health & wellness prescription, pharmacist consultations, and medication ordering. 
               <br />
+              <a href="https://joinbloomsthechemist.com.au/">{"live site here"}</a>
               <span>T B U</span>
             </p>
 
@@ -362,7 +358,7 @@ export default function App() {
                 <p>📍 indonesia</p>
                 <p>🕰️ 2023</p>
               </span>
-              {"A muslim faith-driven digital journal I designed & developed as a non-muslim myself :)"}
+              {"A faith-driven digital journal I designed & developed as a non-muslim myself :)"}
               <br />
               <span>T B U</span>
             </p>

@@ -81,7 +81,7 @@
   }
 
   .img-hover:hover {
-    opacity: 0;
+    opacity: 1;
   }
 
   :hover img {
