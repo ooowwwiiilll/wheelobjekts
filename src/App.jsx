@@ -238,8 +238,9 @@ export default function App() {
                 <p>🕰️ 2023</p>
               </span>
 
+              <span>
               <a href="https://www.wwdcscholars.com/s/53FA3940-93F5-480B-9224-2B0613AEDA6D/2024">{"public press media here"}</a>
-              <span>T B U</span>
+              </span>
             </p>
 
             <p data-desc="5" data-text>
@@ -355,8 +356,9 @@ export default function App() {
               </span>
               An Australian retail pharmacy group with a network of independently owned and operated pharmacies, also includes a certified B Corp management services arm. The pharmacies offer health & wellness prescription, pharmacist consultations, and medication ordering. 
               <br />
+              <span>
               <a href="https://joinbloomsthechemist.com.au/">{"live site here"}</a>
-              <span>T B U</span>
+              </span>
             </p>
 
             <p data-desc="11" data-text>
