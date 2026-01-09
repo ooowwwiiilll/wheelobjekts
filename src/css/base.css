@@ -155,7 +155,7 @@ a {
   position: relative;
   display: inline-block;
   color: var(--color-link, #1a1a1a);
-  padding: 0.2rem 0.4rem;
+  padding: 1rem 0rem;
   text-decoration: none;
   transition: color 0.3s ease;
 }

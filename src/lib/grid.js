@@ -357,6 +357,10 @@ class Grid {
     });
 
     this.dom.addEventListener("click", (e) => {
+      // Don't hide details if clicking on a link
+      if (e.target.tagName === 'A' || e.target.closest('a')) {
+        return;
+      }
       if (this.SHOW_DETAILS) this.hideDetails();
     });
   }
@@ -518,6 +522,12 @@ class Grid {
     const state = Flip.getState(product);
 
     this.detailsThumb.appendChild(product);
+
+    // Set high z-index and position to ensure product flies over the details panel
+    gsap.set(product, { 
+      zIndex: 1000,
+      position: "absolute"
+    });
 
     Flip.from(state, {
       absolute: true,

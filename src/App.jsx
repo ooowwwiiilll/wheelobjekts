@@ -239,7 +239,7 @@ export default function App() {
               </span>
 
               <span>
-              <a href="https://www.wwdcscholars.com/s/53FA3940-93F5-480B-9224-2B0613AEDA6D/2024">{"public press media here"}</a>
+                <a href="https://www.wwdcscholars.com/s/53FA3940-93F5-480B-9224-2B0613AEDA6D/2024" target="_blank" rel="noreferrer">{"public press media here"}</a>
               </span>
             </p>
 
@@ -324,7 +324,7 @@ export default function App() {
               </span>
               <span>
                 <a href="https://linkedin.com/in/owil/" target="_blank" rel="noreferrer">{"corporate"}</a>
-                <a href="https://drive.google.com/file/d/1ELcFvAMh2aRTnOf0iTbIWlac8juFh987/view?usp=drive_link" target="_blank" rel="noreferrer">{"pause"}</a>
+                <a href="https://drive.google.com/file/d/1wnpzDhdp48MtSadvQc9Sbi5i7vKP3uiw/view?usp=sharing" target="_blank" rel="noreferrer">{"pause"}</a>
                 <a href="mailto:owilhm@gmail.com" target="_blank" rel="noreferrer">{"hmu"}</a>
               </span>
             </p>
@@ -357,7 +357,7 @@ export default function App() {
               An Australian retail pharmacy group with a network of independently owned and operated pharmacies, also includes a certified B Corp management services arm. The pharmacies offer health & wellness prescription, pharmacist consultations, and medication ordering. 
               <br />
               <span>
-              <a href="https://joinbloomsthechemist.com.au/">{"live site here"}</a>
+                <a href="https://joinbloomsthechemist.com.au/" target="_blank" rel="noreferrer">{"live site here"}</a>
               </span>
             </p>
 
