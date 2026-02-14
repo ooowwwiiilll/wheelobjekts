@@ -305,15 +305,15 @@ export default function App() {
                 <p>paid professional at 16, worked full-time at 18, dropped out of college at 21,5. <br />still navigating what the fuck to do ahead.</p>
               </span>
               <span>
-                <p><strong>notable idols from interdisciplinary spaces;</strong></p>
+                <p><strong>notable interdisciplinary idols / interests</strong></p>
                 <p>michael stevens / vsauce</p>
-                <p>virgil abloh</p>
                 <p>adam neely</p>
+                <p>martin margiela</p>
                 <p>jesper kouthoofd</p>
                 <p>carl pei</p>
                 <p>tim rodenbröker</p>
                 <p>chan karunamuni</p>
-                <p>martin margiela</p>
+                <p>virgil abloh</p>
                 <p>edouard manet</p>
                 <p>seth mcfarlane</p>
                 <p>leo chang</p>
