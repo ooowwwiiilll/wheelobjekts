@@ -315,12 +315,15 @@ export default function App() {
                 <p>chan karunamuni</p>
                 <p>virgil abloh</p>
                 <p>edouard manet</p>
+                <p>brutalism</p>
                 <p>seth mcfarlane</p>
                 <p>leo chang</p>
                 <p>keiran hebden / four tet</p>
                 <p>doug lemoine</p>
                 <p>mike schneider</p>
+                <p>joycult</p>
                 <p>FKJ</p>
+                <p>deGoogling</p>
               </span>
               <span>
                 <a href="https://linkedin.com/in/owil/" target="_blank" rel="noreferrer">{"corporate"}</a>
