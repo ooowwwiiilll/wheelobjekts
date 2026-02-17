@@ -310,6 +310,7 @@ export default function App() {
                 <p>adam neely</p>
                 <p>martin margiela</p>
                 <p>jesper kouthoofd</p>
+                <p>casiopea</p>
                 <p>carl pei</p>
                 <p>tim rodenbröker</p>
                 <p>chan karunamuni</p>
