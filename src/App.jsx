@@ -46,7 +46,7 @@ export default function App() {
         <h1 className="mobile__title">(wob)</h1>
         <div className="mobile__desc2">
           <a href="https://linkedin.com/in/owil/" target="_blank" rel="noreferrer">{"corporate"}</a>
-          <a href="https://drive.google.com/file/d/1ELcFvAMh2aRTnOf0iTbIWlac8juFh987/view?usp=drive_link" target="_blank" rel="noreferrer">{"pause"}</a>
+          {/* <a href="https://drive.google.com/file/d/1ELcFvAMh2aRTnOf0iTbIWlac8juFh987/view?usp=drive_link" target="_blank" rel="noreferrer">{"pause"}</a> */}
           <a href="mailto:owilhm@gmail.com" target="_blank" rel="noreferrer">{"hmu"}</a>
         </div>
       </div>
@@ -328,7 +328,7 @@ export default function App() {
               </span>
               <span style={{ display: "flex", gap: "10px" }}>
                 <a href="https://linkedin.com/in/owil/" target="_blank" rel="noreferrer">{"corporate"}</a>
-                <a href="https://drive.google.com/file/d/1wnpzDhdp48MtSadvQc9Sbi5i7vKP3uiw/view?usp=sharing" target="_blank" rel="noreferrer">{"pause"}</a>
+                {/* <a href="https://drive.google.com/file/d/1wnpzDhdp48MtSadvQc9Sbi5i7vKP3uiw/view?usp=sharing" target="_blank" rel="noreferrer">{"pause"}</a> */}
                 <a href="mailto:owilhm@gmail.com" target="_blank" rel="noreferrer">{"hmu"}</a>
               </span>
             </p>
