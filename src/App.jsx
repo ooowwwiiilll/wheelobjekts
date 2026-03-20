@@ -78,8 +78,8 @@ export default function App() {
           <a className="active" data-filter="all">all</a>
           <a data-filter="A">visual</a>
           <a data-filter="B">product</a>
-          <a data-filter="C">read</a>
           <a data-filter="D">coded</a>
+          <a data-filter="C">read</a>
         </div>
 
 
@@ -115,22 +115,12 @@ export default function App() {
             <div className="product"><div data-id="1"><img src="/saxis.png" alt="" /></div></div>
             <div className="product"><div data-id="2"><img src="/sfast.png" alt="" /></div></div>
             <div className="product"><div data-id="3"><img src="/sgop.png" alt="" /></div></div>
-            <div className="product">
-              <div data-id="4">
-                <img src="/skix_ascii.png" alt="" />
-                <img className="img-hover" src="/skix.png" alt="" />
-              </div>
-            </div>
+            <div className="product"><div data-id="4"><img src="/skix.png" alt="" /></div></div>
           </div>
 
           <div className="column">
             <div className="product"><div data-id="5"><img src="/smtb.png" alt="" /></div></div>
-            <div className="product">
-              <div data-id="6">
-                <img src="/ssamo_ascii.png" alt="" />
-                <img className="img-hover" src="/ssamo.png" alt="" />
-              </div>
-            </div>
+            <div className="product"><div data-id="6"><img src="/ssamo.png" alt="" /></div></div>
             <div className="product"><div data-id="7"><img src="/wob.gif" alt="" /></div></div>
             <div className="product"><div data-id="8"><img src="/sthuy.png" alt="" /></div></div>
           </div>
@@ -138,12 +128,7 @@ export default function App() {
           <div className="column">
             <div className="product"><div data-id="9"><img src="/sviet.png" alt="" /></div></div>
             <div className="product"><div data-id="10"><img src="/szbloom.png" alt="" /></div></div>
-            <div className="product">
-              <div data-id="11">
-                <img src="/szkutt_ascii.png" alt="" />
-                <img className="img-hover" src="/szkutt.png" alt="" />
-              </div>
-            </div>
+            <div className="product"><div data-id="11"><img src="/szkutt.png" alt="" /></div></div>
             <div className="product"><div data-id="12"><img src="/szted.png" alt="" /></div></div>
           </div>
 
@@ -151,22 +136,12 @@ export default function App() {
             <div className="product"><div data-id="1"><img src="/saxis.png" alt="" /></div></div>
             <div className="product"><div data-id="2"><img src="/sfast.png" alt="" /></div></div>
             <div className="product"><div data-id="3"><img src="/sgop.png" alt="" /></div></div>
-            <div className="product">
-              <div data-id="4">
-                <img src="/skix_ascii.png" alt="" />
-                <img className="img-hover" src="/skix.png" alt="" />
-              </div>
-            </div>
+            <div className="product"><div data-id="4"><img src="/skix.png" alt="" /></div></div>
           </div>
 
           <div className="column">
             <div className="product"><div data-id="5"><img src="/smtb.png" alt="" /></div></div>
-            <div className="product">
-              <div data-id="6">
-                <img src="/ssamo_ascii.png" alt="" />
-                <img className="img-hover" src="/ssamo.png" alt="" />
-              </div>
-            </div>
+            <div className="product"><div data-id="6"><img src="/ssamo.png" alt="" /></div></div>
             <div className="product"><div data-id="7"><img src="/wob.gif" alt="" /></div></div>
             <div className="product"><div data-id="8"><img src="/sthuy.png" alt="" /></div></div>
           </div>
@@ -174,12 +149,7 @@ export default function App() {
           <div className="column">
             <div className="product"><div data-id="9"><img src="/sviet.png" alt="" /></div></div>
             <div className="product"><div data-id="10"><img src="/szbloom.png" alt="" /></div></div>
-            <div className="product">
-              <div data-id="11">
-                <img src="/szkutt_ascii.png" alt="" />
-                <img className="img-hover" src="/szkutt.png" alt="" />
-              </div>
-            </div>
+            <div className="product"><div data-id="11"><img src="/szkutt.png" alt="" /></div></div>
             <div className="product"><div data-id="12"><img src="/szted.png" alt="" /></div></div>
           </div>
 
@@ -297,21 +267,21 @@ export default function App() {
 
             <p data-desc="7" data-text>
               <span>
-                <p>currently at aleph-labs, AKQA.</p>
+                <p>currently at aleph-labs ++ AKQA.</p>
               </span>
-              asian unorthodox-generalist wannabe. obsessed about the possible cross function of avant-garde-haute-couture-post-modern-applied-fine-arts ++ creative tech innovations.
+              an asian unorthodox-generalist wannabe. obsessed about the possible cross function of avant-garde-post-modern-fine-arts with creative tech innovations.
               <br />
               <span>
                 <p>paid professional at 16, worked full-time at 18, dropped out of college at 21,5. <br />still navigating what the fuck to do ahead.</p>
               </span>
               <span>
-                <p><strong>notable interdisciplinary idols / interests</strong></p>
-                <p>michael stevens / vsauce</p>
+                <p><strong>interdisciplinary idols / interest tags</strong></p>
+                <p>michael stevens vsauce</p>
                 <p>adam neely</p>
                 <p>martin margiela</p>
                 <p>jesper kouthoofd</p>
                 <p>casiopea</p>
-                <p>carl pei</p>
+                <p>nothing</p>
                 <p>tim rodenbröker</p>
                 <p>chan karunamuni</p>
                 <p>virgil abloh</p>
@@ -319,12 +289,11 @@ export default function App() {
                 <p>brutalism</p>
                 <p>seth mcfarlane</p>
                 <p>leo chang</p>
-                <p>keiran hebden / four tet</p>
+                <p>four tet</p>
                 <p>doug lemoine</p>
                 <p>mike schneider</p>
-                <p>joycult</p>
                 <p>FKJ</p>
-                <p>deGoogling</p>
+                <p>deGoogle</p>
               </span>
               <span style={{ display: "flex", gap: "10px" }}>
                 <a href="https://linkedin.com/in/owil/" target="_blank" rel="noreferrer">{"corporate"}</a>
@@ -338,7 +307,7 @@ export default function App() {
                 <p>📍 vietnam</p>
                 <p>🕰️ 2025</p>
               </span>
-              An edgy printmaking gallery and studio + coffee shop in Ha Noi, showcasing Viet's rich history during propaganda and renewal period through contemporary ancient & modern fine arts.
+              an edgy printmaking gallery and studio + coffee shop in Ha Noi, celebrating Vietnam's rich history during propaganda and renewal period through traditional & contemporary paintings.
               <br />
               <span>T B U</span>
             </p>
@@ -348,7 +317,7 @@ export default function App() {
                 <p>📍 vietnam</p>
                 <p>🕰️ 2025</p>
               </span>
-              A comprehensive super app for Viettel customers in Vietnam that allows you to manage your mobile account, internet, as well as television services, entertainment, and loyalty program.
+              a comprehensive super app for Viettel customers in Vietnam that allows you to manage your mobile account, internet, as well as television services, entertainment, and loyalty program.
               <br />
               <span>T B U</span>
             </p>
@@ -358,7 +327,7 @@ export default function App() {
                 <p>📍 australia</p>
                 <p>🕰️ 2025</p>
               </span>
-              An Australian retail pharmacy group with a network of independently owned and operated pharmacies, also includes a certified B Corp management services arm. The pharmacies offer health & wellness prescription, pharmacist consultations, and medication ordering.
+              an Australian retail pharmacy group with a network of independently owned and operated pharmacies, also includes a certified B Corp management services arm. The pharmacies offer health & wellness prescription, pharmacist consultations, and medication ordering.
               <br />
               <span>
                 <a href="https://joinbloomsthechemist.com.au/" target="_blank" rel="noreferrer">{"live site here"}</a>
@@ -370,7 +339,7 @@ export default function App() {
                 <p>📍 indonesia</p>
                 <p>🕰️ 2023</p>
               </span>
-              {"A faith-driven digital journal I designed & developed as a non-muslim myself :)"}
+              {"a faith-driven digital journal for muslims that I, a Christian myself, designed & developed :)"}
               <br />
               <span>T B U</span>
             </p>
@@ -380,7 +349,7 @@ export default function App() {
                 <p>📍 indonesia</p>
                 <p>🕰️ 2024</p>
               </span>
-              The B2B unit of Telkomsel that provides digital solutions and connectivity for corporations to support their digital transformation. Offering advanced network services, communication & collaboration tools, IoT solutions, and CX insights tools.
+              the B2B unit of Telkomsel that provides digital solutions and connectivity for corporations to support their digital transformation. Offering advanced network services, communication & collaboration tools, IoT solutions, and CX insights tools.
               <br />
               <span>T B U</span>
             </p>
