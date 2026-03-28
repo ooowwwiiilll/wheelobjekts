@@ -238,7 +238,7 @@ export default function App() {
               </span>
               <span>pad mechanism</span>
               <span>
-                <video autoplay loop playsinline controls className="details__media" src="./ssamo_dpads.mp4"></video>
+                <video autoPlay loop playsInline controls muted className="details__media" src="./ssamo_dpads.mp4"></video>
               </span>
               <span>
                 <p>
@@ -253,7 +253,7 @@ export default function App() {
               </span>
               <span>tiles</span>
               <span>
-                <video autoplay loop playsinline controls className="details__media" src="./ssamo_dtiles.mp4"></video>
+                <video autoPlay loop playsInline controls muted className="details__media" src="./ssamo_dtiles.mp4"></video>
               </span>
               <span>
                 <p>

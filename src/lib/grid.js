@@ -429,6 +429,18 @@ class Grid {
 
     if (text) {
       text.classList.add("--active");
+      
+      const videos = text.querySelectorAll('video');
+      videos.forEach(v => {
+        // Restore src if it was purged on previous close
+        if (v.dataset.originalSrc) {
+          v.setAttribute('src', v.dataset.originalSrc);
+        }
+        v.currentTime = 0;
+        v.load();
+        v.play().catch(() => {});
+      });
+
       gsap.to(text.querySelectorAll(".line"), {
         y: 0,
         duration: 1.1,
@@ -465,6 +477,18 @@ class Grid {
 
   hideDetails() {
     this.SHOW_DETAILS = false;
+
+    // Fully purge all video media sessions to prevent PiP carry-over
+    this.details.querySelectorAll('video').forEach(v => {
+      v.pause();
+      v.currentTime = 0;
+      // Store original src and blank it to kill the media session
+      if (v.src && !v.dataset.originalSrc) {
+        v.dataset.originalSrc = v.getAttribute('src');
+      }
+      v.removeAttribute('src');
+      v.load();
+    });
 
     this.dom.classList.remove("--is-details-showing");
     document.body.classList.remove("--is-details-showing");
