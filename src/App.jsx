@@ -1,8 +1,31 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { initGrid } from "./lib/grid.js";
+import { decryptData } from "./lib/crypto.js";
 
-export default function App() {
+const baseItems = [
+  { id: "1", img: "/saxis.png" },
+  { id: "2", img: "/sfast.png" },
+  { id: "3", img: "/sgop.png" },
+  { id: "4", img: "/skix.png" },
+  { id: "5", img: "/smtb.png" },
+  { id: "6", img: "/ssamo.png" },
+  { id: "7", img: "/wob.gif" },
+  { id: "8", img: "/sthuy.png" },
+  { id: "9", img: "/sviet.png" },
+  { id: "10", img: "/szbloom.png" },
+  { id: "11", img: "/szkutt.png" },
+  { id: "12", img: "/szted.png" },
+];
+
+export default function App({ isWip = false }) {
+  const [isAuthenticated, setIsAuthenticated] = useState(!isWip);
+  const [password, setPassword] = useState("");
+  const [passwordError, setPasswordError] = useState(false);
+  const [wipItems, setWipItems] = useState([]);
+
   useEffect(() => {
+    if (!isAuthenticated) return;
+
     initGrid();
     // initAscii();
 
@@ -30,7 +53,31 @@ export default function App() {
     if (initialActive) {
       moveBg(initialActive);
     }
-  }, []);
+  }, [isAuthenticated]);
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      // Fetch and decrypt the extra secure confidential items
+      const res = await fetch('/wip-encrypted.json');
+      const encryptedData = await res.json();
+      const decrypted = await decryptData(encryptedData, password);
+      
+      setWipItems(decrypted);
+      setIsAuthenticated(true);
+    } catch(err) {
+      setPasswordError(true);
+      setTimeout(() => setPasswordError(false), 2000);
+      setPassword("");
+    }
+  };
+
+  const allItems = isAuthenticated ? [...baseItems, ...wipItems] : baseItems;
+  const TOTAL_SLOTS = 24;
+  const COLUMNS = 6;
+  const ROWS = 4;
+  
+  const slots = Array.from({ length: TOTAL_SLOTS }, (_, i) => allItems[i % allItems.length]);
 
   return (
     <main>
@@ -53,7 +100,25 @@ export default function App() {
 
       <div className="loading-overlay" id="loading-overlay">
         <div className="loading-overlay__content">
-          <div className="loading-overlay__progress">0</div>
+          {!isAuthenticated ? (
+            <div className="password-prompt" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2vw' }}>
+              <div style={{ fontSize: '3vw', fontFamily: "'Exposure', sans-serif" }}>( enter password )</div>
+              <form onSubmit={handleLogin}>
+                <div className={`pw-field${passwordError ? ' pw-field--error' : ''}`}>
+                  <input 
+                    className="pw-field__input"
+                    type="password" 
+                    value={password}
+                    onChange={e => setPassword(e.target.value)}
+                    placeholder="password"
+                    autoFocus
+                  />
+                </div>
+              </form>
+            </div>
+          ) : (
+            <div className="loading-overlay__progress">0</div>
+          )}
         </div>
       </div>
 
@@ -110,49 +175,15 @@ export default function App() {
         {/* <div className="overlay"></div> */}
 
         <div className="grid">
-
-          <div className="column">
-            <div className="product"><div data-id="1"><img src="/saxis.png" alt="" /></div></div>
-            <div className="product"><div data-id="2"><img src="/sfast.png" alt="" /></div></div>
-            <div className="product"><div data-id="3"><img src="/sgop.png" alt="" /></div></div>
-            <div className="product"><div data-id="4"><img src="/skix.png" alt="" /></div></div>
-          </div>
-
-          <div className="column">
-            <div className="product"><div data-id="5"><img src="/smtb.png" alt="" /></div></div>
-            <div className="product"><div data-id="6"><img src="/ssamo.png" alt="" /></div></div>
-            <div className="product"><div data-id="7"><img src="/wob.gif" alt="" /></div></div>
-            <div className="product"><div data-id="8"><img src="/sthuy.png" alt="" /></div></div>
-          </div>
-
-          <div className="column">
-            <div className="product"><div data-id="9"><img src="/sviet.png" alt="" /></div></div>
-            <div className="product"><div data-id="10"><img src="/szbloom.png" alt="" /></div></div>
-            <div className="product"><div data-id="11"><img src="/szkutt.png" alt="" /></div></div>
-            <div className="product"><div data-id="12"><img src="/szted.png" alt="" /></div></div>
-          </div>
-
-          <div className="column">
-            <div className="product"><div data-id="1"><img src="/saxis.png" alt="" /></div></div>
-            <div className="product"><div data-id="2"><img src="/sfast.png" alt="" /></div></div>
-            <div className="product"><div data-id="3"><img src="/sgop.png" alt="" /></div></div>
-            <div className="product"><div data-id="4"><img src="/skix.png" alt="" /></div></div>
-          </div>
-
-          <div className="column">
-            <div className="product"><div data-id="5"><img src="/smtb.png" alt="" /></div></div>
-            <div className="product"><div data-id="6"><img src="/ssamo.png" alt="" /></div></div>
-            <div className="product"><div data-id="7"><img src="/wob.gif" alt="" /></div></div>
-            <div className="product"><div data-id="8"><img src="/sthuy.png" alt="" /></div></div>
-          </div>
-
-          <div className="column">
-            <div className="product"><div data-id="9"><img src="/sviet.png" alt="" /></div></div>
-            <div className="product"><div data-id="10"><img src="/szbloom.png" alt="" /></div></div>
-            <div className="product"><div data-id="11"><img src="/szkutt.png" alt="" /></div></div>
-            <div className="product"><div data-id="12"><img src="/szted.png" alt="" /></div></div>
-          </div>
-
+          {Array.from({ length: COLUMNS }).map((_, colIndex) => (
+            <div className="column" key={`col-${colIndex}`}>
+              {slots.slice(colIndex * ROWS, (colIndex + 1) * ROWS).map((item, index) => (
+                <div className="product" key={`slot-${colIndex}-${index}`}>
+                  <div data-id={item.id}><img src={item.img} alt="" /></div>
+                </div>
+              ))}
+            </div>
+          ))}
         </div>
       </div>
 
@@ -170,6 +201,9 @@ export default function App() {
           <p data-title="10" data-text>blooms</p>
           <p data-title="11" data-text>kuttaib</p>
           <p data-title="12" data-text>ted</p>
+          {wipItems.map(item => (
+            <p key={`title-${item.id}`} data-title={item.id} data-text>{item.title}</p>
+          ))}
           {/* <p data-title="10" data-text> focalé</p> */}
         </div>
         <div className="details__body">
@@ -353,6 +387,15 @@ export default function App() {
               <br />
               <span>T B U</span>
             </p>
+
+            {wipItems.map(item => (
+              <p 
+                key={`desc-${item.id}`} 
+                data-desc={item.id} 
+                data-text 
+                dangerouslySetInnerHTML={{ __html: item.html }} 
+              />
+            ))}
 
           </div>
 

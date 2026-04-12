@@ -12,5 +12,6 @@ const path = window.location.pathname;
 ReactDOM.createRoot(document.getElementById("root")).render(
     path === "/okuri-support" ? <OkuriSupport /> :
         path === "/okuri-privacy-policy" ? <OkuriPrivacyPolicy /> :
-            path === "/okuri-terms" ? <OkuriTerms /> : <App />
+            path === "/okuri-terms" ? <OkuriTerms /> : 
+                path === "/wip" ? <App isWip={true} /> : <App />
 );

@@ -13,6 +13,110 @@ const springEase = spring({
   duration: 300
 });
 
+/* ─────────────────────────────────────────────────────────────────────────────
+ * MOTION CONFIG — single source of truth for every animation timing.
+ *
+ * All values already include the 35% speed-up (original × 0.65).
+ * To restore originals, multiply each duration / delay / stagger back by 1.54.
+ *
+ * Sections:
+ *   intro       – after loading overlay fades out
+ *   detail      – open / close item detail panel
+ *   filter      – category filter blur / fade
+ *   hover       – product grid item hover (CSS-driven, see style.css)
+ *   observer    – IntersectionObserver reveal / hide
+ *   overlay     – loading overlay fade-out wait
+ *   cursor      – custom cursor follow
+ * ────────────────────────────────────────────────────────────────────────── */
+export const MOTION = {
+
+  // ── Intro sequence (after load 100%) ──────────────────────────────────
+  intro: {
+    productDuration:   0.39,       // was 0.6
+    productEase:       "power3.out",
+    staggerAmount:     0.78,       // was 1.2
+    staggerFrom:       "random",
+    containerDuration: 0.78,       // was 1.2
+    containerEase:     "power3.inOut",
+  },
+
+  // ── Item detail open / close ──────────────────────────────────────────
+  detail: {
+    panelDuration:     0.78,       // was 1.2  (container + details slide)
+    panelEase:         "power3.inOut",
+
+    flipDuration:      0.78,       // was 1.2
+    flipEase:          "power3.inOut",
+
+    titleCharDuration: 0.72,       // was 1.1
+    titleCharDelay:    0.26,       // was 0.4
+    titleCharEase:     "power3.inOut",
+    titleCharStagger:  0.016,      // was 0.025
+
+    textLineDuration:  0.72,       // was 1.1
+    textLineDelay:     0.26,       // was 0.4
+    textLineEase:      "power3.inOut",
+    textLineStagger:   0.033,      // was 0.05
+
+    imgDuration:       0.78,       // was 1.2
+    imgDelay:          0.33,       // was 0.5
+    imgEase:           "power3.out",
+
+    detailImgReveal:   0.72,       // was 1.1  (detail body images)
+    detailImgEase:     "power3.out",
+
+    crossShowDuration: 0.26,       // was 0.4
+    crossShowDelay:    0.33,       // was 0.5
+    crossHideDuration: 0.26,       // was 0.4
+    crossEase:         "power2.out",
+
+    // close-specific
+    closeDelay:        0.20,       // was 0.3
+    closeTitleDuration:0.39,       // was 0.6
+    closeTextDuration: 0.39,       // was 0.6
+    closeTextStagger:  0.033,      // was 0.05
+    closeTitleStagger: 0.016,      // was 0.025
+
+    unflipDuration:    0.78,       // was 1.2
+    unflipDelay:       0.20,       // was 0.3
+    unflipEase:        "power3.inOut",
+  },
+
+  // ── Grid item filter (category switching) ─────────────────────────────
+  filter: {
+    showDuration:      0.39,       // was 0.6
+    showEase:          "power2.out",
+    hideDuration:      0.26,       // was 0.4
+    hideEase:          "power2.out",
+  },
+
+  // ── Grid item hover (CSS img scale) ───────────────────────────────────
+  // ⚠  Managed in style.css — kept here as reference so you know the value.
+  hover: {
+    imgScaleDuration:  585,        // ms, was 900ms  → style.css `.product img`
+  },
+
+  // ── IntersectionObserver reveal / fade ─────────────────────────────────
+  observer: {
+    revealDuration:    0.33,       // was 0.5
+    revealEase:        "power2.out",
+    fadeDuration:      0.26,       // was 0.4
+    fadeEase:          "power2.in",
+  },
+
+  // ── Loading overlay ───────────────────────────────────────────────────
+  overlay: {
+    fadeOutWait:       390,        // ms, was 600  (setTimeout before intro)
+  },
+
+  // ── Custom cursor ─────────────────────────────────────────────────────
+  cursor: {
+    duration:          0.39,       // was 0.6
+    ease:              "power2.out",
+  },
+};
+
+
 class Grid {
   constructor() {
     this.dom = document.querySelector(".container");
@@ -89,8 +193,8 @@ class Grid {
           opacity: 1,
           filter: "blur(0px) saturate(1)",
           scale: 1,
-          duration: 0.6,
-          ease: "power2.out",
+          duration: MOTION.filter.showDuration,
+          ease: MOTION.filter.showEase,
           pointerEvents: "auto",
         });
       } else {
@@ -98,8 +202,8 @@ class Grid {
           opacity: 0.6,
           filter: "blur(40px) saturate(0)",
           scale: 0.6,
-          duration: 0.4,
-          ease: "power2.out",
+          duration: MOTION.filter.hideDuration,
+          ease: MOTION.filter.hideEase,
           pointerEvents: "none",
         });
       }
@@ -121,17 +225,17 @@ class Grid {
     timeline.to(this.products, {
       scale: 1,
       opacity: 1,
-      duration: 0.6,
-      ease: "power3.out",
+      duration: MOTION.intro.productDuration,
+      ease: MOTION.intro.productEase,
       stagger: {
-        amount: 1.2,
-        from: "random",
+        amount: MOTION.intro.staggerAmount,
+        from: MOTION.intro.staggerFrom,
       },
     });
     timeline.to(this.dom, {
       scale: 1,
-      duration: 1.2,
-      ease: "power3.inOut",
+      duration: MOTION.intro.containerDuration,
+      ease: MOTION.intro.containerEase,
       onComplete: () => {
         this.setupDraggable();
         this.addEvents();
@@ -297,24 +401,24 @@ class Grid {
             scale: 1,
             opacity: 1,
             filter: "blur(0px) saturate(1)",
-            duration: 0.5,
-            ease: "power2.out",
+            duration: MOTION.observer.revealDuration,
+            ease: MOTION.observer.revealEase,
           });
         } else if (!matches) {
           gsap.to(item, {
             opacity: 0.6,
             filter: "blur(40px) saturate(0)",
             scale: 0.6,
-            duration: 0.4,
-            ease: "power2.in",
+            duration: MOTION.observer.fadeDuration,
+            ease: MOTION.observer.fadeEase,
           });
         } else if (!entry.isIntersecting) {
           gsap.to(item, {
             opacity: 0.6,
             scale: 0.6,
             filter: "blur(40px) saturate(0)",
-            duration: 0.4,
-            ease: "power2.in",
+            duration: MOTION.observer.fadeDuration,
+            ease: MOTION.observer.fadeEase,
           });
         }
       });
@@ -376,8 +480,8 @@ class Grid {
             opacity: 1,
             y: 0,
             scale: 1,
-            duration: 1.1,
-            ease: "power3.out",
+            duration: MOTION.detail.detailImgReveal,
+            ease: MOTION.detail.detailImgEase,
             clearProps: "transform,opacity"
           });
           obs.unobserve(entry.target); // only once
@@ -400,14 +504,14 @@ class Grid {
 
     gsap.to(this.dom, {
       x: "-50vw",
-      duration: 1.2,
-      ease: "power3.inOut",
+      duration: MOTION.detail.panelDuration,
+      ease: MOTION.detail.panelEase,
     });
 
     gsap.to(this.details, {
       x: 0,
-      duration: 1.2,
-      ease: "power3.inOut",
+      duration: MOTION.detail.panelDuration,
+      ease: MOTION.detail.panelEase,
     });
 
     this.flipProduct(product);
@@ -420,10 +524,10 @@ class Grid {
       title.classList.add("--active");
       gsap.to(title.querySelectorAll(".char"), {
         y: 0,
-        duration: 1.1,
-        delay: 0.4,
-        ease: "power3.inOut",
-        stagger: 0.025,
+        duration: MOTION.detail.titleCharDuration,
+        delay: MOTION.detail.titleCharDelay,
+        ease: MOTION.detail.titleCharEase,
+        stagger: MOTION.detail.titleCharStagger,
       });
     }
 
@@ -443,10 +547,10 @@ class Grid {
 
       gsap.to(text.querySelectorAll(".line"), {
         y: 0,
-        duration: 1.1,
-        delay: 0.4,
-        ease: "power3.inOut",
-        stagger: 0.05,
+        duration: MOTION.detail.textLineDuration,
+        delay: MOTION.detail.textLineDelay,
+        ease: MOTION.detail.textLineEase,
+        stagger: MOTION.detail.textLineStagger,
       });
     }
 
@@ -464,9 +568,9 @@ class Grid {
           y: 0,
           scale: 1,
           filter: "blur(0px)",
-          duration: 1.2,
-          delay: 0.5,
-          ease: "power3.out"
+          duration: MOTION.detail.imgDuration,
+          delay: MOTION.detail.imgDelay,
+          ease: MOTION.detail.imgEase,
         }
       );
     }
@@ -495,9 +599,9 @@ class Grid {
 
     gsap.to(this.dom, {
       x: 0,
-      duration: 1.2,
-      delay: 0.3,
-      ease: "power3.inOut",
+      duration: MOTION.detail.panelDuration,
+      delay: MOTION.detail.closeDelay,
+      ease: MOTION.detail.panelEase,
       onComplete: () => {
         this.details.classList.remove("--is-showing");
         this.details.scrollTo({ top: 0, behavior: "instant" });
@@ -510,9 +614,9 @@ class Grid {
 
     gsap.to(this.details, {
       x: "50vw",
-      duration: 1.2,
-      delay: 0.3,
-      ease: "power3.inOut",
+      duration: MOTION.detail.panelDuration,
+      delay: MOTION.detail.closeDelay,
+      ease: MOTION.detail.panelEase,
     });
 
     this.unFlipProduct();
@@ -520,10 +624,10 @@ class Grid {
     this.titles.forEach((title) => {
       gsap.to(title.querySelectorAll(".char"), {
         y: "100%",
-        duration: 0.6,
-        ease: "power3.inOut",
+        duration: MOTION.detail.closeTitleDuration,
+        ease: MOTION.detail.panelEase,
         stagger: {
-          amount: 0.025,
+          amount: MOTION.detail.closeTitleStagger,
           from: "end",
         },
       });
@@ -532,9 +636,9 @@ class Grid {
     this.texts.forEach((text) => {
       gsap.to(text.querySelectorAll(".line"), {
         y: "100%",
-        duration: 0.6,
-        ease: "power3.inOut",
-        stagger: 0.05,
+        duration: MOTION.detail.closeTextDuration,
+        ease: MOTION.detail.panelEase,
+        stagger: MOTION.detail.closeTextStagger,
       });
     });
     window.removeEventListener("mousemove", this._boundHandleCursor);
@@ -560,15 +664,15 @@ class Grid {
 
     Flip.from(state, {
       absolute: true,
-      duration: 1.2,
-      ease: "power3.inOut",
+      duration: MOTION.detail.flipDuration,
+      ease: MOTION.detail.flipEase,
     });
 
     gsap.to(this.cross, {
       scale: 1,
-      duration: 0.4,
-      delay: 0.5,
-      ease: "power2.out",
+      duration: MOTION.detail.crossShowDuration,
+      delay: MOTION.detail.crossShowDelay,
+      ease: MOTION.detail.crossEase,
     });
   }
 
@@ -577,8 +681,8 @@ class Grid {
 
     gsap.to(this.cross, {
       scale: 0,
-      duration: 0.4,
-      ease: "power2.out",
+      duration: MOTION.detail.crossHideDuration,
+      ease: MOTION.detail.crossEase,
     });
 
     const state = Flip.getState(this.currentProduct);
@@ -600,9 +704,9 @@ class Grid {
       left: finalRect.left - this.detailsThumb.getBoundingClientRect().left + "px",
       width: finalRect.width + "px",
       height: finalRect.height + "px",
-      duration: 1.2,
-      delay: 0.3,
-      ease: "power3.inOut",
+      duration: MOTION.detail.unflipDuration,
+      delay: MOTION.detail.unflipDelay,
+      ease: MOTION.detail.unflipEase,
       onComplete: () => {
         this.originalParent.appendChild(this.currentProduct);
 
@@ -628,8 +732,8 @@ class Grid {
     gsap.to(this.cross, {
       x: x - this.cross.offsetWidth / 2,
       y: y - this.cross.offsetHeight / 2,
-      duration: 0.6,
-      ease: "power2.out"
+      duration: MOTION.cursor.duration,
+      ease: MOTION.cursor.ease,
     });
   }
 }
@@ -660,7 +764,7 @@ export function initGrid() {
         initAsciiFilter();
         document.body.classList.remove("loading");
 
-      }, 600); // Match CSS transition duration
+      }, MOTION.overlay.fadeOutWait);
     } else {
       // Fallback if overlay doesn't exist
       grid.init();
