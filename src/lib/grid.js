@@ -32,87 +32,87 @@ export const MOTION = {
 
   // ── Intro sequence (after load 100%) ──────────────────────────────────
   intro: {
-    productDuration:   0.39,       // was 0.6
-    productEase:       "power3.out",
-    staggerAmount:     0.78,       // was 1.2
-    staggerFrom:       "random",
+    productDuration: 0.39,       // was 0.6
+    productEase: "power3.out",
+    staggerAmount: 0.78,       // was 1.2
+    staggerFrom: "random",
     containerDuration: 0.78,       // was 1.2
-    containerEase:     "power3.inOut",
+    containerEase: "power3.inOut",
   },
 
   // ── Item detail open / close ──────────────────────────────────────────
   detail: {
-    panelDuration:     0.78,       // was 1.2  (container + details slide)
-    panelEase:         "power3.inOut",
+    panelDuration: 0.78,       // was 1.2  (container + details slide)
+    panelEase: "power3.inOut",
 
-    flipDuration:      0.78,       // was 1.2
-    flipEase:          "power3.inOut",
+    flipDuration: 0.78,       // was 1.2
+    flipEase: "power3.inOut",
 
     titleCharDuration: 0.72,       // was 1.1
-    titleCharDelay:    0.26,       // was 0.4
-    titleCharEase:     "power3.inOut",
-    titleCharStagger:  0.016,      // was 0.025
+    titleCharDelay: 0.26,       // was 0.4
+    titleCharEase: "power3.inOut",
+    titleCharStagger: 0.016,      // was 0.025
 
-    textLineDuration:  0.72,       // was 1.1
-    textLineDelay:     0.26,       // was 0.4
-    textLineEase:      "power3.inOut",
-    textLineStagger:   0.033,      // was 0.05
+    textLineDuration: 0.72,       // was 1.1
+    textLineDelay: 0.26,       // was 0.4
+    textLineEase: "power3.inOut",
+    textLineStagger: 0.033,      // was 0.05
 
-    imgDuration:       0.78,       // was 1.2
-    imgDelay:          0.33,       // was 0.5
-    imgEase:           "power3.out",
+    imgDuration: 0.78,       // was 1.2
+    imgDelay: 0.33,       // was 0.5
+    imgEase: "power3.out",
 
-    detailImgReveal:   0.72,       // was 1.1  (detail body images)
-    detailImgEase:     "power3.out",
+    detailImgReveal: 0.72,       // was 1.1  (detail body images)
+    detailImgEase: "power3.out",
 
     crossShowDuration: 0.26,       // was 0.4
-    crossShowDelay:    0.33,       // was 0.5
+    crossShowDelay: 0.33,       // was 0.5
     crossHideDuration: 0.26,       // was 0.4
-    crossEase:         "power2.out",
+    crossEase: "power2.out",
 
     // close-specific
-    closeDelay:        0.20,       // was 0.3
-    closeTitleDuration:0.39,       // was 0.6
+    closeDelay: 0.20,       // was 0.3
+    closeTitleDuration: 0.39,       // was 0.6
     closeTextDuration: 0.39,       // was 0.6
-    closeTextStagger:  0.033,      // was 0.05
+    closeTextStagger: 0.033,      // was 0.05
     closeTitleStagger: 0.016,      // was 0.025
 
-    unflipDuration:    0.78,       // was 1.2
-    unflipDelay:       0.20,       // was 0.3
-    unflipEase:        "power3.inOut",
+    unflipDuration: 0.78,       // was 1.2
+    unflipDelay: 0.20,       // was 0.3
+    unflipEase: "power3.inOut",
   },
 
   // ── Grid item filter (category switching) ─────────────────────────────
   filter: {
-    showDuration:      0.39,       // was 0.6
-    showEase:          "power2.out",
-    hideDuration:      0.26,       // was 0.4
-    hideEase:          "power2.out",
+    showDuration: 0.39,       // was 0.6
+    showEase: "power2.out",
+    hideDuration: 0.26,       // was 0.4
+    hideEase: "power2.out",
   },
 
   // ── Grid item hover (CSS img scale) ───────────────────────────────────
   // ⚠  Managed in style.css — kept here as reference so you know the value.
   hover: {
-    imgScaleDuration:  585,        // ms, was 900ms  → style.css `.product img`
+    imgScaleDuration: 585,        // ms, was 900ms  → style.css `.product img`
   },
 
   // ── IntersectionObserver reveal / fade ─────────────────────────────────
   observer: {
-    revealDuration:    0.33,       // was 0.5
-    revealEase:        "power2.out",
-    fadeDuration:      0.26,       // was 0.4
-    fadeEase:          "power2.in",
+    revealDuration: 0.33,       // was 0.5
+    revealEase: "power2.out",
+    fadeDuration: 0.26,       // was 0.4
+    fadeEase: "power2.in",
   },
 
   // ── Loading overlay ───────────────────────────────────────────────────
   overlay: {
-    fadeOutWait:       390,        // ms, was 600  (setTimeout before intro)
+    fadeOutWait: 390,        // ms, was 600  (setTimeout before intro)
   },
 
   // ── Custom cursor ─────────────────────────────────────────────────────
   cursor: {
-    duration:          0.39,       // was 0.6
-    ease:              "power2.out",
+    duration: 0.39,       // was 0.6
+    ease: "power2.out",
   },
 };
 
@@ -140,19 +140,19 @@ class Grid {
 
     this.intro();
     this.overlay = document.getElementById("overlay");
-  
+
     this.overlay.addEventListener("click", () => {
       if (this.SHOW_DETAILS) this.hideDetails();
     });
-  
+
     window.addEventListener("keydown", (event) => {
       if (event.key === "Escape" && this.SHOW_DETAILS) {
         this.hideDetails();
       }
     });
-  
+
     this.products = document.querySelectorAll(".product div");
-  
+
     const catMap = {
       A: [8, 9, 10],
       B: [1, 2, 3, 5, 12],
@@ -164,30 +164,30 @@ class Grid {
       const cat = Object.keys(catMap).find((key) => catMap[key].includes(id)) || "none";
       el.dataset.cat = cat;
     });
-  
+
     document.querySelectorAll(".frame__links a[data-filter]").forEach((link) => {
       link.addEventListener("click", (e) => {
         e.preventDefault();
         const category = e.currentTarget.dataset.filter;
         this.filterItems(category);
-  
+
         // toggle active style
         document.querySelectorAll(".frame__links a").forEach((l) => l.classList.remove("active"));
         e.currentTarget.classList.add("active");
       });
     });
   }
-  
+
   filterItems(category) {
     const products = document.querySelectorAll(".product div");
     this.activeCategory = category;
-  
+
     products.forEach((item) => {
       const matches =
         category === "all" ||
         item.dataset.cat === category ||
         item.dataset.cat === "none";
-  
+
       if (matches) {
         gsap.to(item, {
           opacity: 1,
@@ -209,8 +209,8 @@ class Grid {
       }
     });
   }
-  
-  
+
+
   intro() {
     this.centerGrid();
 
@@ -263,7 +263,7 @@ class Grid {
 
   setupDraggable() {
     this.dom.classList.add("--is-loaded");
-  
+
     this.draggable = Draggable.create(this.grid, {
       type: "x,y",
       bounds: {
@@ -275,12 +275,12 @@ class Grid {
       inertia: true,
       allowEventDefault: true,
       edgeResistance: 0.9,
-  
+
       onDragStart: () => {
         this.isDragging = true;
         this.grid.classList.add("--is-dragging");
       },
-  
+
       onDrag: () => this.updateRadar(),
       onThrowUpdate: () => this.updateRadar(),
       onDragEnd: () => {
@@ -290,7 +290,7 @@ class Grid {
       },
     })[0];
   }
-  
+
 
   addEvents() {
     window.addEventListener(
@@ -351,14 +351,14 @@ class Grid {
   updateRadar() {
     const rocky = document.getElementById("radar-rocky");
     if (!rocky || !this.draggable) return;
-  
+
     const gridX = gsap.getProperty(this.grid, "x");
     const gridY = gsap.getProperty(this.grid, "y");
     const bounds = this.draggable.vars.bounds;
-  
+
     const radarSize = 44;
     const rockySize = 20;
-  
+
     const progressX = gsap.utils.mapRange(
       bounds.maxX,
       bounds.minX,
@@ -366,7 +366,7 @@ class Grid {
       1,
       gridX
     );
-  
+
     const progressY = gsap.utils.mapRange(
       bounds.maxY,
       bounds.minY,
@@ -374,10 +374,10 @@ class Grid {
       1,
       gridY
     );
-  
+
     const posX = (radarSize - rockySize) * progressX;
     const posY = (radarSize - rockySize) * progressY;
-  
+
     gsap.to(rocky, {
       x: posX,
       y: posY,
@@ -385,7 +385,7 @@ class Grid {
       ease: "power2.out",
     });
   }
- 
+
   observeProducts() {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -395,7 +395,7 @@ class Grid {
           currentCategory === "all" ||
           item.dataset.cat === currentCategory ||
           item.dataset.cat === "none";
-  
+
         if (entry.isIntersecting && matches) {
           gsap.to(item, {
             scale: 1,
@@ -426,11 +426,11 @@ class Grid {
       root: null,
       threshold: 0.1,
     });
-  
+
     this.products.forEach((product) => observer.observe(product));
     this.observer = observer;
   }
-  
+
 
   handleDetails() {
     this.SHOW_DETAILS = false;
@@ -469,10 +469,10 @@ class Grid {
 
   observeDetailImages() {
     const images = this.details.querySelectorAll(".details__body img");
-  
+
     // Set all images to hidden state first
     gsap.set(images, { opacity: 0, y: 40, scale: 0.95 });
-  
+
     const observer = new IntersectionObserver((entries, obs) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -490,10 +490,10 @@ class Grid {
     }, {
       threshold: 0.25
     });
-  
+
     images.forEach(img => observer.observe(img));
   }
-    
+
 
   showDetails(product) {
     if (this.SHOW_DETAILS) return;
@@ -533,7 +533,7 @@ class Grid {
 
     if (text) {
       text.classList.add("--active");
-      
+
       const videos = text.querySelectorAll('video');
       videos.forEach(v => {
         // Restore src if it was purged on previous close
@@ -542,7 +542,7 @@ class Grid {
         }
         v.currentTime = 0;
         v.load();
-        v.play().catch(() => {});
+        v.play().catch(() => { });
       });
 
       gsap.to(text.querySelectorAll(".line"), {
@@ -657,7 +657,7 @@ class Grid {
     this.detailsThumb.appendChild(product);
 
     // Set high z-index and position to ensure product flies over the details panel
-    gsap.set(product, { 
+    gsap.set(product, {
       zIndex: 1000,
       position: "absolute"
     });
@@ -753,11 +753,11 @@ export function initGrid() {
 
   preloadImages(".grid img", handleProgress).then(() => {
 
-    
+
     // Fade out loading overlay
     if (loadingOverlay) {
       loadingOverlay.classList.add("--hidden");
-      
+
       // Wait for fade out animation, then start intro
       setTimeout(() => {
         grid.init();

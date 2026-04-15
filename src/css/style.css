@@ -27,10 +27,12 @@
     transform: scale(0);
     opacity: 1;
   }
+
   40% {
     transform: scale(1);
     opacity: 1;
   }
+
   100% {
     transform: scale(1);
     opacity: 0;
@@ -363,7 +365,7 @@ p {
   /* height: 100vh; */
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  background: #f9f9f910;
+  background: #f4f4f410;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.29s cubic-bezier(0.33, 1, 0.68, 1);

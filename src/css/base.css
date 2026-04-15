@@ -25,7 +25,7 @@
   font-size: 11px;
   letter-spacing: 0.02em;
   --color-text: #1a1a1a;
-  --color-bg: #f9f9f9;
+  --color-bg: #f4f4f4;
   --color-link: #1a1a1a;
   --color-link-hover: #1a1a1a;
   --page-padding: 1.5rem;
@@ -37,7 +37,7 @@ body {
   background-color: var(--color-bg);
   /* font-family: 'Libre Baskerville'; */
   font-family: 'Exposure', sans-serif;
-  font-style: normal; 
+  font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -101,6 +101,7 @@ body.loading .grid img {
 
 @media (scripting: enabled) {
   .loading {
+
     &::before,
     &::after {
       content: '';
@@ -279,9 +280,10 @@ header {
   width: 100%;
   height: 240px;
   padding-top: 5vh;
-  overflow: hidden; 
+  overflow: hidden;
 
-  a, button {
+  a,
+  button {
     pointer-events: auto;
   }
 
@@ -300,34 +302,28 @@ header {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: -99; 
+  z-index: -99;
 
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 
-  background: linear-gradient(
-    to bottom,
-    #f9f9f9ff 0%,
-    #f9f9f9e6 10%,
-    #f9f9f9cc 20%,
-    #f9f9f9cc 30%,
-    #f9f9f999 50%,
-    #f9f9f966 85%,
-    #f9f9f900 100%
-  );
+  background: linear-gradient(to bottom,
+      #f4f4f4ff 0%,
+      #f4f4f4e6 10%,
+      #f4f4f4cc 20%,
+      #f4f4f4cc 30%,
+      #f4f4f499 50%,
+      #f4f4f466 85%,
+      #f4f4f400 100%);
 
-  mask-image: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(255, 255, 255, 0.85) 50%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(255, 255, 255, 0.85) 50%,
-    rgba(255, 255, 255, 0) 100%
-  );
+  mask-image: linear-gradient(to bottom,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 0.85) 50%,
+      rgba(255, 255, 255, 0) 100%);
+  -webkit-mask-image: linear-gradient(to bottom,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 0.85) 50%,
+      rgba(255, 255, 255, 0) 100%);
 }
 
 .hud {
@@ -366,38 +362,32 @@ header {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: -99; 
+  z-index: -99;
 
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 
   /* ✅ Slightly warmer, more consistent frosted background */
-  background: linear-gradient(
-    to top,
-    #f9f9f9ff 0%,
-    /* #f9f9f9e6 10%, */
-    /* #f9f9f9cc 20%, */
-    /* #f9f9f9cc 30%, */
-    /* #f9f9f999 50%, */
-    #f9f9f966 85%,
-    #f9f9f900 100%,
-    #f9f9f900 100%
-  );
+  background: linear-gradient(to top,
+      #f4f4f4ff 0%,
+      /* #f9f9f9e6 10%, */
+      /* #f9f9f9cc 20%, */
+      /* #f9f9f9cc 30%, */
+      /* #f9f9f999 50%, */
+      #f4f4f466 85%,
+      #f4f4f400 100%,
+      #f4f4f400 100%);
 
-  mask-image: linear-gradient(
-    to top,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(255, 255, 255, 0.9) 33%,
-    rgba(255, 255, 255, 0.7) 66%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  -webkit-mask-image: linear-gradient(
-    to top,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(255, 255, 255, 0.9) 33%,
-    rgba(255, 255, 255, 0.7) 66%,
-    rgba(255, 255, 255, 0) 100%
-  );
+  mask-image: linear-gradient(to top,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 0.9) 33%,
+      rgba(255, 255, 255, 0.7) 66%,
+      rgba(255, 255, 255, 0) 100%);
+  -webkit-mask-image: linear-gradient(to top,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 0.9) 33%,
+      rgba(255, 255, 255, 0.7) 66%,
+      rgba(255, 255, 255, 0) 100%);
 }
 
 .hud2 {
@@ -453,7 +443,7 @@ header {
     position: fixed;
     inset: 0;
     z-index: 99999;
-    background-color: #f9f9f9;
+    background-color: #f4f4f4;
     color: #1e1e1e;
     display: flex;
     flex-direction: column;
@@ -462,7 +452,7 @@ header {
     text-align: center;
     padding: 2rem;
     gap: 3rem;
-    
+
   }
 
   .mobile__title {
@@ -487,7 +477,7 @@ header {
   }
 
 
-  main > *:not(.mobile-blocker),
+  main>*:not(.mobile-blocker),
   header,
   .container,
   .details,
@@ -501,5 +491,3 @@ header {
   transition: opacity 0.26s ease, filter 0.26s ease, transform 0.26s ease-in-out;
   will-change: opacity, filter, transform;
 }
-
-

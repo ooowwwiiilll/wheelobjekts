@@ -8,10 +8,10 @@ const baseItems = [
   { id: "3", img: "/sgop.png" },
   { id: "4", img: "/skix.png" },
   { id: "5", img: "/smtb.png" },
-  { id: "6", img: "/ssamo.png" },
+  { id: "6", img: "/sokuri.gif" },
   { id: "7", img: "/wob.gif" },
   { id: "8", img: "/sthuy.png" },
-  { id: "9", img: "/sviet.png" },
+  { id: "9", img: "/ssamo.png" },
   { id: "10", img: "/szbloom.png" },
   { id: "11", img: "/szkutt.png" },
   { id: "12", img: "/szted.png" },
@@ -62,10 +62,10 @@ export default function App({ isWip = false }) {
       const res = await fetch('/wip-encrypted.json');
       const encryptedData = await res.json();
       const decrypted = await decryptData(encryptedData, password);
-      
+
       setWipItems(decrypted);
       setIsAuthenticated(true);
-    } catch(err) {
+    } catch (err) {
       setPasswordError(true);
       setTimeout(() => setPasswordError(false), 2000);
       setPassword("");
@@ -76,7 +76,7 @@ export default function App({ isWip = false }) {
   const TOTAL_SLOTS = 24;
   const COLUMNS = 6;
   const ROWS = 4;
-  
+
   const slots = Array.from({ length: TOTAL_SLOTS }, (_, i) => allItems[i % allItems.length]);
 
   return (
@@ -105,9 +105,9 @@ export default function App({ isWip = false }) {
               <div style={{ fontSize: '3vw', fontFamily: "'Exposure', sans-serif" }}>( enter password )</div>
               <form onSubmit={handleLogin}>
                 <div className={`pw-field${passwordError ? ' pw-field--error' : ''}`}>
-                  <input 
+                  <input
                     className="pw-field__input"
-                    type="password" 
+                    type="password"
                     value={password}
                     onChange={e => setPassword(e.target.value)}
                     placeholder="password"
@@ -194,10 +194,10 @@ export default function App({ isWip = false }) {
           <p data-title="3" data-text>gopay</p>
           <p data-title="4" data-text>kix</p>
           <p data-title="5" data-text>mytelkomsel basic</p>
-          <p data-title="6" data-text>samosynth</p>
+          <p data-title="6" data-text>okuri</p>
           <p data-title="7" data-text>obed willhem</p>
           <p data-title="8" data-text>thanh uy art gallery</p>
-          <p data-title="9" data-text>viettel</p>
+          <p data-title="9" data-text>samosynth</p>
           <p data-title="10" data-text>blooms</p>
           <p data-title="11" data-text>kuttaib</p>
           <p data-title="12" data-text>ted</p>
@@ -211,7 +211,7 @@ export default function App({ isWip = false }) {
           <div className="details__texts">
             <p data-desc="1" data-text>
               <span>
-                <p>📍 indonesia</p>
+                <p>🇮🇩 indonesia</p>
                 <p>🕰️ 2024</p>
               </span>
               A self-care application for AXIS customers that allows them to manage their accounts, top up credits & internet packages.
@@ -220,7 +220,7 @@ export default function App({ isWip = false }) {
 
             <p data-desc="2" data-text>
               <span>
-                <p>📍 vietnam</p>
+                <p>🇻🇳 vietnam</p>
                 <p>🕰️ 2025</p>
               </span>
               A digital B2B banking service offered by the Vietnam Joint Stock Commercial Bank for Industry and Trade. Allows corporate clients to manage accounts, conduct transactions, and approve payments anytime and anywhere via an internet connection.
@@ -229,7 +229,7 @@ export default function App({ isWip = false }) {
 
             <p data-desc="3" data-text>
               <span>
-                <p>📍 indonesia</p>
+                <p>🇮🇩 indonesia</p>
                 <p>🕰️ 2025</p>
               </span>
               A recent GoPay digital wallet service integration for Telkomsel users via the MyTelkomsel app, offering convenience and efficiency in transacting Telkomsel services.
@@ -238,7 +238,7 @@ export default function App({ isWip = false }) {
             <p data-desc="4" data-text>
               {/* <span className="">indonesia</span> */}
               <span>
-                <p>📍 global</p>
+                <p>🌎 global</p>
                 <p>🕰️ 2023</p>
               </span>
 
@@ -249,7 +249,7 @@ export default function App({ isWip = false }) {
 
             <p data-desc="5" data-text>
               <span>
-                <p>📍 indonesia</p>
+                <p>🇮🇩 indonesia</p>
                 <p>🕰️ 2024</p>
               </span>
               A lightweight application from Telkomsel, designed for users with limited memory or in areas with unstable internet connections. Provides essential functions such as credit & data balance monitoring, internet & phone package shop, and making payments.
@@ -257,46 +257,27 @@ export default function App({ isWip = false }) {
             </p>
 
             <p data-desc="6" data-text>
-              {/* <span className="">indonesia</span> */}
               <span>
-                <p>📍 global</p>
+                <p>🌎 global</p>
                 <p>🕰️ 2025</p>
               </span>
               <span>
-                <img className="details__media" src="./ssamo_dsimulator.png" />
+                <p>OKURI is a digital tear-off calendar inspired by the traditional japanese <i>himekuri</i>, with an over-engineered contemporary spin. swipe to flip new sheet each day.</p>
               </span>
               <span>
-                <p>
-                  samosynth is a mini mpc / sampler that celebrates the bataknese culture, by pouring relevant bataknese elements and including easter-eggs into the music experience. the drum kit contains a mix of hip-hop drum samples + processed bataknese traditional instruments (taganing, kulcapi and gordang) one-shots.
-                </p>
-              </span>
-              <span>pad mechanism</span>
-              <span>
-                <video autoPlay loop playsInline controls muted className="details__media" src="./ssamo_dpads.mp4"></video>
-              </span>
-              <span>
-                <p>
-                  i wanted to introduce bataknese music & visuals holistically in a pleasurable manner.
-                  <br />
-                  <br />this mechanism was inspired by the gorogoa game, which i adore a lot. the individual drumpads is a puzzle piece, that when rotated in a certain angle forms a combination that will unlock a new drum presets & patterns inspired from some key bataknese cultural elements.
-                  <br />
-                  <br />each preset represents a region from north sumatera region, with the sound and pattern is inspired from those region.
-                  <br />
-                  <br />you can play with the drumpads as it is, or unlock other drum presets by completing the puzzle on the drumpads.
-                </p>
-              </span>
-              <span>tiles</span>
-              <span>
-                <video autoPlay loop playsInline controls muted className="details__media" src="./ssamo_dtiles.mp4"></video>
+                <p><strong>core features</strong></p>
+                <p>• realistic paper calendar flipping experience</p>
+                <p>• moon phases, zodiac signs, and constellations</p>
+                <p>• traditional japanese rokuyo daily fortune</p>
+                <p>• sunrise & sunset times for your location</p>
+                <p>• visual widgets for your home screen</p>
+                <p>• iOS calendar events beautifull integration</p>
+                <p>• skin editions a.k.a themes new each month</p>
               </span>
               <span>
-                <p>
-                  i spent a good amount of time exploring and experimenting on different tile patterns and grid sizes.
-                </p>
+                <a href="https://apps.apple.com/id/app/okuri/id6759762270" target="_blank" rel="noreferrer">{"download on the app store"}</a>
               </span>
-              <span>
-                <img className="details__media" src="./ssamo_dgrid.png" />
-              </span>
+              <span>T B U</span>
             </p>
 
             <p data-desc="7" data-text>
@@ -338,7 +319,7 @@ export default function App({ isWip = false }) {
 
             <p data-desc="8" data-text>
               <span>
-                <p>📍 vietnam</p>
+                <p>🇻🇳 vietnam</p>
                 <p>🕰️ 2025</p>
               </span>
               an edgy printmaking gallery and studio + coffee shop in Ha Noi, celebrating Vietnam's rich history during propaganda and renewal period through traditional & contemporary paintings.
@@ -346,19 +327,62 @@ export default function App({ isWip = false }) {
               <span>T B U</span>
             </p>
 
-            <p data-desc="9" data-text>
+            {/* <p data-desc="9" data-text>
               <span>
-                <p>📍 vietnam</p>
+                <p>🇻🇳 vietnam</p>
                 <p>🕰️ 2025</p>
               </span>
               a comprehensive super app for Viettel customers in Vietnam that allows you to manage your mobile account, internet, as well as television services, entertainment, and loyalty program.
               <br />
               <span>T B U</span>
+            </p> */}
+
+            <p data-desc="9" data-text>
+              {/* <span className="">indonesia</span> */}
+              <span>
+                <p>🌎 global</p>
+                <p>🕰️ 2025</p>
+              </span>
+              <span>
+                <img className="details__media" src="./ssamo_dsimulator.png" />
+              </span>
+              <span>
+                <p>
+                  samosynth is a mini mpc / sampler that celebrates the bataknese culture, by pouring relevant bataknese elements and including easter-eggs into the music experience. the drum kit contains a mix of hip-hop drum samples + processed bataknese traditional instruments (taganing, kulcapi and gordang) one-shots.
+                </p>
+              </span>
+              <span>pad mechanism</span>
+              <span>
+                <video autoPlay loop playsInline controls muted className="details__media" src="./ssamo_dpads.mp4"></video>
+              </span>
+              <span>
+                <p>
+                  i wanted to introduce bataknese music & visuals holistically in a pleasurable manner.
+                  <br />
+                  <br />this mechanism was inspired by the gorogoa game, which i adore a lot. the individual drumpads is a puzzle piece, that when rotated in a certain angle forms a combination that will unlock a new drum presets & patterns inspired from some key bataknese cultural elements.
+                  <br />
+                  <br />each preset represents a region from north sumatera region, with the sound and pattern is inspired from those region.
+                  <br />
+                  <br />you can play with the drumpads as it is, or unlock other drum presets by completing the puzzle on the drumpads.
+                </p>
+              </span>
+              <span>tiles</span>
+              <span>
+                <video autoPlay loop playsInline controls muted className="details__media" src="./ssamo_dtiles.mp4"></video>
+              </span>
+              <span>
+                <p>
+                  i spent a good amount of time exploring and experimenting on different tile patterns and grid sizes.
+                </p>
+              </span>
+              <span>
+                <img className="details__media" src="./ssamo_dgrid.png" />
+              </span>
             </p>
 
             <p data-desc="10" data-text>
               <span>
-                <p>📍 australia</p>
+                <p>🇦🇺 australia</p>
                 <p>🕰️ 2025</p>
               </span>
               an Australian retail pharmacy group with a network of independently owned and operated pharmacies, also includes a certified B Corp management services arm. The pharmacies offer health & wellness prescription, pharmacist consultations, and medication ordering.
@@ -370,7 +394,7 @@ export default function App({ isWip = false }) {
 
             <p data-desc="11" data-text>
               <span>
-                <p>📍 indonesia</p>
+                <p>🇮🇩 indonesia</p>
                 <p>🕰️ 2023</p>
               </span>
               {"a faith-driven digital journal for muslims that I, a Christian myself, designed & developed :)"}
@@ -380,7 +404,7 @@ export default function App({ isWip = false }) {
 
             <p data-desc="12" data-text>
               <span>
-                <p>📍 indonesia</p>
+                <p>🇮🇩 indonesia</p>
                 <p>🕰️ 2024</p>
               </span>
               the B2B unit of Telkomsel that provides digital solutions and connectivity for corporations to support their digital transformation. Offering advanced network services, communication & collaboration tools, IoT solutions, and CX insights tools.
@@ -389,11 +413,11 @@ export default function App({ isWip = false }) {
             </p>
 
             {wipItems.map(item => (
-              <p 
-                key={`desc-${item.id}`} 
-                data-desc={item.id} 
-                data-text 
-                dangerouslySetInnerHTML={{ __html: item.html }} 
+              <p
+                key={`desc-${item.id}`}
+                data-desc={item.id}
+                data-text
+                dangerouslySetInnerHTML={{ __html: item.html }}
               />
             ))}
 
