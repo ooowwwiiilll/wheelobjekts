@@ -284,10 +284,10 @@ export default function App({ isWip = false }) {
               <span>
                 <p>currently at aleph-labs ++ AKQA.</p>
               </span>
-              an asian unorthodox-generalist wannabe. obsessed about the possible cross function of avant-garde-post-modern-fine-arts with creative tech innovations.
+              an asian unorthodox-generalist wannabe. obsessed in cross-functioning avant-garde-post-modern-fine-arts with tech innovations.
               <br />
               <span>
-                <p>paid professional at 16, worked full-time at 18, dropped out of college at 21,5. <br />still navigating what the fuck to do ahead.</p>
+                <p>paid professional at 16, worked full-time at 18, dropped out of college at 21,5.</p>
               </span>
               <span>
                 <p><strong>interdisciplinary idols / interest tags</strong></p>
