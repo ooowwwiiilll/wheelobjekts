@@ -3,7 +3,7 @@ import { initGrid } from "./lib/grid.js";
 import { decryptData } from "./lib/crypto.js";
 
 const baseItems = [
-  { id: "1", img: "/saxis.png" },
+  // { id: "1", img: "/saxis.png" },
   { id: "2", img: "/sfast.png" },
   { id: "3", img: "/sgop.png" },
   { id: "4", img: "/skix.png" },
@@ -13,7 +13,7 @@ const baseItems = [
   { id: "8", img: "/sthuy.png" },
   { id: "9", img: "/ssamo.png" },
   { id: "10", img: "/szbloom.png" },
-  { id: "11", img: "/szkutt.png" },
+  // { id: "11", img: "/szkutt.png" },
   { id: "12", img: "/szted.png" },
 ];
 
@@ -73,9 +73,9 @@ export default function App({ isWip = false }) {
   };
 
   const allItems = isAuthenticated ? [...baseItems, ...wipItems] : baseItems;
-  const TOTAL_SLOTS = 24;
-  const COLUMNS = 6;
-  const ROWS = 4;
+  const TOTAL_SLOTS = 12;
+  const COLUMNS = 4;
+  const ROWS = 3;
 
   const slots = Array.from({ length: TOTAL_SLOTS }, (_, i) => allItems[i % allItems.length]);
 
@@ -189,7 +189,7 @@ export default function App({ isWip = false }) {
 
       <div className="details">
         <div className="details__title">
-          <p data-title="1" data-text>axisnet</p>
+          {/* <p data-title="1" data-text>axisnet</p> */}
           <p data-title="2" data-text>vietinbank efast</p>
           <p data-title="3" data-text>gopay</p>
           <p data-title="4" data-text>kix</p>
@@ -199,7 +199,7 @@ export default function App({ isWip = false }) {
           <p data-title="8" data-text>thanh uy art gallery</p>
           <p data-title="9" data-text>samosynth</p>
           <p data-title="10" data-text>blooms</p>
-          <p data-title="11" data-text>kuttaib</p>
+          {/* <p data-title="11" data-text>kuttaib</p> */}
           <p data-title="12" data-text>ted</p>
           {wipItems.map(item => (
             <p key={`title-${item.id}`} data-title={item.id} data-text>{item.title}</p>
@@ -209,14 +209,14 @@ export default function App({ isWip = false }) {
         <div className="details__body">
           <div className="details__thumb"></div>
           <div className="details__texts">
-            <p data-desc="1" data-text>
+            {/* <p data-desc="1" data-text>
               <span>
                 <p>🇮🇩 indonesia</p>
                 <p>🕰️ 2024</p>
               </span>
               A self-care application for AXIS customers that allows them to manage their accounts, top up credits & internet packages.
               <span>T B U</span>
-            </p>
+            </p> */}
 
             <p data-desc="2" data-text>
               <span>
@@ -252,7 +252,7 @@ export default function App({ isWip = false }) {
                 <p>🇮🇩 indonesia</p>
                 <p>🕰️ 2024</p>
               </span>
-              A lightweight application from Telkomsel, designed for users with limited memory or in areas with unstable internet connections. Provides essential functions such as credit & data balance monitoring, internet & phone package shop, and making payments.
+              Emphatising Indonesia's large amount of low-end smartphone users, MyTelkomsel Basic is a  lightweight application from Telkomsel, designed for users with limited memory or in rural & remote areas with unstable internet connections. Provides essential functions such as credit & data balance monitoring, internet & phone package shop, and making payments.
               <span>T B U</span>
             </p>
 
@@ -392,7 +392,7 @@ export default function App({ isWip = false }) {
               </span>
             </p>
 
-            <p data-desc="11" data-text>
+            {/* <p data-desc="11" data-text>
               <span>
                 <p>🇮🇩 indonesia</p>
                 <p>🕰️ 2023</p>
@@ -400,7 +400,7 @@ export default function App({ isWip = false }) {
               {"a faith-driven digital journal for muslims that I, a Christian myself, designed & developed :)"}
               <br />
               <span>T B U</span>
-            </p>
+            </p> */}
 
             <p data-desc="12" data-text>
               <span>
