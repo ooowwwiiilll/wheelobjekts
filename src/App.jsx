@@ -309,6 +309,7 @@ export default function App({ isWip = false }) {
                 <p>mike schneider</p>
                 <p>FKJ</p>
                 <p>deGoogle</p>
+                <p>black mirror</p>
               </span>
               <span style={{ display: "flex", gap: "10px" }}>
                 <a href="https://linkedin.com/in/owil/" target="_blank" rel="noreferrer">{"corporate"}</a>
