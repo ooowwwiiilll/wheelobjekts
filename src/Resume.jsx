@@ -1,11 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as pdfjsLib from 'pdfjs-dist';
+import workerSrc from 'pdfjs-dist/build/pdf.worker.mjs?url';
 import gsap from 'gsap';
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
-  'pdfjs-dist/build/pdf.worker.mjs',
-  import.meta.url
-).href;
+pdfjsLib.GlobalWorkerOptions.workerSrc = workerSrc;
 
 export default function Resume() {
   const cardRef = useRef(null);
