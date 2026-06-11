@@ -290,11 +290,11 @@ export default function App({ isWip = false }) {
                 <p>paid professional at 16, worked full-time at 18, dropped out of college at 21,5.</p>
               </span>
               <span>
-                <p><strong>interdisciplinary idols / interest tags</strong></p>
+                <p><strong>interest tags</strong></p>
                 <p>michael stevens vsauce</p>
                 <p>adam neely</p>
                 <p>martin margiela</p>
-                <p>jesper kouthoofd</p>
+                <p>teenage engineering</p>
                 <p>casiopea</p>
                 <p>nothing</p>
                 <p>tim rodenbröker</p>
@@ -308,8 +308,9 @@ export default function App({ isWip = false }) {
                 <p>doug lemoine</p>
                 <p>mike schneider</p>
                 <p>FKJ</p>
-                <p>deGoogle</p>
+                <p>r/deGoogle</p>
                 <p>black mirror</p>
+                <p>chick corea</p>
               </span>
               <span style={{ display: "flex", gap: "10px" }}>
                 <a href="https://linkedin.com/in/owil/" target="_blank" rel="noreferrer">{"corporate"}</a>
