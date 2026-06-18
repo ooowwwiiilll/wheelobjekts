@@ -290,13 +290,13 @@ export default function App({ isWip = false }) {
                 <p>paid professional at 16, worked full-time at 18, dropped out of college at 21,5.</p>
               </span>
               <span>
-                <p><strong>interest tags</strong></p>
+                <p><strong>interests & idols</strong></p>
                 <p>michael stevens vsauce</p>
                 <p>adam neely</p>
                 <p>martin margiela</p>
                 <p>teenage engineering</p>
                 <p>casiopea</p>
-                <p>nothing</p>
+                <p>car pei</p>
                 <p>tim rodenbröker</p>
                 <p>chan karunamuni</p>
                 <p>virgil abloh</p>
@@ -305,6 +305,7 @@ export default function App({ isWip = false }) {
                 <p>seth mcfarlane</p>
                 <p>leo chang</p>
                 <p>four tet</p>
+                <p>john kiriakou</p>
                 <p>doug lemoine</p>
                 <p>mike schneider</p>
                 <p>FKJ</p>
