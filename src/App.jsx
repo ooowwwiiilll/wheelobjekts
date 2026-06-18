@@ -5,16 +5,17 @@ import { decryptData } from "./lib/crypto.js";
 const baseItems = [
   // { id: "1", img: "/saxis.png" },
   { id: "2", img: "/sfast.png" },
-  { id: "3", img: "/sgop.png" },
-  { id: "4", img: "/skix.png" },
+  { id: "13", img: "/skfc.gif" },
+  // { id: "3", img: "/sgop.png" },
+  // { id: "4", img: "/skix.png" },
   { id: "5", img: "/smtb.png" },
   { id: "6", img: "/sokuri.gif" },
   { id: "7", img: "/wob.gif" },
-  { id: "8", img: "/sthuy.png" },
   { id: "9", img: "/ssamo.png" },
+  { id: "8", img: "/sthuy.png" },
   { id: "10", img: "/szbloom.png" },
   // { id: "11", img: "/szkutt.png" },
-  { id: "12", img: "/szted.png" },
+  // { id: "12", img: "/szted.png" },
 ];
 
 export default function App({ isWip = false }) {
@@ -73,11 +74,17 @@ export default function App({ isWip = false }) {
   };
 
   const allItems = isAuthenticated ? [...baseItems, ...wipItems] : baseItems;
-  const TOTAL_SLOTS = 12;
-  const COLUMNS = 4;
-  const ROWS = 3;
+  // Fixed 3-2-3 column structure, slot 6 permanently removed. Only the
+  // first 8 items ever get a slot — on /wip the 9th (wip) item is
+  // intentionally left without one, same structure as the public site.
+  const COLUMN_LAYOUT = [3, 2, 3];
 
-  const slots = Array.from({ length: TOTAL_SLOTS }, (_, i) => allItems[i % allItems.length]);
+  let cursor = 0;
+  const columns = COLUMN_LAYOUT.map((count) => {
+    const colItems = allItems.slice(cursor, cursor + count);
+    cursor += count;
+    return colItems;
+  });
 
   return (
     <main>
@@ -175,9 +182,9 @@ export default function App({ isWip = false }) {
         {/* <div className="overlay"></div> */}
 
         <div className="grid">
-          {Array.from({ length: COLUMNS }).map((_, colIndex) => (
+          {columns.map((colItems, colIndex) => (
             <div className="column" key={`col-${colIndex}`}>
-              {slots.slice(colIndex * ROWS, (colIndex + 1) * ROWS).map((item, index) => (
+              {colItems.map((item, index) => (
                 <div className="product" key={`slot-${colIndex}-${index}`}>
                   <div data-id={item.id}><img src={item.img} alt="" /></div>
                 </div>
@@ -201,6 +208,7 @@ export default function App({ isWip = false }) {
           <p data-title="10" data-text>blooms</p>
           {/* <p data-title="11" data-text>kuttaib</p> */}
           <p data-title="12" data-text>ted</p>
+          <p data-title="13" data-text>kfc</p>
           {wipItems.map(item => (
             <p key={`title-${item.id}`} data-title={item.id} data-text>{item.title}</p>
           ))}
@@ -411,6 +419,16 @@ export default function App({ isWip = false }) {
                 <p>🕰️ 2024</p>
               </span>
               the B2B unit of Telkomsel that provides digital solutions and connectivity for corporations to support their digital transformation. Offering advanced network services, communication & collaboration tools, IoT solutions, and CX insights tools.
+              <br />
+              <span>T B U</span>
+            </p>
+
+            <p data-desc="13" data-text>
+              <span>
+                <p>📍 global</p>
+                <p>🕰️ 2026</p>
+              </span>
+              a global multi-brand design system overhaul under Yum! brands.
               <br />
               <span>T B U</span>
             </p>
