@@ -4,16 +4,16 @@ import { decryptData } from "./lib/crypto.js";
 
 const baseItems = [
   // { id: "1", img: "/saxis.png" },
-  { id: "2", img: "/sfast.png" },
-  { id: "13", img: "/skfc.gif" },
+  { id: "2", /* img: "/sfast.png" */ placeholder: true, color: "#BE2A2A" },
+  { id: "13", /* img: "/skfc.gif" */ placeholder: true, color: "#D4C5AD" },
   // { id: "3", img: "/sgop.png" },
   // { id: "4", img: "/skix.png" },
-  { id: "5", img: "/smtb.png" },
-  { id: "6", img: "/sokuri.gif" },
+  { id: "5", /* img: "/smtb.png" */ placeholder: true, color: "#3D5A27" },
+  { id: "6", /* img: "/sokuri.gif" */ placeholder: true, color: "#1B6BA5" },
   { id: "7", img: "/wob.gif" },
-  { id: "9", img: "/ssamo.png" },
-  { id: "8", img: "/sthuy.png" },
-  { id: "10", img: "/szbloom.png" },
+  { id: "9", /* img: "/ssamo.png" */ placeholder: true, color: "#3A2B2B" },
+  { id: "8", /* img: "/sthuy.png" */ placeholder: true, color: "#8C8C8C" },
+  { id: "10", /* img: "/szbloom.png" */ placeholder: true, color: "#B5B5B5" },
   // { id: "11", img: "/szkutt.png" },
   // { id: "12", img: "/szted.png" },
 ];
@@ -162,7 +162,7 @@ export default function App({ isWip = false }) {
               <p>static</p>
               <div className="hud2__radar">
                 <svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M22.25 0.25L22.25 44.25M44.25 21.25L0.25 21.25M0.250009 0.25H44.25V44.25H0.250009V0.25Z" stroke="#1A1A1A" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 3" />
+                  <path d="M22.25 0.25L22.25 44.25M44.25 21.25L0.25 21.25M0.250009 0.25H44.25V44.25H0.250009V0.25Z" stroke="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 3" />
                 </svg>
 
                 {/* <svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -186,7 +186,11 @@ export default function App({ isWip = false }) {
             <div className="column" key={`col-${colIndex}`}>
               {colItems.map((item, index) => (
                 <div className="product" key={`slot-${colIndex}-${index}`}>
-                  <div data-id={item.id}><img src={item.img} alt="" /></div>
+                  <div data-id={item.id}>
+                    {item.placeholder
+                      ? <div className="product__placeholder" style={{ backgroundColor: item.color }} />
+                      : <img src={item.img} alt="" />}
+                  </div>
                 </div>
               ))}
             </div>
@@ -226,14 +230,15 @@ export default function App({ isWip = false }) {
               <span>T B U</span>
             </p> */}
 
-            <p data-desc="2" data-text>
+            <p data-desc="2" data-text>site under construction&nbsp;– TBU</p>
+            {/* <p data-desc="2" data-text>
               <span>
                 <p>🇻🇳 vietnam</p>
                 <p>🕰️ 2025</p>
               </span>
               A digital B2B banking service offered by the Vietnam Joint Stock Commercial Bank for Industry and Trade. Allows corporate clients to manage accounts, conduct transactions, and approve payments anytime and anywhere via an internet connection.
               <span>T B U</span>
-            </p>
+            </p> */}
 
             <p data-desc="3" data-text>
               <span>
@@ -255,16 +260,18 @@ export default function App({ isWip = false }) {
               </span>
             </p>
 
-            <p data-desc="5" data-text>
+            <p data-desc="5" data-text>site under construction&nbsp;– TBU</p>
+            {/* <p data-desc="5" data-text>
               <span>
                 <p>🇮🇩 indonesia</p>
                 <p>🕰️ 2024</p>
               </span>
               Emphatising Indonesia's large amount of low-end smartphone users, MyTelkomsel Basic is a  lightweight application from Telkomsel, designed for users with limited memory or in rural & remote areas with unstable internet connections. Provides essential functions such as credit & data balance monitoring, internet & phone package shop, and making payments.
               <span>T B U</span>
-            </p>
+            </p> */}
 
-            <p data-desc="6" data-text>
+            <p data-desc="6" data-text>site under construction&nbsp;– TBU</p>
+            {/* <p data-desc="6" data-text>
               <span>
                 <p>🌎 global</p>
                 <p>🕰️ 2025</p>
@@ -286,7 +293,7 @@ export default function App({ isWip = false }) {
                 <a href="https://apps.apple.com/id/app/okuri/id6759762270" target="_blank" rel="noreferrer">{"download on the app store"}</a>
               </span>
               <span>T B U</span>
-            </p>
+            </p> */}
 
             <p data-desc="7" data-text>
               <span>
@@ -328,7 +335,8 @@ export default function App({ isWip = false }) {
               </span>
             </p>
 
-            <p data-desc="8" data-text>
+            <p data-desc="8" data-text>site under construction&nbsp;– TBU</p>
+            {/* <p data-desc="8" data-text>
               <span>
                 <p>🇻🇳 vietnam</p>
                 <p>🕰️ 2025</p>
@@ -336,7 +344,7 @@ export default function App({ isWip = false }) {
               an edgy printmaking gallery and studio + coffee shop in Ha Noi, celebrating Vietnam's rich history during propaganda and renewal period through traditional & contemporary paintings.
               <br />
               <span>T B U</span>
-            </p>
+            </p> */}
 
             {/* <p data-desc="9" data-text>
               <span>
@@ -348,8 +356,10 @@ export default function App({ isWip = false }) {
               <span>T B U</span>
             </p> */}
 
+            <p data-desc="9" data-text>site under construction&nbsp;– TBU</p>
+            {/*
             <p data-desc="9" data-text>
-              {/* <span className="">indonesia</span> */}
+              <span className="">indonesia</span>
               <span>
                 <p>🌎 global</p>
                 <p>🕰️ 2025</p>
@@ -390,8 +400,10 @@ export default function App({ isWip = false }) {
                 <img className="details__media" src="./ssamo_dgrid.png" />
               </span>
             </p>
+            */}
 
-            <p data-desc="10" data-text>
+            <p data-desc="10" data-text>site under construction&nbsp;– TBU</p>
+            {/* <p data-desc="10" data-text>
               <span>
                 <p>🇦🇺 australia</p>
                 <p>🕰️ 2025</p>
@@ -401,7 +413,7 @@ export default function App({ isWip = false }) {
               <span>
                 <a href="https://joinbloomsthechemist.com.au/" target="_blank" rel="noreferrer">{"live site here"}</a>
               </span>
-            </p>
+            </p> */}
 
             {/* <p data-desc="11" data-text>
               <span>
@@ -423,7 +435,8 @@ export default function App({ isWip = false }) {
               <span>T B U</span>
             </p>
 
-            <p data-desc="13" data-text>
+            <p data-desc="13" data-text>site under construction&nbsp;– TBU</p>
+            {/* <p data-desc="13" data-text>
               <span>
                 <p>📍 global</p>
                 <p>🕰️ 2026</p>
@@ -431,7 +444,7 @@ export default function App({ isWip = false }) {
               a global multi-brand design system overhaul under Yum! brands.
               <br />
               <span>T B U</span>
-            </p>
+            </p> */}
 
             {wipItems.map(item => (
               <p
@@ -454,15 +467,15 @@ export default function App({ isWip = false }) {
           <path d="M6 6L18 18" stroke="#1a1a1a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         </svg> */}
         <svg width="52" height="52" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-          {/* <path d="M0 2.13709L0.432567 1.36051L2.9244 2.87755L2.85129 0H3.71642L3.64331 2.87153L6.13514 1.36051L6.56771 2.13709L4.02714 3.50363L6.56771 4.87016L6.13514 5.64674L3.64331 4.13572L3.71642 7.01327H2.85129L2.9244 4.13572L0.432567 5.64674L0 4.87016L2.53448 3.50363L0 2.13709Z" fill="#161616"/> */}
-          <path d="M9.35807 11.3838L9.79064 10.6072L12.2825 12.1242L12.2094 9.24668H13.0745L13.0014 12.1182L15.4932 10.6072L15.9258 11.3838L13.3852 12.7503L15.9258 14.1168L15.4932 14.8934L13.0014 13.3824L13.0745 16.26H12.2094L12.2825 13.3824L9.79064 14.8934L9.35807 14.1168L11.8926 12.7503L9.35807 11.3838Z" fill="#161616" />
-          <path d="M18.7161 20.6305L19.1487 19.8539L21.6405 21.3709L21.5674 18.4934H22.4326L22.3595 21.3649L24.8513 19.8539L25.2839 20.6305L22.7433 21.997L25.2839 23.3635L24.8513 24.1401L22.3595 22.6291L22.4326 25.5066H21.5674L21.6405 22.6291L19.1487 24.1401L18.7161 23.3635L21.2506 21.997L18.7161 20.6305Z" fill="#161616" />
-          <path d="M28.0742 29.8771L28.5068 29.1006L30.9986 30.6176L30.9255 27.74H31.7906L31.7175 30.6116L34.2094 29.1006L34.6419 29.8771L32.1014 31.2437L34.6419 32.6102L34.2094 33.3868L31.7175 31.8758L31.7906 34.7533H30.9255L30.9986 31.8758L28.5068 33.3868L28.0742 32.6102L30.6087 31.2437L28.0742 29.8771Z" fill="#161616" />
-          {/* <path d="M37.4323 39.1238L37.8649 38.3472L40.3567 39.8643L40.2836 36.9867H41.1487L41.0756 39.8583L43.5674 38.3472L44 39.1238L41.4594 40.4904L44 41.8569L43.5674 42.6335L41.0756 41.1225L41.1487 44H40.2836L40.3567 41.1225L37.8649 42.6335L37.4323 41.8569L39.9668 40.4904L37.4323 39.1238Z" fill="#161616"/> */}
-          {/* <path d="M37.4323 2.13709L37.8649 1.36051L40.3567 2.87755L40.2836 0H41.1487L41.0756 2.87153L43.5674 1.36051L44 2.13709L41.4594 3.50363L44 4.87016L43.5674 5.64674L41.0756 4.13572L41.1487 7.01327H40.2836L40.3567 4.13572L37.8649 5.64674L37.4323 4.87016L39.9668 3.50363L37.4323 2.13709Z" fill="#161616"/> */}
-          <path d="M28.0742 11.3838L28.5068 10.6072L30.9986 12.1242L30.9255 9.24668H31.7906L31.7175 12.1182L34.2094 10.6072L34.6419 11.3838L32.1014 12.7503L34.6419 14.1168L34.2094 14.8934L31.7175 13.3824L31.7906 16.26H30.9255L30.9986 13.3824L28.5068 14.8934L28.0742 14.1168L30.6087 12.7503L28.0742 11.3838Z" fill="#161616" />
-          {/* <path d="M0 39.1238L0.432567 38.3472L2.9244 39.8643L2.85129 36.9867H3.71642L3.64331 39.8583L6.13514 38.3472L6.56771 39.1238L4.02714 40.4904L6.56771 41.8569L6.13514 42.6335L3.64331 41.1225L3.71642 44H2.85129L2.9244 41.1225L0.432567 42.6335L0 41.8569L2.53448 40.4904L0 39.1238Z" fill="#161616"/> */}
-          <path d="M9.35807 29.8771L9.79064 29.1006L12.2825 30.6176L12.2094 27.74H13.0745L13.0014 30.6116L15.4932 29.1006L15.9258 29.8771L13.3852 31.2437L15.9258 32.6102L15.4932 33.3868L13.0014 31.8758L13.0745 34.7533H12.2094L12.2825 31.8758L9.79064 33.3868L9.35807 32.6102L11.8926 31.2437L9.35807 29.8771Z" fill="#161616" />
+          {/* <path d="M0 2.13709L0.432567 1.36051L2.9244 2.87755L2.85129 0H3.71642L3.64331 2.87153L6.13514 1.36051L6.56771 2.13709L4.02714 3.50363L6.56771 4.87016L6.13514 5.64674L3.64331 4.13572L3.71642 7.01327H2.85129L2.9244 4.13572L0.432567 5.64674L0 4.87016L2.53448 3.50363L0 2.13709Z" fill="currentColor"/> */}
+          <path d="M9.35807 11.3838L9.79064 10.6072L12.2825 12.1242L12.2094 9.24668H13.0745L13.0014 12.1182L15.4932 10.6072L15.9258 11.3838L13.3852 12.7503L15.9258 14.1168L15.4932 14.8934L13.0014 13.3824L13.0745 16.26H12.2094L12.2825 13.3824L9.79064 14.8934L9.35807 14.1168L11.8926 12.7503L9.35807 11.3838Z" fill="currentColor" />
+          <path d="M18.7161 20.6305L19.1487 19.8539L21.6405 21.3709L21.5674 18.4934H22.4326L22.3595 21.3649L24.8513 19.8539L25.2839 20.6305L22.7433 21.997L25.2839 23.3635L24.8513 24.1401L22.3595 22.6291L22.4326 25.5066H21.5674L21.6405 22.6291L19.1487 24.1401L18.7161 23.3635L21.2506 21.997L18.7161 20.6305Z" fill="currentColor" />
+          <path d="M28.0742 29.8771L28.5068 29.1006L30.9986 30.6176L30.9255 27.74H31.7906L31.7175 30.6116L34.2094 29.1006L34.6419 29.8771L32.1014 31.2437L34.6419 32.6102L34.2094 33.3868L31.7175 31.8758L31.7906 34.7533H30.9255L30.9986 31.8758L28.5068 33.3868L28.0742 32.6102L30.6087 31.2437L28.0742 29.8771Z" fill="currentColor" />
+          {/* <path d="M37.4323 39.1238L37.8649 38.3472L40.3567 39.8643L40.2836 36.9867H41.1487L41.0756 39.8583L43.5674 38.3472L44 39.1238L41.4594 40.4904L44 41.8569L43.5674 42.6335L41.0756 41.1225L41.1487 44H40.2836L40.3567 41.1225L37.8649 42.6335L37.4323 41.8569L39.9668 40.4904L37.4323 39.1238Z" fill="currentColor"/> */}
+          {/* <path d="M37.4323 2.13709L37.8649 1.36051L40.3567 2.87755L40.2836 0H41.1487L41.0756 2.87153L43.5674 1.36051L44 2.13709L41.4594 3.50363L44 4.87016L43.5674 5.64674L41.0756 4.13572L41.1487 7.01327H40.2836L40.3567 4.13572L37.8649 5.64674L37.4323 4.87016L39.9668 3.50363L37.4323 2.13709Z" fill="currentColor"/> */}
+          <path d="M28.0742 11.3838L28.5068 10.6072L30.9986 12.1242L30.9255 9.24668H31.7906L31.7175 12.1182L34.2094 10.6072L34.6419 11.3838L32.1014 12.7503L34.6419 14.1168L34.2094 14.8934L31.7175 13.3824L31.7906 16.26H30.9255L30.9986 13.3824L28.5068 14.8934L28.0742 14.1168L30.6087 12.7503L28.0742 11.3838Z" fill="currentColor" />
+          {/* <path d="M0 39.1238L0.432567 38.3472L2.9244 39.8643L2.85129 36.9867H3.71642L3.64331 39.8583L6.13514 38.3472L6.56771 39.1238L4.02714 40.4904L6.56771 41.8569L6.13514 42.6335L3.64331 41.1225L3.71642 44H2.85129L2.9244 41.1225L0.432567 42.6335L0 41.8569L2.53448 40.4904L0 39.1238Z" fill="currentColor"/> */}
+          <path d="M9.35807 29.8771L9.79064 29.1006L12.2825 30.6176L12.2094 27.74H13.0745L13.0014 30.6116L15.4932 29.1006L15.9258 29.8771L13.3852 31.2437L15.9258 32.6102L15.4932 33.3868L13.0014 31.8758L13.0745 34.7533H12.2094L12.2825 31.8758L9.79064 33.3868L9.35807 32.6102L11.8926 31.2437L9.35807 29.8771Z" fill="currentColor" />
         </svg>
 
 

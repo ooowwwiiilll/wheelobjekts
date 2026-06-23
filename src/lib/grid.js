@@ -121,7 +121,7 @@ class Grid {
   constructor() {
     this.dom = document.querySelector(".container");
     this.grid = document.querySelector(".grid");
-    this.products = [...document.querySelectorAll(".product div")];
+    this.products = [...document.querySelectorAll(".product [data-id]")];
 
     this.details = document.querySelector(".details");
     this.detailsThumb = this.details.querySelector(".details__thumb");
@@ -151,7 +151,7 @@ class Grid {
       }
     });
 
-    this.products = document.querySelectorAll(".product div");
+    this.products = document.querySelectorAll(".product [data-id]");
 
     const catMap = {
       A: [8, 9, 10],
@@ -179,7 +179,7 @@ class Grid {
   }
 
   filterItems(category) {
-    const products = document.querySelectorAll(".product div");
+    const products = document.querySelectorAll(".product [data-id]");
     this.activeCategory = category;
 
     products.forEach((item) => {
