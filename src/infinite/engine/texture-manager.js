@@ -1,0 +1,55 @@
+// Shared texture cache so the same porto image is only decoded once even though
+// it appears across many repeated planes. JS port of the reference.
+import * as THREE from "three";
+
+const textureCache = new Map();
+const loadCallbacks = new Map();
+const loader = new THREE.TextureLoader();
+
+const isTextureLoaded = (tex) => {
+  const img = tex.image;
+  return img instanceof HTMLImageElement && img.complete && img.naturalWidth > 0;
+};
+
+export const getTexture = (item, onLoad) => {
+  const key = item.url;
+  const existing = textureCache.get(key);
+
+  if (existing) {
+    if (onLoad) {
+      if (isTextureLoaded(existing)) onLoad(existing);
+      else loadCallbacks.get(key)?.add(onLoad);
+    }
+    return existing;
+  }
+
+  const callbacks = new Set();
+  if (onLoad) callbacks.add(onLoad);
+  loadCallbacks.set(key, callbacks);
+
+  const texture = loader.load(
+    key,
+    (tex) => {
+      tex.minFilter = THREE.LinearMipmapLinearFilter;
+      tex.magFilter = THREE.LinearFilter;
+      tex.generateMipmaps = true;
+      tex.anisotropy = 4;
+      tex.colorSpace = THREE.SRGBColorSpace;
+      tex.needsUpdate = true;
+
+      loadCallbacks.get(key)?.forEach((cb) => {
+        try {
+          cb(tex);
+        } catch (err) {
+          console.error(`Callback failed: ${JSON.stringify(err)}`);
+        }
+      });
+      loadCallbacks.delete(key);
+    },
+    undefined,
+    (err) => console.error("Texture load failed:", key, err)
+  );
+
+  textureCache.set(key, texture);
+  return texture;
+};
