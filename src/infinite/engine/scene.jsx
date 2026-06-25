@@ -17,10 +17,29 @@ import {
   VELOCITY_DECAY,
   VELOCITY_LERP,
 } from "./constants.js";
-import { getTexture } from "./texture-manager.js";
+import { getTexture, getGifTexture, tickGifs } from "./texture-manager.js";
 import { generateChunkPlanesCached, getChunkUpdateThrottleMs, shouldThrottleUpdate } from "./utils.js";
 
 const PLANE_GEOMETRY = new THREE.PlaneGeometry(1, 1);
+
+// Shared rounded-rect alpha mask → gives every plane a slight corner radius
+// (matches the detail thumbnail's border-radius: 3px) without a per-frame shader.
+const ROUNDED_MASK = (() => {
+  const size = 1024;
+  const radius = size * 0.01; // 1% corner radius
+  const canvas = document.createElement("canvas");
+  canvas.width = canvas.height = size;
+  const ctx = canvas.getContext("2d");
+  ctx.fillStyle = "#000";
+  ctx.fillRect(0, 0, size, size);
+  ctx.fillStyle = "#fff";
+  ctx.beginPath();
+  ctx.roundRect(0, 0, size, size, radius);
+  ctx.fill();
+  const tex = new THREE.CanvasTexture(canvas);
+  tex.colorSpace = THREE.NoColorSpace;
+  return tex;
+})();
 
 const getTouchDistance = (touches) => {
   if (touches.length < 2) return 0;
@@ -43,8 +62,11 @@ function MediaPlane({ position, scale, media, chunkCx, chunkCy, chunkCz, cameraG
   const localState = React.useRef({ opacity: 0, frame: 0, ready: false, filterMul: 1, scaleMul: 1 });
 
   const isColorPlane = !media.url;
+  const isGif = !!media.url && media.url.toLowerCase().endsWith(".gif");
+
   const [texture, setTexture] = React.useState(null);
   const [isReady, setIsReady] = React.useState(isColorPlane);
+  const [aspect, setAspect] = React.useState(media.width && media.height ? media.width / media.height : null);
   const [hovered, setHovered] = React.useState(false);
 
   useFrame(() => {
@@ -75,16 +97,14 @@ function MediaPlane({ position, scale, media, chunkCx, chunkCy, chunkCz, cameraG
         ? 1
         : Math.max(0, 1 - (absDepth - DEPTH_FADE_START) / Math.max(DEPTH_FADE_END - DEPTH_FADE_START, 0.0001));
 
-    // ── filter dimming (WebGL approximation of the DOM blur filter) ──
+    // ── filter: matching items full; others dimmed to ~5% opacity ──
     const matches = passesFilter(media, activeRef.current);
-    const targetFilterMul = matches ? 1 : 0.12;
-    // "just dim" — no shrink on unselected items, only a subtle hover grow on matches
+    const targetFilterMul = matches ? 1 : 0.05;
     const targetScaleMul = matches && hovered ? 1.06 : 1;
     state.filterMul = lerp(state.filterMul, targetFilterMul, 0.12);
     state.scaleMul = lerp(state.scaleMul, targetScaleMul, 0.14);
 
     const target = Math.min(gridFade, depthFade * depthFade) * state.filterMul;
-
     state.opacity = target < INVIS_THRESHOLD && state.opacity < INVIS_THRESHOLD ? 0 : lerp(state.opacity, target, 0.18);
 
     const isFullyOpaque = state.opacity > 0.99;
@@ -92,22 +112,15 @@ function MediaPlane({ position, scale, media, chunkCx, chunkCy, chunkCz, cameraG
     material.depthWrite = isFullyOpaque;
     mesh.visible = state.opacity > INVIS_THRESHOLD;
 
-    mesh.scale.set(
-      displayScale.x * state.scaleMul,
-      displayScale.y * state.scaleMul,
-      1
-    );
+    mesh.scale.set(displayScale.x * state.scaleMul, displayScale.y * state.scaleMul, 1);
   });
 
   const displayScale = React.useMemo(() => {
-    if (media.width && media.height) {
-      const aspect = media.width / media.height;
-      return new THREE.Vector3(scale.y * aspect, scale.y, 1);
-    }
+    if (aspect) return new THREE.Vector3(scale.y * aspect, scale.y, 1);
     return scale;
-  }, [media.width, media.height, scale]);
+  }, [aspect, scale]);
 
-  // Texture loading (image planes only)
+  // Texture loading (image / gif planes)
   React.useEffect(() => {
     if (isColorPlane) return;
     const state = localState.current;
@@ -115,32 +128,32 @@ function MediaPlane({ position, scale, media, chunkCx, chunkCy, chunkCz, cameraG
     state.opacity = 0;
     setIsReady(false);
 
-    const material = materialRef.current;
-    if (material) {
-      material.opacity = 0;
-      material.depthWrite = false;
-      material.map = null;
+    if (isGif) {
+      getGifTexture(media.url, (e) => {
+        state.ready = true;
+        setAspect(e.width / e.height);
+        setTexture(e.texture);
+        setIsReady(true);
+      });
+    } else {
+      const tex = getTexture(media, () => {
+        const img = tex.image;
+        if (img && img.naturalWidth) setAspect(img.naturalWidth / img.naturalHeight);
+        state.ready = true;
+        setTexture(tex);
+        setIsReady(true);
+      });
     }
+  }, [media, isColorPlane, isGif]);
 
-    const tex = getTexture(media, () => {
-      state.ready = true;
-      setIsReady(true);
-    });
-    setTexture(tex);
-  }, [media, isColorPlane]);
-
+  // Bind the texture onto the material once ready.
   React.useEffect(() => {
-    if (isColorPlane) return;
-    const material = materialRef.current;
-    const mesh = meshRef.current;
-    const state = localState.current;
-    if (!material || !mesh || !texture || !isReady || !state.ready) return;
-
-    material.map = texture;
-    material.opacity = state.opacity;
-    material.depthWrite = state.opacity >= 1;
-    mesh.scale.copy(displayScale);
-  }, [displayScale, texture, isReady, isColorPlane]);
+    if (isColorPlane || !texture || !isReady) return;
+    const mat = materialRef.current;
+    if (!mat) return;
+    mat.map = texture;
+    mat.needsUpdate = true;
+  }, [texture, isReady, isColorPlane]);
 
   if (!isColorPlane && (!texture || !isReady)) return null;
 
@@ -150,7 +163,7 @@ function MediaPlane({ position, scale, media, chunkCx, chunkCy, chunkCz, cameraG
     setHovered(true);
     document.body.style.cursor = "pointer";
   };
-  const handleOut = (e) => {
+  const handleOut = () => {
     setHovered(false);
     document.body.style.cursor = "grab";
   };
@@ -176,6 +189,7 @@ function MediaPlane({ position, scale, media, chunkCx, chunkCy, chunkCz, cameraG
         transparent
         opacity={0}
         side={THREE.DoubleSide}
+        alphaMap={ROUNDED_MASK}
         color={isColorPlane ? media.color : "#ffffff"}
       />
     </mesh>
@@ -362,6 +376,9 @@ function SceneController({ media, onTextureProgress, activeRef, onSelect, paused
   useFrame(() => {
     const s = state.current;
     const now = performance.now();
+
+    // advance all animated GIFs once per frame (cheap: one redraw per distinct gif)
+    tickGifs();
 
     const isZooming = Math.abs(s.velocity.z) > 0.05;
     const zoomFactor = clamp(s.basePos.z / 50, 0.3, 2.0);

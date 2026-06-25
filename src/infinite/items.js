@@ -29,7 +29,7 @@ const RAW = [
   // { id: "3",  img: "/sgop.png" },
   // { id: "4",  img: "/skix.png" },
   { id: "5", color: "#3D5A27" }, // mytelkomsel basic  (was /smtb.png)
-  { id: "6", color: "#1B6BA5" }, // okuri              (was /sokuri.gif)
+  { id: "6", img: "/sokuri.gif" }, // okuri — live gif (was color #1B6BA5)
   { id: "7", img: "/wob.gif" }, // obed willhem — kept live
   { id: "9", color: "#3A2B2B" }, // samosynth          (was /ssamo.png)
   { id: "8", color: "#8C8C8C" }, // thanh uy           (was /sthuy.png)

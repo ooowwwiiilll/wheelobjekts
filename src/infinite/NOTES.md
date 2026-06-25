@@ -50,20 +50,29 @@ expected behaviour, matches the DOM grid.
 - Planes currently cluster toward one corner on first load (chunk distribution vs.
   initial camera position). Functional but worth centering — flag for revision.
 
+## Filtering
+Unselected items fade to ~5% opacity (`scene.jsx`, `targetFilterMul = 0.05`).
+A per-plane WebGL blur was tried and reverted — it tanked performance (a 13-tap
+blur across every large overdrawn plane) and barely read on small tiles. The
+selected filter pill (`.link-bg`) is positioned under the active tab in
+`InfiniteApp.jsx`, same as the root site.
+
+## Animated GIFs
+GIFs are decoded with the WebCodecs `ImageDecoder` API (`texture-manager.js`,
+`getGifTexture`) — every frame is decoded once, downscaled to 192px (planes are
+small) and capped at 150 frames to bound memory, then driven on a timer into a
+`CanvasTexture`. `tickGifs()` advances all GIFs once per render frame (cost is
+O(#gifs), not O(#planes)). Falls back to a static first frame if `ImageDecoder`
+is unavailable. Reason for this over a hidden `<img>`: browsers pause GIF
+playback for images that aren't actually painted.
+
 ## Assumptions / tradeoffs to revise together
-1. **Filter = dim, not blur.** You asked to "blur the image directly" for
-   unselected items. These are WebGL texture planes, so a CSS `blur()` can't
-   target one plane. First pass dims + shrinks non-matching planes
-   (`scene.jsx`, `passesFilter`). True per-plane gaussian needs a shader pass —
-   flag if you want it.
-2. **No GSAP Flip into the panel.** The DOM grid physically flies the `<img>`
+1. **No GSAP Flip into the panel.** The DOM grid physically flies the `<img>`
    node into the sidebar. There's no DOM node here (it's a GL plane), so the
    panel just slides in and the thumb shows the item's colour/image. Could be
    approximated by overlaying a DOM tile at the clicked screen position later.
-3. **`wob.gif` renders as a static texture.** Three.js `TextureLoader` only
-   grabs the first GIF frame. Animated thumbs would need a video/canvas texture.
-4. **Placeholder items are flat colour planes** (no image), matching the DOM
-   grid's grey/colour placeholders.
-5. **Loading counter** uses drei's `useProgress` (texture load %). With only
-   `wob.gif` live it can jump fast; falls back to a 600ms timer.
-6. Engine ported TS → JS to match this project (no TS toolchain added).
+2. **Placeholder items are flat colour planes** (no image), matching the DOM
+   grid's grey/colour placeholders. Imaged items: obed (wob.gif) + okuri (sokuri.gif).
+3. **Loading counter** uses drei's `useProgress`; GIFs load outside three's
+   manager, so it falls back to a 600ms timer.
+4. Engine ported TS → JS to match this project (no TS toolchain added).

@@ -27,6 +27,7 @@ export default function InfiniteApp({ isWip = false }) {
 
   const detailsRef = useRef(null);
   const overlayRef = useRef(null);
+  const linksRef = useRef(null);
   const splitDone = useRef(false);
 
   const media = useMemo(
@@ -166,6 +167,20 @@ export default function InfiniteApp({ isWip = false }) {
 
   const onFilter = (cat) => setActiveCategory(cat);
 
+  // Slide the white "selected" pill under the active filter (same as the root site).
+  useEffect(() => {
+    if (!isAuthenticated) return;
+    const container = linksRef.current;
+    if (!container) return;
+    const bg = container.querySelector(".link-bg");
+    const active = container.querySelector("a.active");
+    if (!bg || !active) return;
+    const r = active.getBoundingClientRect();
+    const p = container.getBoundingClientRect();
+    bg.style.width = r.width + "px";
+    bg.style.transform = `translateX(${r.left - p.left}px)`;
+  }, [activeCategory, isAuthenticated]);
+
   return (
     <main className="ic-main">
       <div className="mobile-blocker">
@@ -211,7 +226,7 @@ export default function InfiniteApp({ isWip = false }) {
       <header className="frame">
         <h1 className="frame__title">( WheelObjekts )</h1>
 
-        <div className="frame__links">
+        <div className="frame__links" ref={linksRef}>
           <span className="link-bg"></span>
           <a className={activeCategory === "all" ? "active" : ""} onClick={() => onFilter("all")} data-filter="all">all</a>
           <a className={activeCategory === "A" ? "active" : ""} onClick={() => onFilter("A")} data-filter="A">visual</a>
@@ -307,8 +322,8 @@ export default function InfiniteApp({ isWip = false }) {
               <span>T B U</span>
             </p> */}
 
-            <p data-desc="6" data-text>site under construction&nbsp;– TBU</p>
-            {/* <p data-desc="6" data-text>
+            {/* <p data-desc="6" data-text>site under construction&nbsp;– TBU</p> */}
+            <p data-desc="6" data-text>
               <span>
                 <p>🌎 global</p>
                 <p>🕰️ 2025</p>
@@ -317,10 +332,20 @@ export default function InfiniteApp({ isWip = false }) {
                 <p>OKURI is a digital tear-off calendar inspired by the traditional japanese <i>himekuri</i>, with an over-engineered contemporary spin. swipe to flip new sheet each day.</p>
               </span>
               <span>
+                <p><strong>core features</strong></p>
+                <p>• realistic paper calendar flipping experience</p>
+                <p>• moon phases, zodiac signs, and constellations</p>
+                <p>• traditional japanese rokuyo daily fortune</p>
+                <p>• sunrise & sunset times for your location</p>
+                <p>• visual widgets for your home screen</p>
+                <p>• iOS calendar events beautifull integration</p>
+                <p>• skin editions a.k.a themes new each month</p>
+              </span>
+              <span>
                 <a href="https://apps.apple.com/id/app/okuri/id6759762270" target="_blank" rel="noreferrer">download on the app store</a>
               </span>
               <span>T B U</span>
-            </p> */}
+            </p>
 
             <p data-desc="7" data-text>
               <span>
