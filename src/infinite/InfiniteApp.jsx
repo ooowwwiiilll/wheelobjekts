@@ -332,6 +332,9 @@ export default function InfiniteApp({ isWip = false }) {
                 <p>OKURI is a digital tear-off calendar inspired by the traditional japanese <i>himekuri</i>, with an over-engineered contemporary spin. swipe to flip new sheet each day.</p>
               </span>
               <span>
+                <img className="details__media" src="/mokuri1.jpeg" />
+              </span>
+              <span>
                 <p><strong>core features</strong></p>
                 <p>• realistic paper calendar flipping experience</p>
                 <p>• moon phases, zodiac signs, and constellations</p>
@@ -340,6 +343,15 @@ export default function InfiniteApp({ isWip = false }) {
                 <p>• visual widgets for your home screen</p>
                 <p>• iOS calendar events beautifull integration</p>
                 <p>• skin editions a.k.a themes new each month</p>
+              </span>
+              <span>
+                <img className="details__media" src="/mokuri2.jpeg" />
+              </span>
+              <span>
+                <p>under the first month of release, OKURI has been featured by notable advocates like <a href="https://x.com/spottedinprod/status/2044848759629103493?s=46" target="_blank" rel="noreferrer" style={{ display: "inline", padding: 0, fontWeight: "bold" }}>@spottedinprod</a> and <a href="https://x.com/createwithswift/status/2054498700945227836?s=46" target="_blank" rel="noreferrer" style={{ display: "inline", padding: 0, fontWeight: "bold" }}>Create with Swift</a> on X!</p>
+              </span>
+              <span>
+                <img className="details__media" src="/xokuri.png" />
               </span>
               <span>
                 <a href="https://apps.apple.com/id/app/okuri/id6759762270" target="_blank" rel="noreferrer">download on the app store</a>
