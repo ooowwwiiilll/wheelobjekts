@@ -4,12 +4,12 @@ import { decryptData } from "./lib/crypto.js";
 
 const baseItems = [
   // { id: "1", img: "/saxis.png" },
-  { id: "2", /* img: "/sfast.png" */ placeholder: true, color: "#BE2A2A" },
-  { id: "13", /* img: "/skfc.gif" */ placeholder: true, color: "#D4C5AD" },
+  { id: "2", /* img: "/sfast.png" */ placeholder: true, color: "#1B6BA5" },
+  { id: "13", /* img: "/skfc.gif" */ placeholder: true, color: "#BE2A2A" },
   // { id: "3", img: "/sgop.png" },
   // { id: "4", img: "/skix.png" },
   { id: "5", /* img: "/smtb.png" */ placeholder: true, color: "#3D5A27" },
-  { id: "6", /* img: "/sokuri.gif" */ placeholder: true, color: "#1B6BA5" },
+  { id: "6", img: "/sokuri.gif" },
   { id: "7", img: "/wob.gif" },
   { id: "9", /* img: "/ssamo.png" */ placeholder: true, color: "#3A2B2B" },
   { id: "8", /* img: "/sthuy.png" */ placeholder: true, color: "#8C8C8C" },
@@ -270,8 +270,8 @@ export default function App({ isWip = false }) {
               <span>T B U</span>
             </p> */}
 
-            <p data-desc="6" data-text>site under construction&nbsp;– TBU</p>
-            {/* <p data-desc="6" data-text>
+            {/* <p data-desc="6" data-text>site under construction&nbsp;– TBU</p> */}
+            <p data-desc="6" data-text>
               <span>
                 <p>🌎 global</p>
                 <p>🕰️ 2025</p>
@@ -293,7 +293,7 @@ export default function App({ isWip = false }) {
                 <a href="https://apps.apple.com/id/app/okuri/id6759762270" target="_blank" rel="noreferrer">{"download on the app store"}</a>
               </span>
               <span>T B U</span>
-            </p> */}
+            </p>
 
             <p data-desc="7" data-text>
               <span>
