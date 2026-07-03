@@ -152,18 +152,7 @@ class Grid {
     });
 
     this.products = document.querySelectorAll(".product [data-id]");
-
-    const catMap = {
-      A: [8, 9, 10],
-      B: [1, 2, 3, 5, 12, 13],
-      C: [],
-      D: [4, 6, 11]
-    };
-    this.products.forEach((el) => {
-      const id = Number(el.dataset.id);
-      const cat = Object.keys(catMap).find((key) => catMap[key].includes(id)) || "none";
-      el.dataset.cat = cat;
-    });
+    // category (data-cat) is set on each product by App.jsx from the content layer
 
     document.querySelectorAll(".frame__links a[data-filter]").forEach((link) => {
       link.addEventListener("click", (e) => {

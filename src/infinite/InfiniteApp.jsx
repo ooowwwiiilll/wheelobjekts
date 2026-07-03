@@ -4,7 +4,9 @@ import { SplitText } from "gsap/SplitText";
 import { InfiniteCanvas } from "./engine/InfiniteCanvas.jsx";
 import ErrorBoundary from "./ErrorBoundary.jsx";
 import { baseMedia, wipToMedia } from "./items.js";
-import { decryptData } from "../lib/crypto.js";
+import { items as contentItems } from "../content/items.js";
+import { DetailTitles, DetailTexts } from "../content/DetailPanel.jsx";
+import { loadWipItems } from "../content/wip.js";
 import "./infinite.css";
 
 gsap.registerPlugin(SplitText);
@@ -74,9 +76,7 @@ export default function InfiniteApp({ isWip = false }) {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("/wip-encrypted.json");
-      const encryptedData = await res.json();
-      const decrypted = await decryptData(encryptedData, password);
+      const decrypted = await loadWipItems(password);
       setWipItems(decrypted);
       setIsAuthenticated(true);
     } catch {
@@ -253,24 +253,7 @@ export default function InfiniteApp({ isWip = false }) {
 
       {/* ── detail sidebar (same markup/CSS as the DOM grid) ── */}
       <div className="details" ref={detailsRef}>
-        <div className="details__title">
-          {/* <p data-title="1" data-text>axisnet</p> */}
-          <p data-title="2" data-text>vietinbank efast</p>
-          <p data-title="3" data-text>gopay</p>
-          <p data-title="4" data-text>kix</p>
-          <p data-title="5" data-text>mytelkomsel basic</p>
-          <p data-title="6" data-text>okuri</p>
-          <p data-title="7" data-text>obed willhem</p>
-          <p data-title="8" data-text>thanh uy art gallery</p>
-          <p data-title="9" data-text>samosynth</p>
-          <p data-title="10" data-text>blooms</p>
-          {/* <p data-title="11" data-text>kuttaib</p> */}
-          <p data-title="12" data-text>ted</p>
-          <p data-title="13" data-text>kfc</p>
-          {wipItems.map((item) => (
-            <p key={`title-${item.id}`} data-title={item.id} data-text>{item.title}</p>
-          ))}
-        </div>
+        <DetailTitles items={contentItems} wipItems={wipItems} />
 
         <div className="details__body">
           {/* thumb: shows the selected item's colour plane / live image */}
@@ -283,178 +266,7 @@ export default function InfiniteApp({ isWip = false }) {
               ))}
           </div>
 
-          <div className="details__texts">
-            <p data-desc="2" data-text>site under construction&nbsp;– TBU</p>
-            {/* <p data-desc="2" data-text>
-              <span>
-                <p>🇻🇳 vietnam</p>
-                <p>🕰️ 2025</p>
-              </span>
-              A digital B2B banking service offered by the Vietnam Joint Stock Commercial Bank for Industry and Trade. Allows corporate clients to manage accounts, conduct transactions, and approve payments anytime and anywhere via an internet connection.
-              <span>T B U</span>
-            </p> */}
-
-            <p data-desc="3" data-text>
-              <span>
-                <p>🇮🇩 indonesia</p>
-                <p>🕰️ 2025</p>
-              </span>
-              A recent GoPay digital wallet service integration for Telkomsel users via the MyTelkomsel app, offering convenience and efficiency in transacting Telkomsel services.
-              <span>T B U</span>
-            </p>
-            <p data-desc="4" data-text>
-              <span>
-                <p>🌎 global</p>
-                <p>🕰️ 2023</p>
-              </span>
-              <span>
-                <a href="https://www.wwdcscholars.com/s/53FA3940-93F5-480B-9224-2B0613AEDA6D/2024" target="_blank" rel="noreferrer">public press media here</a>
-              </span>
-            </p>
-
-            <p data-desc="5" data-text>site under construction&nbsp;– TBU</p>
-            {/* <p data-desc="5" data-text>
-              <span>
-                <p>🇮🇩 indonesia</p>
-                <p>🕰️ 2024</p>
-              </span>
-              Emphatising Indonesia's large amount of low-end smartphone users, MyTelkomsel Basic is a  lightweight application from Telkomsel, designed for users with limited memory or in rural & remote areas with unstable internet connections. Provides essential functions such as credit & data balance monitoring, internet & phone package shop, and making payments.
-              <span>T B U</span>
-            </p> */}
-
-            {/* <p data-desc="6" data-text>site under construction&nbsp;– TBU</p> */}
-            <p data-desc="6" data-text>
-              <span>
-                <p>🌎 global</p>
-                <p>🕰️ 2025</p>
-              </span>
-              <span>
-                <p>OKURI is a digital tear-off calendar inspired by the traditional japanese <i>himekuri</i>, with an over-engineered contemporary spin. swipe to flip new sheet each day.</p>
-              </span>
-              <span>
-                <img className="details__media" src="/mokuri1.jpeg" />
-              </span>
-              <span>
-                <p><strong>core features</strong></p>
-                <p>• realistic paper calendar flipping experience</p>
-                <p>• moon phases, zodiac signs, and constellations</p>
-                <p>• traditional japanese rokuyo daily fortune</p>
-                <p>• sunrise & sunset times for your location</p>
-                <p>• visual widgets for your home screen</p>
-                <p>• iOS calendar events beautifull integration</p>
-                <p>• skin editions a.k.a themes new each month</p>
-              </span>
-              <span>
-                <img className="details__media" src="/mokuri2.jpeg" />
-              </span>
-              <span>
-                <p>under the first month of release, OKURI has been featured by notable advocates like <a href="https://x.com/spottedinprod/status/2044848759629103493?s=46" target="_blank" rel="noreferrer" style={{ display: "inline", padding: 0, fontWeight: "bold" }}>@spottedinprod</a> and <a href="https://x.com/createwithswift/status/2054498700945227836?s=46" target="_blank" rel="noreferrer" style={{ display: "inline", padding: 0, fontWeight: "bold" }}>Create with Swift</a> on X!</p>
-              </span>
-              <span>
-                <img className="details__media" src="/xokuri.png" />
-              </span>
-              <span>
-                <a href="https://apps.apple.com/id/app/okuri/id6759762270" target="_blank" rel="noreferrer">download on the app store</a>
-              </span>
-              <span>T B U</span>
-            </p>
-
-            <p data-desc="7" data-text>
-              <span>
-                <p>currently at aleph-labs ++ AKQA.</p>
-              </span>
-              an asian unorthodox-generalist wannabe. obsessed in cross-functioning avant-garde-post-modern-fine-arts with tech innovations.
-              <br />
-              <span>
-                <p>paid professional at 16, worked full-time at 18, dropped out of college at 21,5.</p>
-              </span>
-              <span>
-                <p><strong>interests & idols</strong></p>
-                <p>michael stevens vsauce</p>
-                <p>adam neely</p>
-                <p>martin margiela</p>
-                <p>teenage engineering</p>
-                <p>casiopea</p>
-                <p>car pei</p>
-                <p>tim rodenbröker</p>
-                <p>chan karunamuni</p>
-                <p>virgil abloh</p>
-                <p>edouard manet</p>
-                <p>brutalism</p>
-                <p>seth mcfarlane</p>
-                <p>leo chang</p>
-                <p>four tet</p>
-                <p>john kiriakou</p>
-                <p>doug lemoine</p>
-                <p>mike schneider</p>
-                <p>FKJ</p>
-                <p>r/deGoogle</p>
-                <p>black mirror</p>
-                <p>chick corea</p>
-              </span>
-              <span style={{ display: "flex", gap: "10px" }}>
-                <a href="https://linkedin.com/in/owil/" target="_blank" rel="noreferrer">corporate</a>
-                <a href="mailto:owilhm@gmail.com" target="_blank" rel="noreferrer">hmu</a>
-              </span>
-            </p>
-
-            <p data-desc="8" data-text>site under construction&nbsp;– TBU</p>
-            {/* <p data-desc="8" data-text>
-              <span>
-                <p>🇻🇳 vietnam</p>
-                <p>🕰️ 2025</p>
-              </span>
-              an edgy printmaking gallery and studio + coffee shop in Ha Noi, celebrating Vietnam's rich history during propaganda and renewal period through traditional & contemporary paintings.
-              <br />
-              <span>T B U</span>
-            </p> */}
-
-            <p data-desc="9" data-text>site under construction&nbsp;– TBU</p>
-            {/* original samosynth multi-media content preserved in src/App.jsx */}
-
-            <p data-desc="10" data-text>site under construction&nbsp;– TBU</p>
-            {/* <p data-desc="10" data-text>
-              <span>
-                <p>🇦🇺 australia</p>
-                <p>🕰️ 2025</p>
-              </span>
-              an Australian retail pharmacy group with a network of independently owned and operated pharmacies, also includes a certified B Corp management services arm. The pharmacies offer health & wellness prescription, pharmacist consultations, and medication ordering.
-              <br />
-              <span>
-                <a href="https://joinbloomsthechemist.com.au/" target="_blank" rel="noreferrer">live site here</a>
-              </span>
-            </p> */}
-
-            <p data-desc="12" data-text>
-              <span>
-                <p>🇮🇩 indonesia</p>
-                <p>🕰️ 2024</p>
-              </span>
-              the B2B unit of Telkomsel that provides digital solutions and connectivity for corporations to support their digital transformation. Offering advanced network services, communication & collaboration tools, IoT solutions, and CX insights tools.
-              <br />
-              <span>T B U</span>
-            </p>
-
-            <p data-desc="13" data-text>site under construction&nbsp;– TBU</p>
-            {/* <p data-desc="13" data-text>
-              <span>
-                <p>📍 global</p>
-                <p>🕰️ 2026</p>
-              </span>
-              a global multi-brand design system overhaul under Yum! brands.
-              <br />
-              <span>T B U</span>
-            </p> */}
-
-            {wipItems.map((item) => (
-              <p
-                key={`desc-${item.id}`}
-                data-desc={item.id}
-                data-text
-                dangerouslySetInnerHTML={{ __html: item.html }}
-              />
-            ))}
-          </div>
+          <DetailTexts items={contentItems} wipItems={wipItems} />
         </div>
       </div>
     </main>

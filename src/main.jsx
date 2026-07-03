@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { Analytics } from "@vercel/analytics/react";
 import App from "./App.jsx";
 import InfiniteApp from "./infinite/InfiniteApp.jsx";
+import VerseApp from "./verse/VerseApp.jsx";
 import Resume from "./Resume.jsx";
 import OkuriSupport from "./OkuriSupport.jsx";
 import OkuriPrivacyPolicy from "./OkuriPrivacyPolicy.jsx";
@@ -17,6 +18,7 @@ const Page =
     path === "/resume" ? Resume :
     path === "/infinite" ? InfiniteApp :
     path === "/infinite-wip" ? () => <InfiniteApp isWip={true} /> :
+    path === "/verse" ? VerseApp :
     path === "/okuri-support" ? OkuriSupport :
         path === "/okuri-privacy-policy" ? OkuriPrivacyPolicy :
             path === "/okuri-terms" ? OkuriTerms :
