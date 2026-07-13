@@ -29,3 +29,5 @@
 wip-data.json
 Res26.pdf
 public/Res26.pdf
+# build output — Vercel rebuilds from source, no need to commit it
+dist/

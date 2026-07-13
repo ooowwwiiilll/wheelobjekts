@@ -10,6 +10,14 @@
 // ─────────────────────────────────────────────────────────────────────────────
 import * as THREE from "three";
 import { gsap } from "gsap";
+import { getGifTexture, tickGifs } from "../lib/gif-texture.js";
+
+// The gif decode can take several seconds during which no GSAP tween is active,
+// so GSAP's ticker auto-sleeps — and here it fails to auto-wake when the intro
+// tweens are created. Keep it awake for the whole session so intro / hover /
+// morph / panel animations all fire reliably.
+gsap.ticker.wake();
+gsap.config({ autoSleep: 100000 });
 
 const RADIUS = 30;
 const COLS = 12;                                     // cards per ring
@@ -114,18 +122,23 @@ export class VerseScene {
     const manager = new THREE.LoadingManager();
     manager.onProgress = (url, loaded, total) =>
       this.cb.onProgress?.(Math.round((loaded / total) * 100));
-    manager.onLoad = () => {
-      this.cb.onLoaded?.();
-      this._intro();
-    };
+    manager.onLoad = () => this._reveal();
     const loader = new THREE.TextureLoader(manager);
 
     const getTex = (src) => {
       if (texCache.has(src)) return texCache.get(src);
-      const tex = loader.load(src, (t) => {
-        t.colorSpace = THREE.SRGBColorSpace;
-        applyCover(t);
-      });
+      let tex;
+      if (/\.gif$/i.test(src)) {
+        // animated gif → shared WebCodecs decoder (crisper maxSize for cards)
+        this.hasGif = true;
+        const entry = getGifTexture(src, (e) => applyCover(e.texture), { maxSize: 320 });
+        tex = entry.texture;
+      } else {
+        tex = loader.load(src, (t) => {
+          t.colorSpace = THREE.SRGBColorSpace;
+          applyCover(t);
+        });
+      }
       texCache.set(src, tex);
       return tex;
     };
@@ -169,6 +182,21 @@ export class VerseScene {
         this.cards.push(mesh);
       }
     }
+
+    // Fallback: if every texture was already cached, the LoadingManager never
+    // fires onLoad — reveal after a short delay regardless so the scene is never
+    // left invisible/locked.
+    this._revealTimer = gsap.delayedCall(1.0, () => this._reveal());
+  }
+
+  // Hide the loader + play the intro, exactly once (manager.onLoad OR fallback).
+  _reveal() {
+    if (this._revealed) return;
+    this._revealed = true;
+    this._revealTimer?.kill();
+    gsap.ticker.wake(); // ensure the ticker is running before the intro tweens
+    this.cb.onLoaded?.();
+    this._intro();
   }
 
   _intro() {
@@ -221,11 +249,12 @@ export class VerseScene {
       s.last = { x: e.clientX, y: e.clientY };
       s.down.moved += Math.abs(dx) + Math.abs(dy);
 
-      s.target.y += dx * 0.0032;
-      s.target.x = clamp(s.target.x + dy * 0.0032, -ROT_X_CLAMP, ROT_X_CLAMP);
+      // "grab the sphere" feel: content follows the cursor
+      s.target.y -= dx * 0.0032;
+      s.target.x = clamp(s.target.x - dy * 0.0032, -ROT_X_CLAMP, ROT_X_CLAMP);
       // smoothed release velocity (inertia)
-      s.vel.y = s.vel.y * 0.5 + dx * 0.0032 * 0.5;
-      s.vel.x = s.vel.x * 0.5 + dy * 0.0032 * 0.5;
+      s.vel.y = s.vel.y * 0.5 - dx * 0.0032 * 0.5;
+      s.vel.x = s.vel.x * 0.5 - dy * 0.0032 * 0.5;
     };
 
     this._onUp = (e) => {
@@ -350,6 +379,8 @@ export class VerseScene {
   _tick() {
     const s = this.state;
 
+    if (this.hasGif) tickGifs(); // advance animated-gif card textures
+
     if (!s.dragging && s.enabled && !s.selected) {
       // release inertia, decaying
       s.target.y += s.vel.y;
@@ -381,6 +412,7 @@ export class VerseScene {
 
   dispose() {
     cancelAnimationFrame(this._raf);
+    this._revealTimer?.kill();
     const el = this.renderer.domElement;
     el.removeEventListener("pointerdown", this._onDown);
     el.removeEventListener("pointermove", this._onMove);

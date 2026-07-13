@@ -83,13 +83,17 @@ export default function VerseApp() {
       </div>
 
       {selected && (
-        <aside className="verse-detail" ref={panelRef}>
-          <button className="verse-back" onClick={close}>← back</button>
-          <h2 className="verse-detail__title">{selected.title}</h2>
-          <div className="verse-detail__body">
-            {bodies[selected.id] ?? <>site under construction&nbsp;– TBU</>}
-          </div>
-        </aside>
+        <>
+          {/* click anywhere outside the panel to close */}
+          <div className="verse-overlay" onClick={close}></div>
+          <aside className="verse-detail" ref={panelRef}>
+            <button className="verse-back" onClick={close}>← back</button>
+            <h2 className="verse-detail__title">{selected.title}</h2>
+            <div className="verse-detail__body">
+              {bodies[selected.id] ?? <>site under construction&nbsp;– TBU</>}
+            </div>
+          </aside>
+        </>
       )}
     </main>
   );

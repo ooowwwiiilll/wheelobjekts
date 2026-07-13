@@ -76,7 +76,7 @@ export const bodies = {
         <p>OKURI is a digital tear-off calendar inspired by the traditional japanese <i>himekuri</i>, with an over-engineered contemporary spin. swipe to flip new sheet each day.</p>
       </span>
       <span>
-        <img className="details__media" src="/mokuri1.jpeg" />
+        <video autoPlay loop muted playsInline controls preload="none" className="details__media" src="/xokuri.mp4"></video>
       </span>
       <span>
         <p><strong>core features</strong></p>
@@ -89,7 +89,7 @@ export const bodies = {
         <p>• skin editions a.k.a themes new each month</p>
       </span>
       <span>
-        <img className="details__media" src="/mokuri2.jpeg" />
+        <img className="details__media" src="/mokuri1.jpeg" />
       </span>
       <span>
         <p>under the first month of release, OKURI has been featured by notable advocates like <a href="https://x.com/spottedinprod/status/2044848759629103493?s=46" target="_blank" rel="noreferrer" style={{ display: "inline", padding: 0, fontWeight: "bold" }}>@spottedinprod</a> and <a href="https://x.com/createwithswift/status/2054498700945227836?s=46" target="_blank" rel="noreferrer" style={{ display: "inline", padding: 0, fontWeight: "bold" }}>Create with Swift</a> on X!</p>
