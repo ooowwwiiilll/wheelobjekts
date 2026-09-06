@@ -1,13 +1,14 @@
 // /26 — editorial canvas mode. Self-contained under src/twentysix/ (delete this
-// folder + the route in main.jsx to remove). Content comes from the shared content
-// layer (src/content/items.js); only composition lives in ./layout.js.
+// folder + the route in main.jsx to remove). Nothing here affects the root grid,
+// /infinite or /verse.
 //
 // Responsive model, copied from the reference: the 1440px canvas is never reflowed,
-// it is uniformly scaled by `vw / 1440` and the wrapper's height is scaled to match.
-// Page chrome sits outside the canvas at true viewport pixels and never scales.
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { itemById, CATEGORY_LABEL } from "../content/items.js";
-import { CANVAS_W, CAPTION, stacked } from "./layout.js";
+// it is uniformly scaled by `vw / 1440` and the wrapper's height scales to match.
+// This holds all the way down to phone width — /26 deliberately has no mobile
+// blocker, unlike the other routes.
+import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { CATEGORY_LABEL } from "../content/items.js";
+import { CANVAS_W, stackFor } from "./layout.js";
 import "./twentysix.css";
 
 const FILTERS = [
@@ -17,14 +18,18 @@ const FILTERS = [
   { key: "D", label: "coded" },
 ];
 
-function Plate({ plate, index }) {
+function Plate({ plate, index, hero }) {
   const ref = useRef(null);
 
   // Reveal each plate as it enters the viewport — the canvas is long, and this is
-  // the reference's one piece of motion. Falls back to visible with no observer.
+  // the one piece of motion. Falls back to visible when there's no observer.
   useEffect(() => {
     const el = ref.current;
-    if (!el || typeof IntersectionObserver === "undefined") return;
+    if (!el) return;
+    if (typeof IntersectionObserver === "undefined") {
+      el.classList.add("--in");
+      return;
+    }
     const io = new IntersectionObserver(
       ([e]) => {
         if (e.isIntersecting) {
@@ -38,16 +43,18 @@ function Plate({ plate, index }) {
     return () => io.disconnect();
   }, []);
 
-  const style = {
-    left: plate.x,
-    top: plate.y,
-    width: plate.w,
-    height: plate.h,
-    transitionDelay: `${(index % 4) * 70}ms`,
-  };
-
   return (
-    <figure className="ts-plate" style={style} ref={ref}>
+    <figure
+      className={`ts-plate${hero ? " ts-plate--hero" : ""}`}
+      ref={ref}
+      style={{
+        left: plate.x,
+        top: plate.y,
+        width: plate.w,
+        height: plate.h,
+        transitionDelay: `${(index % 4) * 70}ms`,
+      }}
+    >
       {plate.video ? (
         <video src={plate.src} autoPlay loop muted playsInline preload="metadata" />
       ) : (
@@ -57,35 +64,49 @@ function Plate({ plate, index }) {
   );
 }
 
-function Block({ block, dim }) {
-  const item = itemById(block.id);
-  if (!item) return null;
+function Block({ block }) {
+  const meta = block.meta;
+  if (!meta) return null;
 
   const spine = [
-    ["region", item.region],
-    ["year", item.year],
-    ["discipline", CATEGORY_LABEL[item.category] ?? "self"],
+    ["region", meta.region],
+    ["year", meta.year],
+    ["discipline", CATEGORY_LABEL[meta.category] ?? "self"],
     ["scope", block.scope],
   ].filter(([, v]) => v);
 
   return (
     <section
-      className={`ts-block${dim ? " --dim" : ""}`}
-      style={{ top: block.top, height: block.height }}
+      className={`ts-block${block.on ? "" : " --off"}`}
+      style={{ transform: `translateY(${block.top}px)`, height: block.height }}
+      aria-hidden={block.on ? undefined : true}
     >
-      {block.media.map((plate, i) => (
-        <Plate key={`${block.id}-${i}`} plate={plate} index={i} />
-      ))}
+      {block.heroPlate ? (
+        <Plate plate={block.heroPlate} index={0} hero />
+      ) : (
+        <div className="ts-plate ts-plate--empty --in" style={{ left: 371, top: 0, width: 699, height: 397 }}>
+          <span>placeholder</span>
+        </div>
+      )}
 
-      <div className="ts-caption" style={{ top: CAPTION.y }}>
-        <p className="ts-caption__title">{item.title}</p>
+      <div className="ts-caption" style={{ top: block.captionY }}>
+        <p className="ts-caption__title">{meta.title}</p>
         <p className="ts-caption__sub">
-          {item.region} — {item.year}
+          {meta.region} — {meta.year}
         </p>
       </div>
 
-      {/* the reference's centred credit spine: labels right-aligned into the axis,
-          values left-aligned out of it, both meeting at canvas centre */}
+      {/* description layer, between the caption and the body media */}
+      <div className="ts-blurb" style={{ top: block.blurbY }}>
+        <p>{block.blurb}</p>
+      </div>
+
+      {block.plates.map((plate, i) => (
+        <Plate key={`${block.id}-${i}`} plate={plate} index={i} />
+      ))}
+
+      {/* centred meta spine: labels right-aligned into the canvas axis, values
+          left-aligned out of it, both meeting at canvas centre */}
       <dl className="ts-spine" style={{ top: block.spineY }}>
         {spine.map(([k, v]) => (
           <div className="ts-spine__row" key={k}>
@@ -107,9 +128,16 @@ export default function TwentySixApp() {
   const navRef = useRef(null);
   const bgRef = useRef(null);
 
+  // Re-stack on every filter change: matching blocks close the gap left by the ones
+  // being filtered out, so the column never shows holes.
+  const stack = useMemo(() => stackFor(filter), [filter]);
+
   useLayoutEffect(() => {
     const fit = () => {
       const vw = window.innerWidth;
+      // Ignore zero-width readings (hidden tab, mid-rotation on some mobile
+      // browsers) — scaling by 0 would blank the canvas until the next resize.
+      if (!vw) return;
       const s = Math.min(vw / CANVAS_W, 1);
       setFitted({ scale: s, offset: Math.max(0, (vw - CANVAS_W * s) / 2) });
     };
@@ -131,8 +159,8 @@ export default function TwentySixApp() {
 
   return (
     <main className="ts-main">
-      {/* No mobile blocker here on purpose: /26 is meant to scale the whole canvas
-          down to phone width rather than refuse to render, unlike the other routes. */}
+      {/* No mobile blocker here on purpose: /26 scales the whole canvas down to
+          phone width rather than refusing to render. */}
 
       {/* ── fixed chrome: true viewport pixels, never scaled ── */}
       <header className="ts-frame">
@@ -157,22 +185,18 @@ export default function TwentySixApp() {
       <p className="ts-edge">© 2026 obed willhem</p>
 
       {/* ── the scaled canvas ── */}
-      <div className="ts-viewport" style={{ height: stacked.total * scale }}>
+      <div className="ts-viewport" style={{ height: stack.total * scale }}>
         <div
           className="ts-canvas"
           style={{
             width: CANVAS_W,
-            height: stacked.total,
+            height: stack.total,
             transform: `scale(${scale})`,
             marginLeft: offset,
           }}
         >
-          {stacked.list.map((block) => (
-            <Block
-              key={block.id}
-              block={block}
-              dim={filter !== "all" && itemById(block.id)?.category !== filter}
-            />
+          {stack.list.map((block) => (
+            <Block key={block.id} block={block} />
           ))}
         </div>
       </div>

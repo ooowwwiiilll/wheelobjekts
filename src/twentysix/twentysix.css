@@ -1,5 +1,6 @@
 /* ─────────────────────────────────────────────────────────────────────────────
- * /26 — editorial canvas mode.
+ * /26 — editorial canvas mode. EXCLUSIVE to /26; every selector below is scoped to
+ * .ts-* so nothing here can reach the root grid, /infinite or /verse.
  *
  * Two coordinate systems live here, and they must not be confused:
  *   .ts-canvas  — the fixed 1440px design canvas. Everything inside is authored in
@@ -7,10 +8,25 @@
  *                 a single transform, so type inside scales with the art.
  *   .ts-frame /  — page chrome at true viewport px. Never scaled, so the nav stays
  *   .ts-edge      legible at every width. This split IS the responsive system.
- *
- * Palette + type come from base.css (Exposure, --color-*), so /26 follows the rest
- * of the site into dark mode without redefining anything.
  * ────────────────────────────────────────────────────────────────────────── */
+
+/* ── THEME ───────────────────────────────────────────────────────────────────
+ * /26 is pinned to light. To restore dynamic (OS) theming, DELETE or comment out
+ * this one block — the rest of the file only ever reads var(--color-*), which
+ * base.css already flips on prefers-color-scheme.
+ * ────────────────────────────────────────────────────────────────────────── */
+.ts-main {
+  --color-text: #1a1a1a;
+  --color-bg: #f4f4f4;
+  --color-link: #1a1a1a;
+  --color-surface: rgba(22, 22, 22, 0.063);
+  --color-surface-solid: #ffffff;
+  --color-surface-hover: rgba(255, 255, 255, 0.19);
+  --color-muted: #999999;
+  color-scheme: light;
+}
+
+/* END THEME PIN */
 
 .ts-main {
   position: relative;
@@ -27,6 +43,9 @@
   position: relative;
   width: 100%;
   overflow: hidden;
+  /* height is set inline and shrinks when a filter removes blocks — ease it so the
+     page doesn't jump under the scrollbar */
+  transition: height 0.8s cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 .ts-canvas {
@@ -34,24 +53,41 @@
   transform-origin: 0 0;
 }
 
+/* Filtering RE-STACKS rather than dims: a filtered-out block consumes no height
+   (see stackFor in layout.js), so the survivors slide up and close the gap and the
+   column never alternates kept/blank/kept. Position is a translateY so the slide is
+   composited; the block being removed blurs and fades out on the seam it vacated. */
 .ts-block {
   position: absolute;
   left: 0;
+  top: 0;
   width: 100%;
-  transition: opacity 0.5s ease, filter 0.5s ease;
+  will-change: transform, opacity, filter;
+  transition:
+    transform 0.85s cubic-bezier(0.33, 1, 0.68, 1),
+    opacity 0.45s ease,
+    filter 0.45s ease;
 }
 
-.ts-block.--dim {
-  opacity: 0.06;
+.ts-block.--off {
+  opacity: 0;
+  filter: blur(16px);
   pointer-events: none;
 }
 
-/* ── media plates ── */
+/* ── media plates ──
+ * object-fit is COVER: the artwork FILLS its plate edge to edge and its aspect ratio
+ * is preserved (never squashed), which means whatever overflows the box is cropped.
+ * That trade is unavoidable — filling a fixed box with an image of a different ratio
+ * costs you either cropped edges (cover), letterbox gaps (contain), or distortion
+ * (fill). Cropping is centred. The hero box is 699 × 397 canvas px (1.76 : 1, ~16:9).
+ */
 
 .ts-plate {
   position: absolute;
   margin: 0;
   overflow: hidden;
+  border-radius: 10px;
   background-color: var(--color-surface);
   opacity: 0;
   transform: translateY(18px);
@@ -69,8 +105,18 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   display: block;
   user-select: none;
+}
+
+.ts-plate--empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed var(--color-muted);
+  color: var(--color-muted);
+  font-size: 13px;
 }
 
 /* ── caption under the hero plate ── */
@@ -94,6 +140,23 @@
   font-weight: 300;
   color: var(--color-muted);
   margin: 3px 0 0;
+}
+
+/* ── description layer, between caption and body media ── */
+
+.ts-blurb {
+  position: absolute;
+  left: 50%;
+  width: 620px;
+  margin-left: -310px;
+  text-align: center;
+}
+
+.ts-blurb p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--color-text);
 }
 
 /* ── centred meta spine: labels right-aligned into the canvas axis, values
@@ -133,10 +196,11 @@
   letter-spacing: -0.3px;
 }
 
-/* ── fixed chrome (true viewport px) ── */
+/* ── fixed chrome (true viewport px) ──
+ * `header.` needed: base.css sets a global `header { flex-direction: column }` that
+ * would otherwise stack the nav, the mark and the index link on top of each other.
+ */
 
-/* `header.` needed: base.css sets a global `header { flex-direction: column }` that
-   would otherwise stack the nav, the mark and the index link on top of each other. */
 header.ts-frame {
   position: fixed;
   top: 0;
@@ -152,7 +216,7 @@ header.ts-frame {
   pointer-events: none;
 }
 
-.ts-frame::before {
+header.ts-frame::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -250,27 +314,35 @@ header.ts-frame {
 }
 
 /* ── mobile ──────────────────────────────────────────────────────────────────
- * /26 does NOT use the site-wide mobile blocker. The whole point of the canvas is
- * that a phone gets the same composition, scaled: vw/1440 at 375px is 0.26, so the
- * layout survives intact in miniature. base.css hides every route's content below
- * 650px for the blocker, so those rules have to be undone here — matching its
- * `!important` is the only way to win against it.
+ * /26 does NOT use the site-wide mobile blocker. The point of the canvas is that a
+ * phone gets the same composition, scaled: vw/1440 at 375px is 0.26, so the layout
+ * survives intact in miniature.
+ *
+ * base.css hides every route's content below 650px via `main>*:not(.mobile-blocker)`
+ * — specificity (0,1,1) and !important. The selectors below must BEAT that, so they
+ * are written as `.ts-main > .ts-x` (0,2,0) rather than `.ts-main > *` (0,1,0),
+ * which loses. Do not simplify them back.
  * ────────────────────────────────────────────────────────────────────────── */
 @media only screen and (max-width: 650px) {
 
-  .ts-main>*,
-  header.ts-frame {
-    display: revert !important;
-  }
-
-  header.ts-frame {
-    display: flex !important;
-    padding: 0.9rem 0.9rem;
-    gap: 0.6rem;
-  }
-
-  .ts-viewport {
+  .ts-main>.ts-viewport {
     display: block !important;
+  }
+
+  .ts-main>.ts-edge {
+    display: block !important;
+    left: 0.4rem;
+    bottom: 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  /* `main.ts-main>header.ts-frame` (0,2,2), not `header.ts-frame` (0,1,1): the
+     header is a direct child of main, so base.css's `main>*:not(.mobile-blocker)`
+     matches it at the SAME specificity and wins on source order. */
+  main.ts-main>header.ts-frame {
+    display: flex !important;
+    padding: 0.9rem;
+    gap: 0.6rem;
   }
 
   /* chrome stays at true viewport px — it must not shrink with the canvas */
@@ -296,23 +368,24 @@ header.ts-frame {
   .ts-about {
     display: none !important;
   }
-
-  .ts-edge {
-    left: 0.4rem;
-    bottom: 1.2rem;
-    font-size: 0.9rem;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
 
   .ts-plate,
-  .ts-block {
+  .ts-block,
+  .ts-viewport {
     transition: none;
   }
 
   .ts-plate {
     opacity: 1;
     transform: none;
+  }
+
+  /* still filtered out, just without the blur/slide */
+  .ts-block.--off {
+    filter: none;
+    visibility: hidden;
   }
 }

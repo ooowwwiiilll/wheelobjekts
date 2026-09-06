@@ -1,181 +1,237 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// /26 — editorial canvas layout.
+// /26 — editorial canvas layout. EXCLUSIVE to /26; nothing here is used by the
+// root grid, /infinite or /verse.
 //
-// Everything is authored against a FIXED 1440px-wide design canvas and positioned
-// absolutely, exactly like the reference site: no reflow, no breakpoints inside the
-// canvas. The whole canvas is uniformly scaled by `vw / CANVAS_W` at render time
-// (see TwentySixApp), so a phone gets the identical composition in miniature. The
-// page chrome (nav, edge marks) lives OUTSIDE the canvas and never scales.
+// Everything is authored against a FIXED 1440px design canvas and positioned
+// absolutely, like the reference site: no reflow, no breakpoints inside the canvas.
+// The whole canvas is uniformly scaled by `vw / CANVAS_W` at render time (see
+// TwentySixApp), so a phone gets the identical composition in miniature. Page
+// chrome lives OUTSIDE the canvas and never scales.
 //
-// The three media heights below are the reference's own rhythm, measured off it:
-// a large plate, a medium plate, and a small plate at roughly 1 : 0.68 : 0.39.
-// Widths are deliberately irregular — that asymmetry is the whole look.
+// A block is authored as CONTENT ONLY — hero, blurb, and a flat list of body media.
+// All geometry (row templates, y positions, block height) is DERIVED below by
+// `build()`, so no y value is ever hand-tuned and blocks cannot drift out of sync.
 // ─────────────────────────────────────────────────────────────────────────────
+
+import { itemById } from "../content/items.js";
 
 export const CANVAS_W = 1440;
 
+// Plate heights — the reference's own rhythm, roughly 1 : 0.68 : 0.39.
 export const H = { lg: 397, md: 270, sm: 155 };
 
-// Vertical rhythm inside one project block.
-const HERO_Y = 0;
-const CAPTION_Y = 437;
-const ROW_Y = 536;
-const SPINE_GAP = 96; // from the bottom of the last media row to the meta spine
+// Vertical rhythm inside a block.
+const HERO_H = H.lg;
+const CAPTION_GAP = 40;   // hero bottom → caption
+const CAPTION_H = 46;
+const BLURB_GAP = 26;     // caption bottom → description layer
+const BLURB_H = 92;       // reserved for the description layer
+const BODY_GAP = 64;      // description bottom → first body row
+const ROW_GAP = 40;       // between wrapped body rows
+const SPINE_GAP = 96;     // last body row bottom → meta spine
+const SPINE_ROW_H = 22;
+const BLOCK_TAIL = 190;   // air below the spine before the next block
 
-// A media plate. `t` is inferred from the extension unless given.
 const m = (src, x, y, w, h) => ({ src, x, y, w, h, video: /\.mp4$/.test(src) });
 
-// Row templates traced from the reference's own three-up rows. Each returns
-// plates already positioned on the canvas at the given y.
-const rowWide = (y, a, b, c) => [
-  m(a, 176, y, 382, H.md),
-  m(b, 649, y, 414, H.md),
-  m(c, 1070, y, 194, H.md),
-];
-const rowEven = (y, a, b, c) => [
-  m(a, 202, y, 304, H.md),
-  m(b, 513, y, 414, H.md),
-  m(c, 935, y, 304, H.md),
-];
-const rowOffset = (y, a, b, c) => [
-  m(a, 176, y, 304, H.md),
-  m(b, 643, y, 199, H.md),
-  m(c, 851, y, 414, H.md),
-];
-// The reference's signature row: one big plate left, a stacked pair mid, a tall right.
-const rowStack = (y, a, b1, b2, c) => [
-  m(a, 98, y, 619, H.lg),
-  m(b1, 776, y, 207, 153),
-  m(b2, 776, y + 162, 207, 108),
-  m(c, 1039, y, 303, 396),
-];
+// ── BODY MEDIA RULE ─────────────────────────────────────────────────────────
+// The count of body media decides the row template. This is the whole rule:
+//
+//   1 item    → one wide plate, centred                     (620 × 397)
+//   2 items   → two equal plates, centred pair              (460 × 270 each)
+//   3 items   → the reference's asymmetric three-up         (382 / 414 / 194 × 270)
+//   4+ items  → the reference's stacked editorial row       (619 lg / 207 stacked pair / 303 lg)
+//               and any remainder wraps into three-up rows below it
+//
+// Every template returns plates already positioned, plus the height it consumed.
+// ────────────────────────────────────────────────────────────────────────────
 
-const hero = (src) => [m(src, 371, HERO_Y, 699, H.lg)];
+const one = (y, [a]) => ({ plates: [m(a, 410, y, 620, H.lg)], h: H.lg });
 
-// ── the blocks ──────────────────────────────────────────────────────────────
-// `id` keys back into content/items.js for title, category, region and year, so
-// none of that is restated here. Only composition lives in this file.
+const two = (y, [a, b]) => ({
+  plates: [m(a, 240, y, 460, H.md), m(b, 740, y, 460, H.md)],
+  h: H.md,
+});
 
-export const blocks = [
-  {
-    id: "6",
-    scope: "product design · engineering",
-    media: [
-      ...hero("/xokuri.mp4"),
-      ...rowWide(ROW_Y, "/mokuri1.jpeg", "/xokuri.png", "/sokuri.gif"),
-    ],
-    spineY: ROW_Y + H.md + SPINE_GAP,
-    height: 1180,
-  },
-  {
-    id: "9",
-    scope: "art direction · interaction",
-    media: [
-      ...hero("/ssamo_dpads.mp4"),
-      ...rowStack(ROW_Y, "/ssamo_dtiles.mp4", "/ssamo.png", "/ssamo_ascii.png", "/ssamo_dsimulator.png"),
-      m("/ssamo_dgrid.png", 513, ROW_Y + H.lg + 88, 414, H.md),
-    ],
-    spineY: ROW_Y + H.lg + 88 + H.md + SPINE_GAP,
-    height: 1690,
-  },
+const three = (y, [a, b, c]) => ({
+  plates: [
+    m(a, 176, y, 382, H.md),
+    m(b, 649, y, 414, H.md),
+    m(c, 1070, y, 194, H.md),
+  ],
+  h: H.md,
+});
+
+const stack = (y, [a, b1, b2, c]) => ({
+  plates: [
+    m(a, 98, y, 619, H.lg),
+    m(b1, 776, y, 207, 153),
+    m(b2, 776, y + 162, 207, 108),
+    m(c, 1039, y, 303, 396),
+  ],
+  h: H.lg,
+});
+
+// Fill a three-up row that has gaps (used for a remainder of 1 or 2).
+const remainder = (y, srcs) =>
+  srcs.length === 1 ? one(y, srcs) : two(y, srcs);
+
+function bodyRows(y, srcs) {
+  const plates = [];
+  let cursor = y;
+  const push = (r) => {
+    plates.push(...r.plates);
+    cursor += r.h + ROW_GAP;
+  };
+
+  if (srcs.length === 0) return { plates, h: 0 };
+  if (srcs.length === 1) push(one(cursor, srcs));
+  else if (srcs.length === 2) push(two(cursor, srcs));
+  else if (srcs.length === 3) push(three(cursor, srcs));
+  else {
+    push(stack(cursor, srcs.slice(0, 4)));
+    let rest = srcs.slice(4);
+    while (rest.length >= 3) {
+      push(three(cursor, rest.slice(0, 3)));
+      rest = rest.slice(3);
+    }
+    if (rest.length) push(remainder(cursor, rest));
+  }
+
+  return { plates, h: cursor - y - ROW_GAP };
+}
+
+// ── the blocks: CONTENT ONLY, in the order they appear on the page ───────────
+// `id` keys into content/items.js for title / region / year / category. A block may
+// carry its own `meta` instead, for entries that exist only on /26.
+
+const source = [
   {
     id: "13",
     scope: "design system",
-    media: [...hero("/skfc.gif")],
-    spineY: CAPTION_Y + 128,
-    height: 800,
+    blurb: "a global multi-brand design system overhaul under Yum! brands.",
+    hero: "/skfc.gif",
+    body: [],
   },
   {
-    id: "2",
-    scope: "product design",
-    media: [
-      ...hero("/sfast.png"),
-      ...rowEven(ROW_Y, "/sviet.png", "/sfast.png", "/sviet.png"),
-    ],
-    spineY: ROW_Y + H.md + SPINE_GAP,
-    height: 1180,
+    id: "6",
+    scope: "product design · engineering",
+    blurb:
+      "a digital tear-off calendar inspired by the traditional japanese himekuri, with an over-engineered contemporary spin. swipe to flip a new sheet each day.",
+    hero: "/xokuri.mp4",
+    body: ["/mokuri1.jpeg", "/xokuri.png", "/sokuri.gif", "/mokuri2.jpeg"],
   },
   {
     id: "10",
     scope: "art direction",
-    media: [
-      ...hero("/szbloom.jpeg"),
-      ...rowOffset(ROW_Y, "/szbloom.png", "/szbloom.jpeg", "/szbloom.png"),
+    blurb:
+      "an australian retail pharmacy group and certified B Corp, offering health & wellness prescriptions, pharmacist consultations and medication ordering.",
+    hero: "/szbloom.jpeg",
+    body: ["/szbloom.png"],
+  },
+  {
+    id: "9",
+    scope: "art direction · interaction",
+    blurb:
+      "a mini mpc / sampler celebrating bataknese culture, mixing hip-hop drum samples with processed taganing, kulcapi and gordang one-shots.",
+    hero: "/ssamo_dpads.mp4",
+    body: [
+      "/ssamo_dsimulator.png",
+      "/ssamo_dtiles.mp4",
+      "/ssamo_ascii.png",
+      "/ssamo_dgrid.png",
+      "/ssamo.png",
     ],
-    spineY: ROW_Y + H.md + SPINE_GAP,
-    height: 1180,
-  },
-  {
-    id: "8",
-    scope: "art direction · identity",
-    media: [...hero("/sthuy.png")],
-    spineY: CAPTION_Y + 128,
-    height: 800,
-  },
-  {
-    id: "4",
-    scope: "swift · wwdc",
-    media: [
-      ...hero("/skix.png"),
-      ...rowWide(ROW_Y, "/skix_ascii.png", "/skix.png", "/skix_ascii.png"),
-    ],
-    spineY: ROW_Y + H.md + SPINE_GAP,
-    height: 1180,
-  },
-  {
-    id: "11",
-    scope: "product design · engineering",
-    media: [
-      ...hero("/szkutt.png"),
-      ...rowEven(ROW_Y, "/szkutt_ascii.png", "/szkutt.png", "/szkutt_ascii.png"),
-    ],
-    spineY: ROW_Y + H.md + SPINE_GAP,
-    height: 1180,
-  },
-  {
-    id: "5",
-    scope: "product design",
-    media: [...hero("/smtb.png")],
-    spineY: CAPTION_Y + 128,
-    height: 800,
   },
   {
     id: "12",
     scope: "product design",
-    media: [...hero("/szted.png")],
-    spineY: CAPTION_Y + 128,
-    height: 800,
+    blurb:
+      "the B2B unit of telkomsel providing digital solutions and connectivity for corporations — network services, collaboration tools, IoT and CX insights.",
+    hero: "/szted.png",
+    body: [],
   },
   {
-    id: "3",
-    scope: "product design",
-    media: [...hero("/sgop.png")],
-    spineY: CAPTION_Y + 128,
-    height: 800,
+    id: "8",
+    scope: "art direction · identity",
+    blurb:
+      "an edgy printmaking gallery, studio and coffee shop in ha noi, celebrating vietnam's propaganda and renewal period through traditional & contemporary paintings.",
+    hero: "/sthuy.png",
+    body: [],
   },
   {
-    id: "1",
+    id: "5",
     scope: "product design",
-    media: [...hero("/saxis.png")],
-    spineY: CAPTION_Y + 128,
-    height: 860,
+    blurb:
+      "a lightweight telkomsel app for users with limited memory or unstable connections — balance monitoring, package shop and payments.",
+    hero: "/smtb.png",
+    body: [],
+  },
+  {
+    id: "4",
+    scope: "swift · wwdc",
+    blurb: "a swift playground built for wwdc, featured on wwdc scholars.",
+    hero: "/skix.png",
+    body: ["/skix_ascii.png"],
+  },
+  {
+    // /26-exclusive placeholder — carries its own meta so nothing is added to the
+    // global registry in content/items.js.
+    id: "smbci",
+    meta: { title: "smbci", region: "indonesia", year: "2026", category: "B" },
+    scope: "product design",
+    blurb: "placeholder — details to come.",
+    hero: null,
+    body: [],
   },
 ];
 
-export const CAPTION = { y: CAPTION_Y };
+// ── derive all geometry ─────────────────────────────────────────────────────
 
-// Clearance so the first hero starts below the fixed header mark, and air after the
-// last block. Both are canvas px, so they scale down with everything else.
+export const HERO = { x: 371, y: 0, w: 699, h: HERO_H };
+
+function build(b) {
+  // A /26-only entry carries its own meta; everything else reads the shared registry.
+  const meta = b.meta ?? itemById(b.id);
+  const captionY = HERO_H + CAPTION_GAP;
+  const blurbY = captionY + CAPTION_H + BLURB_GAP;
+  const bodyY = blurbY + BLURB_H + BODY_GAP;
+
+  const rows = bodyRows(bodyY, b.body);
+  const spineY = (rows.h ? bodyY + rows.h : bodyY - BODY_GAP) + SPINE_GAP;
+  const spineRows = 4; // region, year, discipline, scope
+  const height = spineY + spineRows * SPINE_ROW_H + BLOCK_TAIL;
+
+  return {
+    ...b,
+    meta,
+    category: meta?.category ?? "none",
+    heroPlate: b.hero ? m(b.hero, HERO.x, HERO.y, HERO.w, HERO.h) : null,
+    plates: rows.plates,
+    captionY,
+    blurbY,
+    spineY,
+    height,
+  };
+}
+
 const CANVAS_TOP = 200;
 const CANVAS_BOTTOM = 220;
 
-// Absolute canvas y for each block, plus the total canvas height.
-export const stacked = (() => {
+export const blocks = source.map(build);
+
+// Positions for one filter state. Blocks that don't match are still returned (so
+// they can animate out rather than pop) but they consume NO height — the matching
+// blocks close the gap, which is why filtering never leaves holes in the column.
+// A non-matching block is parked on the seam it would have occupied, so it blurs
+// away in place instead of flying across the page.
+export function stackFor(filter) {
   let y = CANVAS_TOP;
-  const out = blocks.map((b) => {
-    const at = y;
-    y += b.height;
-    return { ...b, top: at };
+  const list = blocks.map((b) => {
+    const on = filter === "all" || b.category === filter;
+    const top = y;
+    if (on) y += b.height;
+    return { ...b, top, on };
   });
-  return { list: out, total: y + CANVAS_BOTTOM };
-})();
+  return { list, total: y + CANVAS_BOTTOM };
+}
