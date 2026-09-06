@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/react";
 import App from "./App.jsx";
 import InfiniteApp from "./infinite/InfiniteApp.jsx";
 import VerseApp from "./verse/VerseApp.jsx";
+import TwentySixApp from "./twentysix/TwentySixApp.jsx";
 import Resume from "./Resume.jsx";
 import OkuriSupport from "./OkuriSupport.jsx";
 import OkuriPrivacyPolicy from "./OkuriPrivacyPolicy.jsx";
@@ -19,6 +20,7 @@ const Page =
     path === "/infinite" ? InfiniteApp :
     path === "/infinite-wip" ? () => <InfiniteApp isWip={true} /> :
     path === "/verse" ? VerseApp :
+    path === "/26" ? TwentySixApp :
     path === "/okuri-support" ? OkuriSupport :
         path === "/okuri-privacy-policy" ? OkuriPrivacyPolicy :
             path === "/okuri-terms" ? OkuriTerms :

@@ -64,10 +64,10 @@ export default function App({ isWip = false }) {
   }));
 
   const allTiles = isAuthenticated ? [...gridItems, ...wipTiles] : gridItems;
-  // Fixed 3-2-3 column structure, slot 6 permanently removed. Only the
-  // first 8 items ever get a slot — on /wip the 9th (wip) item is
-  // intentionally left without one, same structure as the public site.
-  const COLUMN_LAYOUT = [3, 2, 3];
+  // 5-3-5 column structure (13 slots), keeping the original 3-2-3 silhouette of a
+  // shorter middle column. Items fill it in the order declared in content/items.js;
+  // anything beyond 13 (e.g. the wip item on /wip) gets no slot, as before.
+  const COLUMN_LAYOUT = [5, 3, 5];
 
   let cursor = 0;
   const columns = COLUMN_LAYOUT.map((count) => {

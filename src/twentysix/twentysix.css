@@ -1,0 +1,263 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+ * /26 — editorial canvas mode.
+ *
+ * Two coordinate systems live here, and they must not be confused:
+ *   .ts-canvas  — the fixed 1440px design canvas. Everything inside is authored in
+ *                 canvas px and absolutely positioned; the whole thing is scaled by
+ *                 a single transform, so type inside scales with the art.
+ *   .ts-frame /  — page chrome at true viewport px. Never scaled, so the nav stays
+ *   .ts-edge      legible at every width. This split IS the responsive system.
+ *
+ * Palette + type come from base.css (Exposure, --color-*), so /26 follows the rest
+ * of the site into dark mode without redefining anything.
+ * ────────────────────────────────────────────────────────────────────────── */
+
+.ts-main {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  overflow-x: hidden;
+}
+
+/* ── scaled canvas ── */
+
+.ts-viewport {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.ts-canvas {
+  position: relative;
+  transform-origin: 0 0;
+}
+
+.ts-block {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  transition: opacity 0.5s ease, filter 0.5s ease;
+}
+
+.ts-block.--dim {
+  opacity: 0.06;
+  pointer-events: none;
+}
+
+/* ── media plates ── */
+
+.ts-plate {
+  position: absolute;
+  margin: 0;
+  overflow: hidden;
+  background-color: var(--color-surface);
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.9s cubic-bezier(0.33, 1, 0.68, 1),
+    transform 0.9s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.ts-plate.--in {
+  opacity: 1;
+  transform: none;
+}
+
+.ts-plate img,
+.ts-plate video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  user-select: none;
+}
+
+/* ── caption under the hero plate ── */
+
+.ts-caption {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.ts-caption__title {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  margin: 0;
+}
+
+.ts-caption__sub {
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--color-muted);
+  margin: 3px 0 0;
+}
+
+/* ── centred meta spine: labels right-aligned into the canvas axis, values
+      left-aligned out of it, so both columns meet at 720px ── */
+
+.ts-spine {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  margin: 0;
+}
+
+.ts-spine__row {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+
+.ts-spine dt {
+  flex: 0 0 auto;
+  width: 200px;
+  text-align: right;
+  font-size: 10px;
+  font-weight: 300;
+  color: var(--color-muted);
+}
+
+.ts-spine dd {
+  flex: 0 0 auto;
+  width: 200px;
+  text-align: left;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+/* ── fixed chrome (true viewport px) ── */
+
+/* `header.` needed: base.css sets a global `header { flex-direction: column }` that
+   would otherwise stack the nav, the mark and the index link on top of each other. */
+header.ts-frame {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 20;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 1.6rem 2rem;
+  pointer-events: none;
+}
+
+.ts-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  background: linear-gradient(to bottom, var(--color-bg) 0%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #fff 0%, rgba(255, 255, 255, 0.85) 50%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, #fff 0%, rgba(255, 255, 255, 0.85) 50%, transparent 100%);
+}
+
+.ts-mark {
+  font-size: 1.5rem;
+  padding: 0;
+  pointer-events: auto;
+}
+
+.ts-mark::after,
+.ts-about::after {
+  display: none;
+}
+
+.ts-about {
+  font-size: 1.2rem;
+  padding: 0;
+  pointer-events: auto;
+  opacity: 0.45;
+  transition: opacity 0.23s ease;
+}
+
+.ts-about:hover {
+  opacity: 1;
+}
+
+/* filter pills — same sliding-background device as the root grid's frame */
+
+.ts-nav {
+  position: relative;
+  display: flex;
+  padding: 0.4rem;
+  border-radius: 100px;
+  background-color: var(--color-surface);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  pointer-events: auto;
+}
+
+.ts-nav__item {
+  position: relative;
+  z-index: 2;
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font-family: 'Exposure', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.02em;
+  padding: 0.7rem 1.6rem;
+  border-radius: 100px;
+  cursor: pointer;
+  opacity: 0.45;
+  transition: opacity 0.23s ease;
+}
+
+.ts-nav__item:hover,
+.ts-nav__item.--active {
+  opacity: 1;
+}
+
+.ts-nav__bg {
+  position: absolute;
+  top: 0.4rem;
+  left: 0;
+  width: 0;
+  height: calc(100% - 0.8rem);
+  z-index: 1;
+  border-radius: 100px;
+  background: var(--color-surface-solid);
+  transition: transform 0.45s cubic-bezier(0.33, 1, 0.68, 1),
+    width 0.45s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+/* rotated edge mark, as on the reference */
+
+.ts-edge {
+  position: fixed;
+  left: 0.9rem;
+  bottom: 2rem;
+  z-index: 20;
+  font-size: 1rem;
+  color: var(--color-muted);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .ts-plate,
+  .ts-block {
+    transition: none;
+  }
+
+  .ts-plate {
+    opacity: 1;
+    transform: none;
+  }
+}

@@ -5,14 +5,24 @@
 // DetailPanel renders (see ./DetailPanel.jsx). Plain hand-editable JSX — tweak here
 // and it updates in both the root grid and /infinite.
 //
-// Construction placeholders keep their real content preserved in a comment right
-// below, so reviving an item = swap the two.
+// To take an item offline, swap its body for `<>site under construction&nbsp;– TBU</>`
+// and keep the real JSX in a comment right below, so reviving = swap the two back.
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const bodies = {
+  // ── 1 · axisnet ──
+  "1": (
+    <>
+      <span>
+        <p>🇮🇩 indonesia</p>
+        <p>🕰️ 2024</p>
+      </span>
+      A self-care application for AXIS customers that allows them to manage their accounts, top up credits & internet packages.
+      <span>T B U</span>
+    </>
+  ),
+
   // ── 2 · vietinbank efast ──
-  "2": <>site under construction&nbsp;– TBU</>,
-  /* real body:
   "2": (
     <>
       <span>
@@ -22,7 +32,7 @@ export const bodies = {
       A digital B2B banking service offered by the Vietnam Joint Stock Commercial Bank for Industry and Trade. Allows corporate clients to manage accounts, conduct transactions, and approve payments anytime and anywhere via an internet connection.
       <span>T B U</span>
     </>
-  ), */
+  ),
 
   // ── 3 · gopay ──
   "3": (
@@ -52,8 +62,6 @@ export const bodies = {
   ),
 
   // ── 5 · mytelkomsel basic ──
-  "5": <>site under construction&nbsp;– TBU</>,
-  /* real body:
   "5": (
     <>
       <span>
@@ -63,7 +71,7 @@ export const bodies = {
       Emphatising Indonesia's large amount of low-end smartphone users, MyTelkomsel Basic is a  lightweight application from Telkomsel, designed for users with limited memory or in rural & remote areas with unstable internet connections. Provides essential functions such as credit & data balance monitoring, internet & phone package shop, and making payments.
       <span>T B U</span>
     </>
-  ), */
+  ),
 
   // ── 6 · okuri ──
   "6": (
@@ -148,8 +156,6 @@ export const bodies = {
   ),
 
   // ── 8 · thanh uy art gallery ──
-  "8": <>site under construction&nbsp;– TBU</>,
-  /* real body:
   "8": (
     <>
       <span>
@@ -160,20 +166,18 @@ export const bodies = {
       <br />
       <span>T B U</span>
     </>
-  ), */
+  ),
 
   // ── 9 · samosynth ──
-  "9": <>site under construction&nbsp;– TBU</>,
-  /* real body:
   "9": (
     <>
-      <span className="">indonesia</span>
+      {/* <span className="">indonesia</span> */}
       <span>
         <p>🌎 global</p>
         <p>🕰️ 2025</p>
       </span>
       <span>
-        <img className="details__media" src="./ssamo_dsimulator.png" />
+        <img className="details__media" src="/ssamo_dsimulator.png" />
       </span>
       <span>
         <p>
@@ -182,7 +186,7 @@ export const bodies = {
       </span>
       <span>pad mechanism</span>
       <span>
-        <video autoPlay loop playsInline controls muted className="details__media" src="./ssamo_dpads.mp4"></video>
+        <video autoPlay loop playsInline controls muted className="details__media" src="/ssamo_dpads.mp4"></video>
       </span>
       <span>
         <p>
@@ -197,7 +201,7 @@ export const bodies = {
       </span>
       <span>tiles</span>
       <span>
-        <video autoPlay loop playsInline controls muted className="details__media" src="./ssamo_dtiles.mp4"></video>
+        <video autoPlay loop playsInline controls muted className="details__media" src="/ssamo_dtiles.mp4"></video>
       </span>
       <span>
         <p>
@@ -205,14 +209,12 @@ export const bodies = {
         </p>
       </span>
       <span>
-        <img className="details__media" src="./ssamo_dgrid.png" />
+        <img className="details__media" src="/ssamo_dgrid.png" />
       </span>
     </>
-  ), */
+  ),
 
   // ── 10 · blooms ──
-  "10": <>site under construction&nbsp;– TBU</>,
-  /* real body:
   "10": (
     <>
       <span>
@@ -225,7 +227,20 @@ export const bodies = {
         <a href="https://joinbloomsthechemist.com.au/" target="_blank" rel="noreferrer">{"live site here"}</a>
       </span>
     </>
-  ), */
+  ),
+
+  // ── 11 · kuttaib ──
+  "11": (
+    <>
+      <span>
+        <p>🇮🇩 indonesia</p>
+        <p>🕰️ 2023</p>
+      </span>
+      {"a faith-driven digital journal for muslims that I, a Christian myself, designed & developed :)"}
+      <br />
+      <span>T B U</span>
+    </>
+  ),
 
   // ── 12 · ted ──
   "12": (
@@ -241,8 +256,6 @@ export const bodies = {
   ),
 
   // ── 13 · kfc ──
-  "13": <>site under construction&nbsp;– TBU</>,
-  /* real body:
   "13": (
     <>
       <span>
@@ -253,22 +266,5 @@ export const bodies = {
       <br />
       <span>T B U</span>
     </>
-  ), */
-
-  // fully parked bodies (item also off in items.js) — kept for revival:
-  /* "1" · axisnet:
-    <>
-      <span><p>🇮🇩 indonesia</p><p>🕰️ 2024</p></span>
-      A self-care application for AXIS customers that allows them to manage their accounts, top up credits & internet packages.
-      <span>T B U</span>
-    </>
-  */
-  /* "11" · kuttaib:
-    <>
-      <span><p>🇮🇩 indonesia</p><p>🕰️ 2023</p></span>
-      {"a faith-driven digital journal for muslims that I, a Christian myself, designed & developed :)"}
-      <br />
-      <span>T B U</span>
-    </>
-  */
+  ),
 };
