@@ -131,16 +131,8 @@ export default function TwentySixApp() {
 
   return (
     <main className="ts-main">
-      <div className="mobile-blocker">
-        <p className="mobile__desc">
-          this piece is best viewed<br />on desktop screen.
-        </p>
-        <h1 className="mobile__title">(wob)</h1>
-        <div className="mobile__desc2">
-          <a href="https://linkedin.com/in/owil/" target="_blank" rel="noreferrer">corporate</a>
-          <a href="mailto:owilhm@gmail.com" target="_blank" rel="noreferrer">hmu</a>
-        </div>
-      </div>
+      {/* No mobile blocker here on purpose: /26 is meant to scale the whole canvas
+          down to phone width rather than refuse to render, unlike the other routes. */}
 
       {/* ── fixed chrome: true viewport pixels, never scaled ── */}
       <header className="ts-frame">

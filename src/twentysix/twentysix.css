@@ -249,6 +249,61 @@ header.ts-frame {
   pointer-events: none;
 }
 
+/* ── mobile ──────────────────────────────────────────────────────────────────
+ * /26 does NOT use the site-wide mobile blocker. The whole point of the canvas is
+ * that a phone gets the same composition, scaled: vw/1440 at 375px is 0.26, so the
+ * layout survives intact in miniature. base.css hides every route's content below
+ * 650px for the blocker, so those rules have to be undone here — matching its
+ * `!important` is the only way to win against it.
+ * ────────────────────────────────────────────────────────────────────────── */
+@media only screen and (max-width: 650px) {
+
+  .ts-main>*,
+  header.ts-frame {
+    display: revert !important;
+  }
+
+  header.ts-frame {
+    display: flex !important;
+    padding: 0.9rem 0.9rem;
+    gap: 0.6rem;
+  }
+
+  .ts-viewport {
+    display: block !important;
+  }
+
+  /* chrome stays at true viewport px — it must not shrink with the canvas */
+  .ts-nav {
+    padding: 0.25rem;
+  }
+
+  .ts-nav__item {
+    font-size: 1rem;
+    padding: 0.5rem 0.7rem;
+  }
+
+  .ts-nav__bg {
+    top: 0.25rem;
+    height: calc(100% - 0.5rem);
+  }
+
+  .ts-mark {
+    font-size: 1.2rem;
+  }
+
+  /* the index link is the first thing to go when width runs out */
+  .ts-about {
+    display: none !important;
+  }
+
+  .ts-edge {
+    left: 0.4rem;
+    bottom: 1.2rem;
+    font-size: 0.9rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
 
   .ts-plate,
