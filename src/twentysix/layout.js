@@ -105,17 +105,28 @@ function bodyRows(y, srcs) {
 // `id` keys into content/items.js for title / region / year / category. A block may
 // carry its own `meta` instead, for entries that exist only on /26.
 
+// `name`, `subtitle`, `discipline` and `cat` are /26-ONLY overrides — they never
+// touch content/items.js, so the root grid, /infinite and /verse are unaffected.
+// A falsy `subtitle` or `blurb` hides that layer entirely rather than printing empty
+// space. `hidden: true` drops the block from the page completely.
+
 const source = [
   {
     id: "13",
-    scope: "design system",
+    name: "KFC Global",
+    subtitle: "nothing beats the original",
+    discipline: "design system • digital channel rebrand",
+    cat: "B",
     blurb: "a global multi-brand design system overhaul under Yum! brands.",
     hero: "/skfc.gif",
     body: [],
   },
   {
     id: "6",
-    scope: "product design · engineering",
+    name: "OKURI",
+    subtitle: "overengineered himekuri calendar",
+    discipline: "visual arts • utility",
+    cat: "A",
     blurb:
       "a digital tear-off calendar inspired by the traditional japanese himekuri, with an over-engineered contemporary spin. swipe to flip a new sheet each day.",
     hero: "/xokuri.mp4",
@@ -123,29 +134,32 @@ const source = [
   },
   {
     id: "10",
-    scope: "art direction",
+    name: "Blooms The Chemist",
+    subtitle: "",
+    discipline: "web development",
+    cat: "A",
     blurb:
       "an australian retail pharmacy group and certified B Corp, offering health & wellness prescriptions, pharmacist consultations and medication ordering.",
     hero: "/szbloom.jpeg",
-    body: ["/szbloom.png"],
+    body: [],
   },
   {
     id: "9",
-    scope: "art direction · interaction",
+    name: "SAMOSYNTH",
+    subtitle: "",
+    discipline: "music development app",
+    cat: "D",
     blurb:
       "a mini mpc / sampler celebrating bataknese culture, mixing hip-hop drum samples with processed taganing, kulcapi and gordang one-shots.",
     hero: "/ssamo_dpads.mp4",
-    body: [
-      "/ssamo_dsimulator.png",
-      "/ssamo_dtiles.mp4",
-      "/ssamo_ascii.png",
-      "/ssamo_dgrid.png",
-      "/ssamo.png",
-    ],
+    body: ["/ssamo_dsimulator.png", "/ssamo_dtiles.mp4", "/ssamo_dgrid.png", "/ssamo.png"],
   },
   {
     id: "12",
-    scope: "product design",
+    name: "Telkomsel Enterprise (Ted)",
+    subtitle: "",
+    discipline: "product design",
+    cat: "B",
     blurb:
       "the B2B unit of telkomsel providing digital solutions and connectivity for corporations — network services, collaboration tools, IoT and CX insights.",
     hero: "/szted.png",
@@ -153,7 +167,10 @@ const source = [
   },
   {
     id: "8",
-    scope: "art direction · identity",
+    name: "Thanh Uy",
+    subtitle: "art gallery & coffee",
+    discipline: "visual arts",
+    cat: "A",
     blurb:
       "an edgy printmaking gallery, studio and coffee shop in ha noi, celebrating vietnam's propaganda and renewal period through traditional & contemporary paintings.",
     hero: "/sthuy.png",
@@ -161,7 +178,10 @@ const source = [
   },
   {
     id: "5",
-    scope: "product design",
+    name: "MyTelkomsel Basic",
+    subtitle: "",
+    discipline: "product design",
+    cat: "B",
     blurb:
       "a lightweight telkomsel app for users with limited memory or unstable connections — balance monitoring, package shop and payments.",
     hero: "/smtb.png",
@@ -169,18 +189,25 @@ const source = [
   },
   {
     id: "4",
-    scope: "swift · wwdc",
+    name: "KIX",
+    subtitle: "interactive hoop shoes finder",
+    discipline: "interactive 3D app",
+    cat: "D",
     blurb: "a swift playground built for wwdc, featured on wwdc scholars.",
     hero: "/skix.png",
-    body: ["/skix_ascii.png"],
+    body: [],
   },
   {
-    // /26-exclusive placeholder — carries its own meta so nothing is added to the
-    // global registry in content/items.js.
+    // /26-exclusive entry — carries its own meta so nothing is added to the global
+    // registry. Hidden until the project is confirmed: drop `hidden` to publish it.
     id: "smbci",
-    meta: { title: "smbci", region: "indonesia", year: "2026", category: "B" },
-    scope: "product design",
-    blurb: "placeholder — details to come.",
+    hidden: true,
+    meta: { title: "SMBCI", region: "indonesia", year: "2026" },
+    name: "SMBCI",
+    subtitle: "bersama lebih bermakna",
+    discipline: "product design",
+    cat: "B",
+    blurb: "",
     hero: null,
     body: [],
   },
@@ -193,19 +220,24 @@ export const HERO = { x: 371, y: 0, w: 699, h: HERO_H };
 function build(b) {
   // A /26-only entry carries its own meta; everything else reads the shared registry.
   const meta = b.meta ?? itemById(b.id);
+
+  // Layers collapse when they have no content, so a project with no subtitle or no
+  // blurb doesn't leave a hole where that line would have been.
   const captionY = HERO_H + CAPTION_GAP;
-  const blurbY = captionY + CAPTION_H + BLURB_GAP;
-  const bodyY = blurbY + BLURB_H + BODY_GAP;
+  const captionH = b.subtitle ? CAPTION_H : CAPTION_H - 17;
+  const blurbY = captionY + captionH + BLURB_GAP;
+  const blurbH = b.blurb ? BLURB_H : 0;
+  const bodyY = blurbY + blurbH + (b.blurb ? BODY_GAP : 0);
 
   const rows = bodyRows(bodyY, b.body);
-  const spineY = (rows.h ? bodyY + rows.h : bodyY - BODY_GAP) + SPINE_GAP;
-  const spineRows = 4; // region, year, discipline, scope
-  const height = spineY + spineRows * SPINE_ROW_H + BLOCK_TAIL;
+  const spine = [meta?.region, meta?.year, b.discipline].filter(Boolean);
+  const spineY = (rows.h ? bodyY + rows.h : bodyY) + SPINE_GAP;
+  const height = spineY + spine.length * SPINE_ROW_H + BLOCK_TAIL;
 
   return {
     ...b,
     meta,
-    category: meta?.category ?? "none",
+    category: b.cat ?? meta?.category ?? "none",
     heroPlate: b.hero ? m(b.hero, HERO.x, HERO.y, HERO.w, HERO.h) : null,
     plates: rows.plates,
     captionY,
@@ -218,7 +250,7 @@ function build(b) {
 const CANVAS_TOP = 200;
 const CANVAS_BOTTOM = 220;
 
-export const blocks = source.map(build);
+export const blocks = source.filter((b) => !b.hidden).map(build);
 
 // Positions for one filter state. Blocks that don't match are still returned (so
 // they can animate out rather than pop) but they consume NO height — the matching

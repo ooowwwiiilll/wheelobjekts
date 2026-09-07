@@ -7,7 +7,8 @@
 // This holds all the way down to phone width — /26 deliberately has no mobile
 // blocker, unlike the other routes.
 import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import { CATEGORY_LABEL } from "../content/items.js";
+import { itemById } from "../content/items.js";
+import { bodies } from "../content/bodies.jsx";
 import { CANVAS_W, stackFor } from "./layout.js";
 import "./twentysix.css";
 
@@ -71,8 +72,7 @@ function Block({ block }) {
   const spine = [
     ["region", meta.region],
     ["year", meta.year],
-    ["discipline", CATEGORY_LABEL[meta.category] ?? "self"],
-    ["scope", block.scope],
+    ["discipline", block.discipline],
   ].filter(([, v]) => v);
 
   return (
@@ -90,16 +90,16 @@ function Block({ block }) {
       )}
 
       <div className="ts-caption" style={{ top: block.captionY }}>
-        <p className="ts-caption__title">{meta.title}</p>
-        <p className="ts-caption__sub">
-          {meta.region} — {meta.year}
-        </p>
+        <p className="ts-caption__title">{block.name ?? meta.title}</p>
+        {block.subtitle ? <p className="ts-caption__sub">{block.subtitle}</p> : null}
       </div>
 
       {/* description layer, between the caption and the body media */}
-      <div className="ts-blurb" style={{ top: block.blurbY }}>
-        <p>{block.blurb}</p>
-      </div>
+      {block.blurb ? (
+        <div className="ts-blurb" style={{ top: block.blurbY }}>
+          <p>{block.blurb}</p>
+        </div>
+      ) : null}
 
       {block.plates.map((plate, i) => (
         <Plate key={`${block.id}-${i}`} plate={plate} index={i} />
@@ -119,12 +119,79 @@ function Block({ block }) {
   );
 }
 
+// The about panel. Only the "obed willhem" entry uses this for now — project items
+// will get the same panel later, which is why the media handling below is written
+// generically rather than assuming this body has no video.
+const ABOUT_ID = "7";
+
+function AboutPanel({ open, onClose }) {
+  const ref = useRef(null);
+  const item = itemById(ABOUT_ID);
+
+  // Media purge, mirroring lib/grid.js: on close, pause every video, stash its src
+  // on the element and blank the attribute. That tears down the media session so a
+  // closed panel can't keep audio alive or hand a Picture-in-Picture window to the
+  // next thing opened. On reopen the stashed src is restored and reloaded.
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const videos = el.querySelectorAll("video");
+    if (open) {
+      videos.forEach((v) => {
+        if (v.dataset.originalSrc) v.setAttribute("src", v.dataset.originalSrc);
+        v.currentTime = 0;
+        v.load();
+        v.play().catch(() => { });
+      });
+    } else {
+      videos.forEach((v) => {
+        v.pause();
+        v.currentTime = 0;
+        if (v.src && !v.dataset.originalSrc) {
+          v.dataset.originalSrc = v.getAttribute("src");
+        }
+        v.removeAttribute("src");
+        v.load();
+      });
+    }
+  }, [open]);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open, onClose]);
+
+  return (
+    <>
+      <div
+        className={`ts-side__scrim${open ? " --on" : ""}`}
+        onClick={onClose}
+        aria-hidden="true"
+      />
+      <aside
+        className={`ts-side${open ? " --on" : ""}`}
+        ref={ref}
+        aria-hidden={open ? undefined : true}
+      >
+        <button className="ts-side__close" onClick={onClose}>close</button>
+        <h2 className="ts-side__title">{item?.title ?? "about"}</h2>
+        <div className="ts-side__body">{bodies[ABOUT_ID]}</div>
+      </aside>
+    </>
+  );
+}
+
 export default function TwentySixApp() {
   // scale = vw / 1440, capped at 1 so the canvas centres rather than inflating on
   // wide screens; offset re-centres it once it stops growing.
   const [fitted, setFitted] = useState({ scale: 1, offset: 0 });
   const { scale, offset } = fitted;
   const [filter, setFilter] = useState("all");
+  const [aboutOpen, setAboutOpen] = useState(false);
   const navRef = useRef(null);
   const bgRef = useRef(null);
 
@@ -179,8 +246,10 @@ export default function TwentySixApp() {
 
         <a className="ts-mark" href="/">( 26 )</a>
 
-        <a className="ts-about" href="/">index</a>
+        <button className="ts-about" onClick={() => setAboutOpen(true)}>abouts</button>
       </header>
+
+      <AboutPanel open={aboutOpen} onClose={() => setAboutOpen(false)} />
 
       <p className="ts-edge">© 2026 obed willhem</p>
 
