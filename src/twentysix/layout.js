@@ -20,12 +20,44 @@ export const CANVAS_W = 1440;
 // Plate heights — the reference's own rhythm, roughly 1 : 0.68 : 0.39.
 export const H = { lg: 397, md: 270, sm: 155 };
 
+// ── HERO SIZING ─────────────────────────────────────────────────────────────
+// The hero keeps ONE width for every project and takes its height from the asset's
+// own aspect ratio, so nothing is ever cropped and the column stays aligned.
+//
+// Measured ratios of the real files (w/h). The census: 1:1 is the most common shape
+// in the library (8 of 17), then 4:3 (3), then 3:2 and 16:10 (2 each). Block heights
+// have to be known synchronously to stack the canvas, so ratios are recorded here
+// rather than read off the decoded image at runtime.
+export const HERO_W = 699;
+
+const ASSET_RATIO = {
+  "/skfc.gif": 1,
+  "/xokuri_compressed.mp4": 4 / 3,
+  "/mokuri1_compressed.jpeg": 3 / 2,
+  "/mokuri2_compressed.jpeg": 3 / 2,
+  "/xokuri_compressed.png": 3172 / 1481,
+  "/sokuri.gif": 1,
+  "/szbloom_compressed.jpeg": 4 / 3,
+  "/ssamo_dpads_compressed.mp4": 1.6,
+  "/ssamo_dtiles_compressed.mp4": 1.6,
+  "/ssamo_dsimulator_compressed.png": 4 / 3,
+  "/ssamo_dgrid_compressed.png": 3472 / 1774,
+  "/ssamo_compressed.png": 1,
+  "/szted_compressed.png": 1,
+  "/sthuy_compressed.png": 1,
+  "/smtb_compressed.png": 1,
+  "/skix_compressed.png": 1,
+};
+
+// 1 (square) is the safe default: it's the library's dominant shape, so an asset
+// added without a measured ratio lands on the most likely one.
+export const ratioOf = (src) => ASSET_RATIO[src] ?? 1;
+
 // Vertical rhythm inside a block.
-const HERO_H = H.lg;
 const CAPTION_GAP = 40;   // hero bottom → caption
 const CAPTION_H = 46;
 const BLURB_GAP = 26;     // caption bottom → description layer
-const BLURB_H = 92;       // reserved for the description layer
+const BLURB_LINE_H = 21;  // one wrapped line of the description layer
 const BODY_GAP = 64;      // description bottom → first body row
 const ROW_GAP = 40;       // between wrapped body rows
 const SPINE_GAP = 96;     // last body row bottom → meta spine
@@ -129,8 +161,8 @@ const source = [
     cat: "A",
     blurb:
       "a digital tear-off calendar inspired by the traditional japanese himekuri, with an over-engineered contemporary spin. swipe to flip a new sheet each day.",
-    hero: "/xokuri.mp4",
-    body: ["/mokuri1.jpeg", "/xokuri.png", "/sokuri.gif", "/mokuri2.jpeg"],
+    hero: "/xokuri_compressed.mp4",
+    body: ["/mokuri1_compressed.jpeg", "/xokuri_compressed.png", "/sokuri.gif", "/mokuri2_compressed.jpeg"],
   },
   {
     id: "10",
@@ -140,7 +172,7 @@ const source = [
     cat: "A",
     blurb:
       "an australian retail pharmacy group and certified B Corp, offering health & wellness prescriptions, pharmacist consultations and medication ordering.",
-    hero: "/szbloom.jpeg",
+    hero: "/szbloom_compressed.jpeg",
     body: [],
   },
   {
@@ -151,8 +183,8 @@ const source = [
     cat: "D",
     blurb:
       "a mini mpc / sampler celebrating bataknese culture, mixing hip-hop drum samples with processed taganing, kulcapi and gordang one-shots.",
-    hero: "/ssamo_dpads.mp4",
-    body: ["/ssamo_dsimulator.png", "/ssamo_dtiles.mp4", "/ssamo_dgrid.png", "/ssamo.png"],
+    hero: "/ssamo_dpads_compressed.mp4",
+    body: ["/ssamo_dsimulator_compressed.png", "/ssamo_dtiles_compressed.mp4", "/ssamo_dgrid_compressed.png", "/ssamo_compressed.png"],
   },
   {
     id: "12",
@@ -162,7 +194,7 @@ const source = [
     cat: "B",
     blurb:
       "the B2B unit of telkomsel providing digital solutions and connectivity for corporations — network services, collaboration tools, IoT and CX insights.",
-    hero: "/szted.png",
+    hero: "/szted_compressed.png",
     body: [],
   },
   {
@@ -173,7 +205,7 @@ const source = [
     cat: "A",
     blurb:
       "an edgy printmaking gallery, studio and coffee shop in ha noi, celebrating vietnam's propaganda and renewal period through traditional & contemporary paintings.",
-    hero: "/sthuy.png",
+    hero: "/sthuy_compressed.png",
     body: [],
   },
   {
@@ -184,7 +216,7 @@ const source = [
     cat: "B",
     blurb:
       "a lightweight telkomsel app for users with limited memory or unstable connections — balance monitoring, package shop and payments.",
-    hero: "/smtb.png",
+    hero: "/smtb_compressed.png",
     body: [],
   },
   {
@@ -194,7 +226,7 @@ const source = [
     discipline: "interactive 3D app",
     cat: "D",
     blurb: "a swift playground built for wwdc, featured on wwdc scholars.",
-    hero: "/skix.png",
+    hero: "/skix_compressed.png",
     body: [],
   },
   {
@@ -215,30 +247,41 @@ const source = [
 
 // ── derive all geometry ─────────────────────────────────────────────────────
 
-export const HERO = { x: 371, y: 0, w: 699, h: HERO_H };
+export const HERO_X = Math.round((CANVAS_W - HERO_W) / 2);
 
 function build(b) {
   // A /26-only entry carries its own meta; everything else reads the shared registry.
   const meta = b.meta ?? itemById(b.id);
 
+  // Universal hero width, height from the asset's own ratio. Everything below the
+  // hero shifts with it, which is why captionY is derived rather than constant.
+  const heroH = b.hero ? Math.round(HERO_W / ratioOf(b.hero)) : H.lg;
+
   // Layers collapse when they have no content, so a project with no subtitle or no
   // blurb doesn't leave a hole where that line would have been.
-  const captionY = HERO_H + CAPTION_GAP;
+  const captionY = heroH + CAPTION_GAP;
   const captionH = b.subtitle ? CAPTION_H : CAPTION_H - 17;
   const blurbY = captionY + captionH + BLURB_GAP;
-  const blurbH = b.blurb ? BLURB_H : 0;
-  const bodyY = blurbY + blurbH + (b.blurb ? BODY_GAP : 0);
+  // The description is one absolutely-positioned layer, so its height has to be
+  // predicted rather than measured: ~92 characters fit on a 620px line at 13px.
+  // Reserving a flat block here is what left a dead band under short blurbs.
+  const blurbH = b.blurb ? Math.ceil(b.blurb.length / 92) * BLURB_LINE_H : 0;
+  const bodyY = blurbY + blurbH + BODY_GAP;
 
   const rows = bodyRows(bodyY, b.body);
   const spine = [meta?.region, meta?.year, b.discipline].filter(Boolean);
-  const spineY = (rows.h ? bodyY + rows.h : bodyY) + SPINE_GAP;
+  // With no body media the spine follows the description directly — no phantom
+  // body gap in between.
+  const contentBottom = rows.h ? bodyY + rows.h : blurbY + blurbH;
+  const spineY = contentBottom + SPINE_GAP;
   const height = spineY + spine.length * SPINE_ROW_H + BLOCK_TAIL;
 
   return {
     ...b,
     meta,
     category: b.cat ?? meta?.category ?? "none",
-    heroPlate: b.hero ? m(b.hero, HERO.x, HERO.y, HERO.w, HERO.h) : null,
+    heroPlate: b.hero ? m(b.hero, HERO_X, 0, HERO_W, heroH) : null,
+    heroH,
     plates: rows.plates,
     captionY,
     blurbY,

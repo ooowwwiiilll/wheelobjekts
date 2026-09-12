@@ -5,6 +5,9 @@ import App from "./App.jsx";
 import InfiniteApp from "./infinite/InfiniteApp.jsx";
 import VerseApp from "./verse/VerseApp.jsx";
 import TwentySixApp from "./twentysix/TwentySixApp.jsx";
+import WorksApp from "./works/WorksApp.jsx";
+import Lebron17App from "./lebron17/Lebron17App.jsx";
+import HeartbeatApp from "./heartbeat/HeartbeatApp.jsx";
 import Resume from "./Resume.jsx";
 import OkuriSupport from "./OkuriSupport.jsx";
 import OkuriPrivacyPolicy from "./OkuriPrivacyPolicy.jsx";
@@ -19,7 +22,7 @@ const path = window.location.pathname;
 // While this is true, ANY path on ANY domain or subdomain serving this app renders
 // /26 and the address bar is rewritten to /26. Nothing else is changed — flip this
 // single flag to false to restore normal routing exactly as it was.
-const FORCE_26 = true;
+const FORCE_26 = false;
 
 // …except these. OKURI's App Store listing and the app itself link straight to the
 // legal pages, so funnelling them would break a live App Store requirement.
@@ -37,6 +40,9 @@ const Page = forced ? TwentySixApp :
     path === "/infinite-wip" ? () => <InfiniteApp isWip={true} /> :
     path === "/verse" ? VerseApp :
     path === "/26" ? TwentySixApp :
+    path === "/works" ? WorksApp :
+    path === "/lebron17" ? Lebron17App :
+    path === "/heartbeat" ? HeartbeatApp :
     path === "/okuri-support" ? OkuriSupport :
         path === "/okuri-privacy-policy" ? OkuriPrivacyPolicy :
             path === "/okuri-terms" ? OkuriTerms :

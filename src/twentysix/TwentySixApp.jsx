@@ -7,9 +7,12 @@
 // This holds all the way down to phone width — /26 deliberately has no mobile
 // blocker, unlike the other routes.
 import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { gsap } from "gsap";
+import { SplitText } from "gsap/SplitText";
 import { itemById } from "../content/items.js";
 import { bodies } from "../content/bodies.jsx";
-import { CANVAS_W, stackFor } from "./layout.js";
+import { MOTION } from "../lib/grid.js";
+import { CANVAS_W, HERO_W, HERO_X, stackFor } from "./layout.js";
 import "./twentysix.css";
 
 const FILTERS = [
@@ -22,23 +25,33 @@ const FILTERS = [
 function Plate({ plate, index, hero }) {
   const ref = useRef(null);
 
-  // Reveal each plate as it enters the viewport — the canvas is long, and this is
-  // the one piece of motion. Falls back to visible when there's no observer.
+  // One observer does two jobs: reveal the plate, and gate video playback.
+  //
+  // The videos here are large source files, and autoplaying all of them at once
+  // meant every one was decoding simultaneously the whole time the page was open,
+  // which is the main reason scrolling stuttered. They now stay at preload="none"
+  // until they're near the viewport, and pause again once they leave.
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    const vid = el.querySelector("video");
+
     if (typeof IntersectionObserver === "undefined") {
       el.classList.add("--in");
+      vid?.play().catch(() => { });
       return;
     }
+
     const io = new IntersectionObserver(
       ([e]) => {
         if (e.isIntersecting) {
           el.classList.add("--in");
-          io.disconnect();
+          vid?.play().catch(() => { });
+        } else if (vid && !vid.paused) {
+          vid.pause();
         }
       },
-      { rootMargin: "0px 0px -8% 0px" }
+      { rootMargin: "300px 0px" }
     );
     io.observe(el);
     return () => io.disconnect();
@@ -57,9 +70,9 @@ function Plate({ plate, index, hero }) {
       }}
     >
       {plate.video ? (
-        <video src={plate.src} autoPlay loop muted playsInline preload="metadata" />
+        <video src={plate.src} loop muted playsInline preload="none" />
       ) : (
-        <img src={plate.src} alt="" loading="lazy" draggable="false" />
+        <img src={plate.src} alt="" loading="lazy" decoding="async" draggable="false" />
       )}
     </figure>
   );
@@ -84,7 +97,7 @@ function Block({ block }) {
       {block.heroPlate ? (
         <Plate plate={block.heroPlate} index={0} hero />
       ) : (
-        <div className="ts-plate ts-plate--empty --in" style={{ left: 371, top: 0, width: 699, height: 397 }}>
+        <div className="ts-plate ts-plate--empty --in" style={{ left: HERO_X, top: 0, width: HERO_W, height: block.heroH }}>
           <span>placeholder</span>
         </div>
       )}
@@ -126,7 +139,93 @@ const ABOUT_ID = "7";
 
 function AboutPanel({ open, onClose }) {
   const ref = useRef(null);
+  const titleRef = useRef(null);
+  const bodyRef = useRef(null);
+  const thumbRef = useRef(null);
+  const splits = useRef([]);
+  const mounted = useRef(false);
   const item = itemById(ABOUT_ID);
+
+  // The open/close choreography is the main site's, value for value, read from
+  // MOTION.detail in lib/grid.js rather than re-timed by eye:
+  //   panel   x slide,            0.78s power3.inOut  (close waits 0.20s first)
+  //   title   SplitText chars,    0.72s power3.inOut, 0.26s in, 0.016 stagger
+  //   body    SplitText lines,    0.72s power3.inOut, 0.26s in, 0.033 stagger
+  //   thumb   blur 30→0 + y 30→0 + scale .95→1, 0.78s power3.out, 0.33s in
+  // Both splits use mask:"lines"; the global `.line/.char` rule in style.css parks
+  // them at translate3d(0,100%,0), so the tweens animate y back to 0.
+  useEffect(() => {
+    const panel = ref.current;
+    if (!panel) return;
+    const M = MOTION.detail;
+
+    if (!open) {
+      // Skip the close tween on first mount, or the panel animates on page load.
+      if (mounted.current) {
+        gsap.to(panel, {
+          xPercent: 100,
+          duration: M.panelDuration,
+          delay: M.closeDelay,
+          ease: M.panelEase,
+        });
+      } else {
+        gsap.set(panel, { xPercent: 100 });
+        mounted.current = true;
+      }
+      splits.current.forEach((s) => s.revert());
+      splits.current = [];
+      return;
+    }
+
+    gsap.to(panel, { xPercent: 0, duration: M.panelDuration, ease: M.panelEase });
+
+    splits.current.forEach((s) => s.revert());
+    splits.current = [];
+
+    const titleSplit = new SplitText(titleRef.current, {
+      type: "lines, chars",
+      mask: "lines",
+      charsClass: "char",
+    });
+    const bodySplit = new SplitText(bodyRef.current, {
+      type: "lines",
+      mask: "lines",
+      linesClass: "line",
+    });
+    splits.current = [titleSplit, bodySplit];
+
+    gsap.to(titleSplit.chars, {
+      y: 0,
+      duration: M.titleCharDuration,
+      delay: M.titleCharDelay,
+      ease: M.titleCharEase,
+      stagger: M.titleCharStagger,
+    });
+
+    gsap.to(bodySplit.lines, {
+      y: 0,
+      duration: M.textLineDuration,
+      delay: M.textLineDelay,
+      ease: M.textLineEase,
+      stagger: M.textLineStagger,
+    });
+
+    if (thumbRef.current) {
+      gsap.fromTo(
+        thumbRef.current,
+        { opacity: 0, y: 30, scale: 0.95, filter: "blur(30px)" },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          filter: "blur(0px)",
+          duration: M.imgDuration,
+          delay: M.imgDelay,
+          ease: M.imgEase,
+        }
+      );
+    }
+  }, [open]);
 
   // Media purge, mirroring lib/grid.js: on close, pause every video, stash its src
   // on the element and blank the attribute. That tears down the media session so a
@@ -178,8 +277,13 @@ function AboutPanel({ open, onClose }) {
         aria-hidden={open ? undefined : true}
       >
         <button className="ts-side__close" onClick={onClose}>close</button>
-        <h2 className="ts-side__title">{item?.title ?? "about"}</h2>
-        <div className="ts-side__body">{bodies[ABOUT_ID]}</div>
+        {item?.image ? (
+          <div className="ts-side__thumb" ref={thumbRef}>
+            <img src={item.image} alt="" decoding="async" />
+          </div>
+        ) : null}
+        <h2 className="ts-side__title" ref={titleRef}>{item?.title ?? "about"}</h2>
+        <div className="ts-side__body" ref={bodyRef}>{bodies[ABOUT_ID]}</div>
       </aside>
     </>
   );
