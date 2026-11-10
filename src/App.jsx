@@ -67,7 +67,7 @@ export default function App({ isWip = false }) {
   // 5-3-5 column structure (13 slots), keeping the original 3-2-3 silhouette of a
   // shorter middle column. Items fill it in the order declared in content/items.js;
   // anything beyond 13 (e.g. the wip item on /wip) gets no slot, as before.
-  const COLUMN_LAYOUT = [5, 3, 5];
+  const COLUMN_LAYOUT = [4, 2, 4];
 
   let cursor = 0;
   const columns = COLUMN_LAYOUT.map((count) => {

@@ -84,7 +84,7 @@ export const bodies = {
         <p>OKURI is a digital tear-off calendar inspired by the traditional japanese <i>himekuri</i>, with an over-engineered contemporary spin. swipe to flip new sheet each day.</p>
       </span>
       <span>
-        <video autoPlay loop muted playsInline controls preload="none" className="details__media" src="/xokuri.mp4"></video>
+        <video loop muted playsInline controls preload="none" className="details__media" src="/xokuri_web.mp4"></video>
       </span>
       <span>
         <p><strong>core features</strong></p>
@@ -97,13 +97,13 @@ export const bodies = {
         <p>• skin editions a.k.a themes new each month</p>
       </span>
       <span>
-        <img className="details__media" src="/mokuri1.jpeg" />
+        <img className="details__media" loading="lazy" decoding="async" src="/mokuri1_web.webp" />
       </span>
       <span>
         <p>under the first month of release, OKURI has been featured by notable advocates like <a href="https://x.com/spottedinprod/status/2044848759629103493?s=46" target="_blank" rel="noreferrer" style={{ display: "inline", padding: 0, fontWeight: "bold" }}>@spottedinprod</a> and <a href="https://x.com/createwithswift/status/2054498700945227836?s=46" target="_blank" rel="noreferrer" style={{ display: "inline", padding: 0, fontWeight: "bold" }}>Create with Swift</a> on X!</p>
       </span>
       <span>
-        <img className="details__media" src="/xokuri.png" />
+        <img className="details__media" loading="lazy" decoding="async" src="/xokuri_web.webp" />
       </span>
       <span>
         <a href="https://apps.apple.com/id/app/okuri/id6759762270" target="_blank" rel="noreferrer">{"download on the app store"}</a>
@@ -177,7 +177,7 @@ export const bodies = {
         <p>🕰️ 2025</p>
       </span>
       <span>
-        <img className="details__media" src="/ssamo_dsimulator.png" />
+        <img className="details__media" loading="lazy" decoding="async" src="/ssamo_dsimulator_web.webp" />
       </span>
       <span>
         <p>
@@ -186,7 +186,7 @@ export const bodies = {
       </span>
       <span>pad mechanism</span>
       <span>
-        <video autoPlay loop playsInline controls muted className="details__media" src="/ssamo_dpads.mp4"></video>
+        <video loop playsInline controls muted preload="none" className="details__media" src="/ssamo_dpads_web.mp4"></video>
       </span>
       <span>
         <p>
@@ -201,7 +201,7 @@ export const bodies = {
       </span>
       <span>tiles</span>
       <span>
-        <video autoPlay loop playsInline controls muted className="details__media" src="/ssamo_dtiles.mp4"></video>
+        <video loop playsInline controls muted preload="none" className="details__media" src="/ssamo_dtiles_web.mp4"></video>
       </span>
       <span>
         <p>
@@ -209,7 +209,7 @@ export const bodies = {
         </p>
       </span>
       <span>
-        <img className="details__media" src="/ssamo_dgrid.png" />
+        <img className="details__media" loading="lazy" decoding="async" src="/ssamo_dgrid_web.webp" />
       </span>
     </>
   ),

@@ -4,7 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>owillhem.art</title>
-    <link rel="icon" href="src/assets/favicOn.png">
+    <!-- Served straight from public/ rather than imported from src/assets, so it
+         never enters the JS bundle. The original src/assets/favicOn.png is
+         2435x2000 / 6.44MB and was being shipped in full to draw a 16px tab icon. -->
+    <link rel="icon" href="/favicon.png" sizes="256x256">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <style>
       /* Hide images immediately before React loads */
       body.loading .grid img,

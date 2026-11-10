@@ -31,22 +31,22 @@ export const H = { lg: 397, md: 270, sm: 155 };
 export const HERO_W = 699;
 
 const ASSET_RATIO = {
-  "/skfc.gif": 1,
-  "/xokuri_compressed.mp4": 4 / 3,
-  "/mokuri1_compressed.jpeg": 3 / 2,
-  "/mokuri2_compressed.jpeg": 3 / 2,
-  "/xokuri_compressed.png": 3172 / 1481,
-  "/sokuri.gif": 1,
-  "/szbloom_compressed.jpeg": 4 / 3,
-  "/ssamo_dpads_compressed.mp4": 1.6,
-  "/ssamo_dtiles_compressed.mp4": 1.6,
-  "/ssamo_dsimulator_compressed.png": 4 / 3,
-  "/ssamo_dgrid_compressed.png": 3472 / 1774,
-  "/ssamo_compressed.png": 1,
-  "/szted_compressed.png": 1,
-  "/sthuy_compressed.png": 1,
-  "/smtb_compressed.png": 1,
-  "/skix_compressed.png": 1,
+  "/skfc_web.mp4": 1,
+  "/xokuri_web.mp4": 4 / 3,
+  "/mokuri1_web.webp": 3 / 2,
+  "/mokuri2_web.webp": 3 / 2,
+  "/xokuri_web.webp": 3172 / 1481,
+  "/sokuri_web.mp4": 1,
+  "/szbloom_web.webp": 4 / 3,
+  "/ssamo_dpads_web.mp4": 1.6,
+  "/ssamo_dtiles_web.mp4": 1.6,
+  "/ssamo_dsimulator_web.webp": 4 / 3,
+  "/ssamo_dgrid_web.webp": 3472 / 1774,
+  "/ssamo_web.webp": 1,
+  "/szted_web.webp": 1,
+  "/sthuy_web.webp": 1,
+  "/smtb_web.webp": 1,
+  "/skix_web.webp": 1,
 };
 
 // 1 (square) is the safe default: it's the library's dominant shape, so an asset
@@ -64,7 +64,16 @@ const SPINE_GAP = 96;     // last body row bottom → meta spine
 const SPINE_ROW_H = 22;
 const BLOCK_TAIL = 190;   // air below the spine before the next block
 
-const m = (src, x, y, w, h) => ({ src, x, y, w, h, video: /\.mp4$/.test(src) });
+// Videos stay at preload="none" until they scroll into range, so without a poster
+// the plate is an empty box until playback actually starts. Every _web.mp4 has a
+// matching _web -> _poster.webp first frame (2–41KB) that paints immediately.
+const m = (src, x, y, w, h) => {
+  const video = /\.mp4$/.test(src);
+  return {
+    src, x, y, w, h, video,
+    poster: video ? src.replace(/_web\.mp4$/, "_poster.webp") : null,
+  };
+};
 
 // ── BODY MEDIA RULE ─────────────────────────────────────────────────────────
 // The count of body media decides the row template. This is the whole rule:
@@ -150,7 +159,7 @@ const source = [
     discipline: "design system • digital channel rebrand",
     cat: "B",
     blurb: "a global multi-brand design system overhaul under Yum! brands.",
-    hero: "/skfc.gif",
+    hero: "/skfc_web.mp4",
     body: [],
   },
   {
@@ -161,8 +170,8 @@ const source = [
     cat: "A",
     blurb:
       "a digital tear-off calendar inspired by the traditional japanese himekuri, with an over-engineered contemporary spin. swipe to flip a new sheet each day.",
-    hero: "/xokuri_compressed.mp4",
-    body: ["/mokuri1_compressed.jpeg", "/xokuri_compressed.png", "/sokuri.gif", "/mokuri2_compressed.jpeg"],
+    hero: "/xokuri_web.mp4",
+    body: ["/mokuri1_web.webp", "/xokuri_web.webp", "/sokuri_web.mp4", "/mokuri2_web.webp"],
   },
   {
     id: "10",
@@ -173,7 +182,7 @@ const source = [
     cat: "A",
     blurb:
       "an australian retail pharmacy group and certified B Corp, offering health & wellness prescriptions, pharmacist consultations and medication ordering.",
-    hero: "/szbloom_compressed.jpeg",
+    hero: "/szbloom_web.webp",
     body: [],
   },
   {
@@ -185,8 +194,8 @@ const source = [
     cat: "D",
     blurb:
       "a mini mpc / sampler celebrating bataknese culture, mixing hip-hop drum samples with processed taganing, kulcapi and gordang one-shots.",
-    hero: "/ssamo_dpads_compressed.mp4",
-    body: ["/ssamo_dsimulator_compressed.png", "/ssamo_dtiles_compressed.mp4", "/ssamo_dgrid_compressed.png", "/ssamo_compressed.png"],
+    hero: "/ssamo_dpads_web.mp4",
+    body: ["/ssamo_dsimulator_web.webp", "/ssamo_dtiles_web.mp4", "/ssamo_dgrid_web.webp", "/ssamo_web.webp"],
   },
   {
     id: "12",
@@ -196,7 +205,7 @@ const source = [
     cat: "B",
     blurb:
       "the B2B unit of telkomsel providing digital solutions and connectivity for corporations — network services, collaboration tools, IoT and CX insights.",
-    hero: "/szted_compressed.png",
+    hero: "/szted_web.webp",
     body: [],
   },
   {
@@ -207,7 +216,7 @@ const source = [
     cat: "A",
     blurb:
       "an edgy printmaking gallery, studio and coffee shop in ha noi, celebrating vietnam's propaganda and renewal period through traditional & contemporary paintings.",
-    hero: "/sthuy_compressed.png",
+    hero: "/sthuy_web.webp",
     body: [],
   },
   {
@@ -219,7 +228,7 @@ const source = [
     cat: "B",
     blurb:
       "a lightweight telkomsel app for users with limited memory or unstable connections — balance monitoring, package shop and payments.",
-    hero: "/smtb_compressed.png",
+    hero: "/smtb_web.webp",
     body: [],
   },
   {
@@ -229,7 +238,7 @@ const source = [
     discipline: "interactive 3D app",
     cat: "D",
     blurb: "a swift playground built for wwdc, featured on wwdc scholars.",
-    hero: "/skix_compressed.png",
+    hero: "/skix_web.webp",
     body: [],
   },
   {

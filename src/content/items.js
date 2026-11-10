@@ -21,19 +21,19 @@
 
 export const items = [
   // ── active items (render a thumbnail / plane, in grid order) ──
-  { id: "2",  title: "vietinbank efast",     category: "B", region: "vietnam",   year: "2025", image: "/sfast.png",   thumb: { type: "image", src: "/sfast.png" } },
-  { id: "13", title: "kfc",                   category: "B", region: "global",    year: "2026", image: "/skfc.gif",    thumb: { type: "image", src: "/skfc.gif" } },
-  { id: "5",  title: "mytelkomsel basic",     category: "B", region: "indonesia", year: "2024", image: "/smtb.png",    thumb: { type: "image", src: "/smtb.png" } },
-  { id: "6",  title: "okuri",                 category: "D", region: "global",    year: "2025", image: "/sokuri.gif",  thumb: { type: "image", src: "/sokuri.gif" } },
-  { id: "7",  title: "obed willhem",          category: "none", region: "",       year: "",     image: "/wob.gif",     thumb: { type: "image", src: "/wob.gif" } },
-  { id: "9",  title: "samosynth",             category: "A", region: "global",    year: "2025", image: "/ssamo.png",   thumb: { type: "image", src: "/ssamo.png" } },
-  { id: "8",  title: "thanh uy art gallery",  category: "A", region: "vietnam",   year: "2025", image: "/sthuy.png",   thumb: { type: "image", src: "/sthuy.png" } },
-  { id: "10", title: "blooms",                category: "A", region: "australia", year: "2025", image: "/szbloom.png", thumb: { type: "image", src: "/szbloom.png" } },
-  { id: "3",  title: "gopay",                 category: "B", region: "indonesia", year: "2025", image: "/sgop.png",    thumb: { type: "image", src: "/sgop.png" } },
-  { id: "4",  title: "kix",                   category: "D", region: "global",    year: "2023", image: "/skix.png",    thumb: { type: "image", src: "/skix.png" } },
-  { id: "12", title: "ted",                   category: "B", region: "indonesia", year: "2024", image: "/szted.png",   thumb: { type: "image", src: "/szted.png" } },
-  { id: "1",  title: "axisnet",               category: "none", region: "indonesia", year: "2024", image: "/saxis.png", thumb: { type: "image", src: "/saxis.png" } },
-  { id: "11", title: "kuttaib",               category: "D", region: "indonesia", year: "2023", image: "/szkutt.png",  thumb: { type: "image", src: "/szkutt.png" } },
+  { id: "2",  title: "vietinbank efast",     category: "B", region: "vietnam",   year: "2025", image: "/sfast_web.webp",   thumb: { type: "image", src: "/sfast_web.webp" } },
+  { id: "13", title: "kfc",                   category: "B", region: "global",    year: "2026", image: "/skfc_thumb.webp",    thumb: { type: "image", src: "/skfc_thumb.webp" } },
+  { id: "5",  title: "mytelkomsel basic",     category: "B", region: "indonesia", year: "2024", image: "/smtb_web.webp" },
+  { id: "6",  title: "okuri",                 category: "D", region: "global",    year: "2025", image: "/sokuri_thumb.webp",  thumb: { type: "image", src: "/sokuri_thumb.webp" } },
+  { id: "7",  title: "obed willhem",          category: "none", region: "",       year: "",     image: "/wob_thumb.webp",     thumb: { type: "image", src: "/wob_thumb.webp" } },
+  { id: "9",  title: "samosynth",             category: "A", region: "global",    year: "2025", image: "/ssamo_web.webp" },
+  { id: "8",  title: "thanh uy art gallery",  category: "A", region: "vietnam",   year: "2025", image: "/sthuy_web.webp",   thumb: { type: "image", src: "/sthuy_web.webp" } },
+  { id: "10", title: "blooms",                category: "A", region: "australia", year: "2025", image: "/szbloom_web.webp" },
+  { id: "3",  title: "gopay",                 category: "B", region: "indonesia", year: "2025", image: "/sgop_web.webp",    thumb: { type: "image", src: "/sgop_web.webp" } },
+  { id: "4",  title: "kix",                   category: "D", region: "global",    year: "2023", image: "/skix_web.webp",    thumb: { type: "image", src: "/skix_web.webp" } },
+  { id: "12", title: "ted",                   category: "B", region: "indonesia", year: "2024", image: "/szted_web.webp",   thumb: { type: "image", src: "/szted_web.webp" } },
+  { id: "1",  title: "axisnet",               category: "none", region: "indonesia", year: "2024", image: "/saxis_web.webp", thumb: { type: "image", src: "/saxis_web.webp" } },
+  { id: "11", title: "kuttaib",               category: "D", region: "indonesia", year: "2023", image: "/szkutt_web.webp",  thumb: { type: "image", src: "/szkutt_web.webp" } },
 ];
 
 // Human-readable labels for the A/B/C/D category codes (used by /26's meta spine).

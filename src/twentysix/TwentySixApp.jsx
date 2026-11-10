@@ -22,7 +22,7 @@ const FILTERS = [
   { key: "D", label: "coded" },
 ];
 
-function Plate({ plate, index, hero }) {
+function Plate({ plate, index, hero, priority }) {
   const ref = useRef(null);
 
   // One observer does two jobs: reveal the plate, and gate video playback.
@@ -70,15 +70,33 @@ function Plate({ plate, index, hero }) {
       }}
     >
       {plate.video ? (
-        <video src={plate.src} loop muted playsInline preload="none" />
+        <video
+          src={plate.src}
+          poster={plate.poster ?? undefined}
+          loop
+          muted
+          playsInline
+          preload="none"
+        />
       ) : (
-        <img src={plate.src} alt="" loading="lazy" decoding="async" draggable="false" />
+        // `priority` is set only on the first visible block's hero — the one that
+        // decides LCP. Lazy-loading that image makes the browser defer the single
+        // asset the page is judged on, so it loads eagerly at high priority and
+        // everything else stays lazy.
+        <img
+          src={plate.src}
+          alt=""
+          loading={priority ? "eager" : "lazy"}
+          fetchPriority={priority ? "high" : undefined}
+          decoding="async"
+          draggable="false"
+        />
       )}
     </figure>
   );
 }
 
-function Block({ block }) {
+function Block({ block, priority }) {
   const meta = block.meta;
   if (!meta) return null;
 
@@ -95,7 +113,7 @@ function Block({ block }) {
       aria-hidden={block.on ? undefined : true}
     >
       {block.heroPlate ? (
-        <Plate plate={block.heroPlate} index={0} hero />
+        <Plate plate={block.heroPlate} index={0} hero priority={priority} />
       ) : (
         <div className="ts-plate ts-plate--empty --in" style={{ left: HERO_X, top: 0, width: HERO_W, height: block.heroH }}>
           <span>placeholder</span>
@@ -303,6 +321,9 @@ export default function TwentySixApp() {
   // being filtered out, so the column never shows holes.
   const stack = useMemo(() => stackFor(filter), [filter]);
 
+  // Whichever block lands at the top of the current filter owns the LCP image.
+  const firstVisibleId = useMemo(() => stack.list.find((b) => b.on)?.id, [stack]);
+
   useLayoutEffect(() => {
     const fit = () => {
       const vw = window.innerWidth;
@@ -369,7 +390,7 @@ export default function TwentySixApp() {
           }}
         >
           {stack.list.map((block) => (
-            <Block key={block.id} block={block} />
+            <Block key={block.id} block={block} priority={block.id === firstVisibleId} />
           ))}
         </div>
       </div>
