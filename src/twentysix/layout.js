@@ -166,6 +166,7 @@ const source = [
   },
   {
     id: "10",
+    hidden: true,
     name: "Blooms The Chemist",
     subtitle: "",
     discipline: "web development",
@@ -177,6 +178,7 @@ const source = [
   },
   {
     id: "9",
+    hidden: true,
     name: "SAMOSYNTH",
     subtitle: "",
     discipline: "music development app",
@@ -210,6 +212,7 @@ const source = [
   },
   {
     id: "5",
+    hidden: true,
     name: "MyTelkomsel Basic",
     subtitle: "",
     discipline: "product design",
