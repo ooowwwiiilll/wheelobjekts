@@ -12,15 +12,22 @@ import { SplitText } from "gsap/SplitText";
 import { itemById } from "../content/items.js";
 import { bodies } from "../content/bodies.jsx";
 import { MOTION } from "../lib/grid.js";
-import { CANVAS_W, HERO_W, HERO_X, stackFor } from "./layout.js";
+import { CANVAS_W, HERO_W, HERO_X, blocks, stackFor } from "./layout.js";
 import "./twentysix.css";
 
-const FILTERS = [
+const ALL_FILTERS = [
   { key: "all", label: "all" },
   { key: "A", label: "visual" },
   { key: "B", label: "product" },
   { key: "D", label: "coded" },
 ];
+
+// Only offer a filter that still has something behind it. `blocks` has already had
+// the `hidden` items dropped, so hiding the last item in a category retires its tab
+// instead of leaving a button that renders an empty canvas — and unhiding one brings
+// the tab back on its own.
+const PRESENT = new Set(blocks.map((b) => b.category));
+const FILTERS = ALL_FILTERS.filter((f) => f.key === "all" || PRESENT.has(f.key));
 
 function Plate({ plate, index, hero, priority }) {
   const ref = useRef(null);

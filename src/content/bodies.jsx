@@ -215,19 +215,19 @@ export const bodies = {
   ),
 
   // ── 10 · blooms ──
-  "10": (
+  // Offline per the convention at the top of this file. The real body is kept in the
+  // comment below so reviving it is a straight swap of the two — but the "live site
+  // here" link is deliberately left out of it, so it stays hidden on the way back.
+  "10": <>site under construction&nbsp;– TBU</>,
+  /* "10": (
     <>
       <span>
         <p>🇦🇺 australia</p>
         <p>🕰️ 2025</p>
       </span>
       an Australian retail pharmacy group with a network of independently owned and operated pharmacies, also includes a certified B Corp management services arm. The pharmacies offer health & wellness prescription, pharmacist consultations, and medication ordering.
-      <br />
-      <span>
-        <a href="https://joinbloomsthechemist.com.au/" target="_blank" rel="noreferrer">{"live site here"}</a>
-      </span>
     </>
-  ),
+  ), */
 
   // ── 11 · kuttaib ──
   "11": (

@@ -175,7 +175,6 @@ const source = [
   },
   {
     id: "10",
-    hidden: true,
     name: "Blooms The Chemist",
     subtitle: "",
     discipline: "web development",
@@ -199,6 +198,7 @@ const source = [
   },
   {
     id: "12",
+    hidden: true,
     name: "Telkomsel Enterprise (Ted)",
     subtitle: "",
     discipline: "product design",
@@ -233,6 +233,7 @@ const source = [
   },
   {
     id: "4",
+    hidden: true,
     name: "KIX",
     subtitle: "interactive hoop shoes finder",
     discipline: "interactive 3D app",
