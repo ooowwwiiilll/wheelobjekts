@@ -25,7 +25,7 @@ const source = [
     subtitle: "nothing beats the original",
     discipline: "design system • digital channel rebrand",
     blurb: "a global multi-brand design system overhaul under Yum! brands.",
-    hero: "/skfc.gif",
+    hero: "/skfc_thumb.webp",
     body: [],
   },
   {
@@ -35,8 +35,8 @@ const source = [
     discipline: "visual arts • utility",
     blurb:
       "a digital tear-off calendar inspired by the traditional japanese himekuri, with an over-engineered contemporary spin. swipe to flip a new sheet each day.",
-    hero: "/xokuri_compressed.png",
-    body: ["/mokuri1_compressed.jpeg", "/mokuri2_compressed.jpeg"],
+    hero: "/xokuri_web.webp",
+    body: ["/mokuri1_web.webp", "/mokuri2_web.webp"],
   },
   {
     id: "10",
@@ -47,7 +47,7 @@ const source = [
     discipline: "web development",
     blurb:
       "an australian retail pharmacy group and certified B Corp, offering health & wellness prescriptions, pharmacist consultations and medication ordering.",
-    hero: "/szbloom_compressed.jpeg",
+    hero: "/szbloom_web.webp",
     body: [],
   },
   {
@@ -58,18 +58,19 @@ const source = [
     discipline: "music development app",
     blurb:
       "a mini mpc / sampler celebrating bataknese culture, mixing hip-hop drum samples with processed taganing, kulcapi and gordang one-shots.",
-    hero: "/ssamo_compressed.png",
-    body: ["/ssamo_dsimulator_compressed.png", "/ssamo_dgrid_compressed.png"],
+    hero: "/ssamo_web.webp",
+    body: ["/ssamo_dsimulator_web.webp", "/ssamo_dgrid_web.webp"],
   },
   {
     id: "12",
+    hidden: true,
     label: "Telkomsel Enterprise",
     lead: "Telkomsel",
     subtitle: "ted",
     discipline: "product design",
     blurb:
       "the B2B unit of telkomsel providing digital solutions and connectivity for corporations — network services, collaboration tools, IoT and CX insights.",
-    hero: "/szted_compressed.png",
+    hero: "/szted_web.webp",
     body: [],
   },
   {
@@ -81,7 +82,7 @@ const source = [
     discipline: "visual arts",
     blurb:
       "an edgy printmaking gallery, studio and coffee shop in ha noi, celebrating vietnam's propaganda and renewal period through traditional & contemporary paintings.",
-    hero: "/sthuy_compressed.png",
+    hero: "/sthuy_web.webp",
     body: [],
   },
   {
@@ -93,7 +94,7 @@ const source = [
     discipline: "product design",
     blurb:
       "a lightweight telkomsel app for users with limited memory or unstable connections — balance monitoring, package shop and payments.",
-    hero: "/smtb_compressed.png",
+    hero: "/smtb_web.webp",
     body: [],
   },
   {
@@ -102,7 +103,7 @@ const source = [
     subtitle: "interactive hoop shoes finder",
     discipline: "interactive 3D app",
     blurb: "a swift playground built for wwdc, featured on wwdc scholars.",
-    hero: "/skix_compressed.png",
+    hero: "/skix_web.webp",
     body: [],
   },
   {
@@ -112,7 +113,7 @@ const source = [
     subtitle: "efast",
     discipline: "product design",
     blurb: "corporate digital banking for one of vietnam's big four.",
-    hero: "/sfast.png",
+    hero: "/sfast_web.webp",
     body: [],
   },
 ];

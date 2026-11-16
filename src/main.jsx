@@ -34,7 +34,21 @@ if (forced && path !== "/26") {
 }
 // ─── end temporary block ─────────────────────────────────────────────────────
 
+// ─── TEMPORARY: land on /works ───────────────────────────────────────────────
+// While this is true, a visit to the bare "/" renders /works and the address bar
+// is rewritten to /works. Every other path is untouched — this only moves the
+// front door. Flip this single flag to false to restore the root grid as the
+// landing page.
+const FORCE_WORKS_HOME = true;
+
+const landed = FORCE_WORKS_HOME && !forced && path === "/";
+if (landed) {
+    window.history.replaceState(null, "", "/works");
+}
+// ─── end temporary block ─────────────────────────────────────────────────────
+
 const Page = forced ? TwentySixApp :
+    landed ? WorksApp :
     path === "/resume" ? Resume :
     path === "/infinite" ? InfiniteApp :
     path === "/infinite-wip" ? () => <InfiniteApp isWip={true} /> :

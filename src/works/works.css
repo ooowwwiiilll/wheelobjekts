@@ -265,7 +265,11 @@
   letter-spacing: 0.05em;
 }
 
+/* The fact LABELS (REGION / YEAR / DISCIPLINE / TYPE) are hidden for now — the
+   values carry on their own. Delete this `display: none` to bring the words back;
+   the rest of the rule is the original styling and still applies when they return. */
 .wk-fact dt {
+  display: none;
   text-transform: uppercase;
   color: var(--wk-muted);
 }
@@ -324,9 +328,30 @@
   background: #ffffff;
 }
 
-.wk-mobile {
+/* Written as `main.wk-main>.wk-mobile` (0,2,1) on purpose. base.css carries
+   `main>*:not(.mobile-blocker) { display: none !important }` below 650px, which is
+   (0,1,1) — it would otherwise blank this panel on exactly the phones it exists
+   for, and !important alone does not win that, only higher specificity does. */
+main.wk-main>.wk-mobile {
   min-height: 100vh;
   background: #ffffff;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Same copy and proportions as the root site's mobile blocker, uppercased, and
+   with nothing else on the screen — no title, no links. */
+.wk-mobile__desc {
+  margin: 0;
+  max-width: 80%;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: var(--wk-sans);
+  font-size: 1rem;
+  line-height: 1.4;
+  letter-spacing: 0.05em;
+  color: var(--wk-muted);
 }
 
 @media (prefers-reduced-motion: reduce) {

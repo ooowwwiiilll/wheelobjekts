@@ -1,4 +1,11 @@
 {
+    "redirects": [
+        {
+            "source": "/okuri",
+            "destination": "https://apps.apple.com/id/app/okuri/id6759762270",
+            "permanent": false
+        }
+    ],
     "rewrites": [
         {
             "source": "/(.*)",

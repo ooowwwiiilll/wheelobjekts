@@ -421,11 +421,15 @@ export default function WorksApp() {
     };
   }, [open, closePanel]);
 
-  // ── mobile: plain white, blank on purpose ─────────────────────────────────
+  // ── mobile: plain white, and only the one line ────────────────────────────
   if (mobile) {
     return (
       <main className="wk-main wk-main--mobile" style={cssVars()}>
-        <section className="wk-mobile" />
+        <section className="wk-mobile">
+          <p className="wk-mobile__desc">
+            this piece is best viewed<br />on desktop screen.
+          </p>
+        </section>
       </main>
     );
   }
