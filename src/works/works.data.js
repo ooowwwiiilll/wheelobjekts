@@ -52,6 +52,7 @@ const source = [
   },
   {
     id: "9",
+    hidden: true,
     label: "Samosynth",
     color: "#3A2B2B",
     subtitle: "",
@@ -87,6 +88,7 @@ const source = [
   },
   {
     id: "5",
+    hidden: true,
     label: "MyTelkomsel Basic",
     color: "#3D5A27",
     lead: "MyTelkomsel",
@@ -99,6 +101,7 @@ const source = [
   },
   {
     id: "4",
+    hidden: true,
     label: "KIX",
     subtitle: "interactive hoop shoes finder",
     discipline: "interactive 3D app",
@@ -108,6 +111,7 @@ const source = [
   },
   {
     id: "2",
+    hidden: true,
     label: "Vietinbank",
     color: "#1B6BA5",
     subtitle: "efast",

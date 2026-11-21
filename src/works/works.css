@@ -172,11 +172,6 @@
   position: absolute;
   top: 0;
   left: 0;
-  /* Above .wk-panel (0) so the copy scrolls UNDER the hero, which is what the
-     reserved padding above assumes. Both were z-index:auto, so the panel — later
-     in the DOM — painted over the hero and the blurb ran across the image on
-     scroll. Still below .wk-close (2), which stays on top of everything. */
-  z-index: 1;
   width: 100%;
   overflow: hidden;
   background: rgba(0, 0, 0, 0.04);
@@ -198,7 +193,6 @@
 .wk-panel {
   position: absolute;
   inset: 0;
-  z-index: 0;   /* under .wk-morph__media — see the note there */
   overflow-y: auto;
   overscroll-behavior: contain;
   pointer-events: none;
@@ -217,9 +211,18 @@
 .wk-morph.--open .wk-panel { pointer-events: auto; }
 
 /* the hero's height, reserved so the copy starts below it and scrolls under */
+/* The copy is a solid sheet that rides UP OVER the hero — it never passes behind
+   it and never disappears under it. It used to be transparent, which is why the
+   blurb printed straight across the image on scroll.
+   The hero's height is reserved as MARGIN, not padding, on purpose: padding is
+   inside the background box, so a background would have covered the hero from the
+   start, and background-clip:content-box fixed that but then left the hero showing
+   through the left and right gutters. Margin puts the gap outside the box entirely,
+   so the sheet paints full width and starts exactly where the copy starts. */
 .wk-panel__inner {
-  padding: calc(var(--wk-panel-hero-h) + var(--wk-panel-pad-y)) var(--wk-panel-pad-x)
-           calc(var(--wk-panel-pad-y) * 2);
+  margin-top: calc(var(--wk-panel-hero-h) + var(--wk-panel-pad-y));
+  padding: 0 var(--wk-panel-pad-x) calc(var(--wk-panel-pad-y) * 2);
+  background: rgb(246, 246, 246);
 }
 
 /* Every revealed layer starts hidden — GSAP's autoAlpha owns it from the first
