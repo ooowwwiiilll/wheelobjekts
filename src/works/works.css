@@ -248,7 +248,13 @@
   margin: 22px 0 0;
 }
 
+/* The whole fact block (region / year / discipline / type, values included) is
+   hidden. Delete this one rule to bring the entire table back. */
 .wk-panel__facts {
+  display: none;
+}
+
+.wk-panel__facts--shown {
   margin: 30px 0 0;
   border-top: 1px solid var(--wk-rule);
 }
@@ -265,11 +271,7 @@
   letter-spacing: 0.05em;
 }
 
-/* The fact LABELS (REGION / YEAR / DISCIPLINE / TYPE) are hidden for now — the
-   values carry on their own. Delete this `display: none` to bring the words back;
-   the rest of the rule is the original styling and still applies when they return. */
 .wk-fact dt {
-  display: none;
   text-transform: uppercase;
   color: var(--wk-muted);
 }
