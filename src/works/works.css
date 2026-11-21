@@ -172,6 +172,11 @@
   position: absolute;
   top: 0;
   left: 0;
+  /* Above .wk-panel (0) so the copy scrolls UNDER the hero, which is what the
+     reserved padding above assumes. Both were z-index:auto, so the panel — later
+     in the DOM — painted over the hero and the blurb ran across the image on
+     scroll. Still below .wk-close (2), which stays on top of everything. */
+  z-index: 1;
   width: 100%;
   overflow: hidden;
   background: rgba(0, 0, 0, 0.04);
@@ -193,6 +198,7 @@
 .wk-panel {
   position: absolute;
   inset: 0;
+  z-index: 0;   /* under .wk-morph__media — see the note there */
   overflow-y: auto;
   overscroll-behavior: contain;
   pointer-events: none;
@@ -328,6 +334,17 @@
 
 .wk-main--mobile {
   background: #ffffff;
+  min-height: 100dvh;
+}
+
+/* The document itself still carries base.css's dark --color-bg. The white panel
+   only covers its own box, so rubber-band overscroll and the browser chrome
+   collapsing on scroll both expose black behind it. Paint html AND body white for
+   as long as this screen is the one rendering, and kill the overscroll bounce. */
+html:has(.wk-mobile),
+html:has(.wk-mobile) body {
+  background: #ffffff;
+  overscroll-behavior: none;
 }
 
 /* Written as `main.wk-main>.wk-mobile` (0,2,1) on purpose. base.css carries
@@ -335,7 +352,10 @@
    (0,1,1) — it would otherwise blank this panel on exactly the phones it exists
    for, and !important alone does not win that, only higher specificity does. */
 main.wk-main>.wk-mobile {
-  min-height: 100vh;
+  /* dvh, not vh: on mobile the URL bar collapsing changes the real viewport, and
+     100vh stays locked to the tallest value, leaving a strip uncovered. */
+  min-height: 100dvh;
+  width: 100%;
   background: #ffffff;
   display: flex !important;
   align-items: center;
