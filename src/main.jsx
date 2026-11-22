@@ -6,7 +6,9 @@ import InfiniteApp from "./infinite/InfiniteApp.jsx";
 import VerseApp from "./verse/VerseApp.jsx";
 import TwentySixApp from "./twentysix/TwentySixApp.jsx";
 import WorksApp from "./works/WorksApp.jsx";
+import BoxApp from "./box/BoxApp.jsx";
 import Lebron17App from "./lebron17/Lebron17App.jsx";
+import ZoomAirApp from "./zoomair/ZoomAirApp.jsx";
 import HeartbeatApp from "./heartbeat/HeartbeatApp.jsx";
 import Resume from "./Resume.jsx";
 import OkuriSupport from "./OkuriSupport.jsx";
@@ -55,7 +57,9 @@ const Page = forced ? TwentySixApp :
     path === "/verse" ? VerseApp :
     path === "/26" ? TwentySixApp :
     path === "/works" ? WorksApp :
+    path === "/box" || path.startsWith("/box/") ? BoxApp :
     path === "/lebron17" ? Lebron17App :
+    path === "/zoomair" ? ZoomAirApp :
     path === "/heartbeat" ? HeartbeatApp :
     path === "/okuri-support" ? OkuriSupport :
         path === "/okuri-privacy-policy" ? OkuriPrivacyPolicy :

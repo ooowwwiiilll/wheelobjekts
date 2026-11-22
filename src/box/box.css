@@ -1,0 +1,398 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+ * /box — EXCLUSIVE to this route. Every selector is scoped to .bx-* so nothing
+ * here reaches the root grid, /26, /works, /infinite or /verse.
+ *
+ * The layout is one idea: a full-bleed 12-column grid whose gutter IS the rule.
+ * The grid paints the line colour and every cell paints the page colour over it,
+ * so a 1px gap reads as a hairline between cells with no borders to align.
+ * ────────────────────────────────────────────────────────────────────────── */
+
+.bx-main {
+  color-scheme: light;
+  min-height: 100vh;
+  background: var(--bx-bg);
+  color: var(--bx-text);
+  font-family: var(--bx-sans);
+  font-size: var(--bx-size);
+  letter-spacing: var(--bx-tracking);
+  -webkit-font-smoothing: antialiased;
+}
+
+.bx-main * { box-sizing: border-box; }
+
+.bx-main a {
+  color: inherit;
+  text-decoration: none;
+  padding: 0;            /* base.css puts 1rem of padding on every anchor */
+}
+
+/* ── header ──
+ * Fixed, full width, sitting on the same hairline as the grid below it. */
+.bx-head {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  height: var(--bx-head-h);
+  padding: 0 var(--bx-head-pad);
+  background: var(--bx-bg);
+  border-bottom: var(--bx-hair) solid var(--bx-line);
+  flex-direction: row;   /* base.css sets column on bare <header> */
+  gap: 0;
+}
+
+.bx-head__nav,
+.bx-head__util {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  text-transform: uppercase;
+}
+
+.bx-head__util { justify-self: end; }
+
+.bx-head__nav a:hover,
+.bx-head__util button:hover { opacity: 0.45; }
+
+.bx-head__menu {
+  display: none;
+  appearance: none;
+  border: 0;
+  background: none;
+  padding: 0;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: uppercase;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* the wordmark plate: a black pill, centred, the one solid in the header */
+.bx-logo {
+  display: grid;
+  place-items: center;
+  width: var(--bx-logo-w);
+  height: var(--bx-logo-h);
+  border-radius: 999px;
+  background: var(--bx-text);
+  color: var(--bx-bg);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-style: italic;
+  cursor: pointer;
+}
+
+.bx-cart {
+  appearance: none;
+  border: 0;
+  background: none;
+  padding: 0;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: uppercase;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* ── the grid ──
+ * The gutter is the rule. Background paints the line, cells paint over it. */
+.bx-body { padding-top: var(--bx-head-h); }
+
+.bx-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--bx-cols), 1fr);
+  gap: var(--bx-hair);
+  background: var(--bx-line);
+  border-bottom: var(--bx-hair) solid var(--bx-line);
+}
+
+.bx-card {
+  grid-column: span var(--bx-span);
+  display: flex;
+  flex-direction: column;
+  background: var(--bx-bg);
+  cursor: pointer;
+  text-align: left;
+}
+
+/* The row of cards is never left half-empty: trailing cells paint the page
+   colour so the hairline grid does not run past the last product. */
+.bx-grid__filler {
+  grid-column: span var(--bx-span);
+  background: var(--bx-bg);
+}
+
+.bx-card__media {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.bx-card__media img,
+.bx-card__media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.bx-card:hover .bx-card__media img,
+.bx-card:hover .bx-card__media video { transform: scale(var(--bx-zoom)); }
+
+.bx-card__cap {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--bx-cap-gap);
+  padding: var(--bx-cap-y) var(--bx-cap-x);
+  border-top: var(--bx-hair) solid var(--bx-line);
+  text-transform: uppercase;
+  line-height: 1.35;
+}
+
+.bx-card__price { white-space: nowrap; }
+
+/* ── PDP ──
+ * Two halves on one hairline: the shots scroll, the buy column is sticky. */
+.bx-pdp {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--bx-hair);
+  background: var(--bx-line);
+  align-items: start;
+}
+
+.bx-pdp__shots {
+  display: grid;
+  gap: var(--bx-hair);
+  background: var(--bx-line);
+}
+
+.bx-shot {
+  aspect-ratio: 1 / 1;
+  background: var(--bx-bg);
+  overflow: hidden;
+}
+
+.bx-shot img,
+.bx-shot video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.bx-pdp__buy {
+  position: sticky;
+  top: var(--bx-head-h);
+  background: var(--bx-bg);
+  padding: var(--bx-pdp-pad);
+  min-height: calc(100vh - var(--bx-head-h));
+}
+
+.bx-back {
+  appearance: none;
+  border: 0;
+  background: none;
+  padding: 0;
+  margin: 0 0 26px;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: uppercase;
+  color: var(--bx-muted);
+  cursor: pointer;
+}
+
+.bx-back:hover { color: var(--bx-text); }
+
+.bx-pdp__title {
+  margin: 0;
+  font-size: var(--bx-pdp-title);
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+.bx-pdp__copy {
+  margin: var(--bx-pdp-gap) 0 0;
+  max-width: 54ch;
+}
+
+.bx-pdp__copy p {
+  margin: 0 0 1em;
+  font-size: var(--bx-pdp-body);
+  line-height: 1.5;
+  letter-spacing: 0;
+}
+
+.bx-pdp__copy p:last-child { margin-bottom: 0; }
+
+.bx-pdp__price {
+  margin: var(--bx-pdp-gap) 0 2px;
+  font-size: var(--bx-pdp-body);
+}
+
+.bx-pdp__tax {
+  margin: 0;
+  color: var(--bx-muted);
+  font-size: 11px;
+}
+
+/* ── quantity + add to cart ── */
+.bx-buyrow {
+  display: flex;
+  gap: var(--bx-hair);
+  margin: 22px 0 0;
+  background: var(--bx-line);
+  border: var(--bx-hair) solid var(--bx-line);
+}
+
+.bx-qty {
+  display: flex;
+  align-items: center;
+  background: var(--bx-bg);
+  flex: 0 0 auto;
+}
+
+.bx-qty button {
+  appearance: none;
+  border: 0;
+  background: none;
+  width: 38px;
+  height: var(--bx-btn-h);
+  font: inherit;
+  font-size: 15px;
+  color: inherit;
+  cursor: pointer;
+}
+
+.bx-qty button:disabled { color: var(--bx-muted); cursor: default; }
+
+.bx-qty span {
+  min-width: 22px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.bx-add {
+  flex: 1 1 auto;
+  appearance: none;
+  border: 0;
+  height: var(--bx-btn-h);
+  background: var(--bx-accent);
+  color: var(--bx-bg);
+  font: inherit;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  transition: opacity 200ms ease;
+}
+
+.bx-add:hover { opacity: 0.82; }
+.bx-add__arrow { transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1); }
+.bx-add:hover .bx-add__arrow { transform: translateX(5px); }
+
+/* ── accordions ── */
+.bx-fold {
+  border-top: var(--bx-hair) solid var(--bx-line);
+  margin-top: 30px;
+}
+
+.bx-fold:last-of-type { border-bottom: var(--bx-hair) solid var(--bx-line); margin-top: 0; }
+
+.bx-fold summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+  cursor: pointer;
+  list-style: none;
+  text-transform: uppercase;
+}
+
+.bx-fold summary::-webkit-details-marker { display: none; }
+
+.bx-fold summary::after {
+  content: "+";
+  font-size: 15px;
+  line-height: 1;
+}
+
+.bx-fold[open] summary::after { content: "–"; }
+
+.bx-fold p {
+  margin: 0 0 18px;
+  max-width: 54ch;
+  font-size: var(--bx-pdp-body);
+  line-height: 1.5;
+  letter-spacing: 0;
+}
+
+/* ── related ── */
+.bx-rail {
+  border-top: var(--bx-hair) solid var(--bx-line);
+}
+
+.bx-rail__head {
+  padding: 18px var(--bx-cap-x);
+  text-transform: uppercase;
+}
+
+/* ── tablet: two up ── */
+@media (max-width: 1024px) {
+  .bx-card,
+  .bx-grid__filler { grid-column: span var(--bx-span-tablet); }
+
+  .bx-pdp { grid-template-columns: 1fr; }
+
+  .bx-pdp__buy {
+    position: static;
+    min-height: 0;
+  }
+}
+
+/* ── phone: one up, MENU replaces the links ── */
+@media (max-width: 768px) {
+  .bx-card,
+  .bx-grid__filler { grid-column: span var(--bx-span-phone); }
+
+  .bx-head__nav { display: none; }
+  .bx-head__menu { display: block; }
+
+  .bx-head__util .bx-head__account { display: none; }
+
+  .bx-card__cap { padding: 13px 14px; }
+
+  .bx-pdp__buy { padding: 26px 18px 40px; }
+  .bx-pdp__title { font-size: 22px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bx-card__media img,
+  .bx-card__media video,
+  .bx-add__arrow { transition: none; }
+}
+
+/* ── opting out of the site-wide mobile blocker ──
+ * base.css hides `main > *:not(.mobile-blocker)` and every `header` below 650px
+ * with !important, which is what every other route wants and this one does not:
+ * /box is responsive down to a phone by design. Scoped to .bx-* so no other
+ * route loses its blocker, and specific enough to win against an !important
+ * element selector. */
+@media only screen and (max-width: 650px) {
+  .bx-main > .bx-body { display: block !important; }
+  .bx-main > .bx-head { display: grid !important; }
+}
