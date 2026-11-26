@@ -198,7 +198,6 @@ const source = [
   },
   {
     id: "12",
-    hidden: true,
     name: "Telkomsel Enterprise (Ted)",
     subtitle: "",
     discipline: "product design",

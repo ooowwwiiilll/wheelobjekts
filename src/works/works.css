@@ -17,6 +17,17 @@
   font-display: swap;
 }
 
+/* The sans, taken from your Mac: NHaasGroteskTXPro-65Md.ttf, self-hosted next to
+   Exposure and Season Serif so it renders for everyone, not just machines with it
+   installed. 65 Medium is weight 500. */
+@font-face {
+  font-family: 'Neue Haas Grotesk Text Pro';
+  src: url('/NHaasGroteskTXPro-65Md.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ── THEME ──
  * /works is pinned to light, like /26. Delete this block to let base.css's
  * prefers-color-scheme flip take over. */
@@ -100,6 +111,8 @@
    qualifier after it in the sans. */
 .wk-row__tail {
   font-family: var(--wk-sans);
+  font-weight: var(--wk-sans-weight);
+  letter-spacing: var(--wk-sans-tracking);
 }
 
 /* Hover colour: each row carries its own as --wk-hover, taken from that project's
@@ -242,18 +255,24 @@
   margin: 0;
 }
 
+/* Sizes untouched; weight, leading and tracking come from SANS in works.config.js
+   — 65 Medium, 90% line height, -2% letter spacing. */
 .wk-panel__sub {
   font-family: var(--wk-sans);
+  font-weight: var(--wk-sans-weight);
   font-size: 12px;
-  letter-spacing: 0.04em;
+  line-height: var(--wk-sans-leading);
+  letter-spacing: var(--wk-sans-tracking);
   color: var(--wk-muted);
   margin: 8px 0 0;
 }
 
 .wk-panel__blurb {
   font-family: var(--wk-sans);
+  font-weight: var(--wk-sans-weight);
   font-size: 13px;
-  line-height: 1.55;
+  line-height: var(--wk-sans-leading);
+  letter-spacing: var(--wk-sans-tracking);
   margin: 22px 0 0;
 }
 
