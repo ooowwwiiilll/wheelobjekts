@@ -232,8 +232,11 @@
    through the left and right gutters. Margin puts the gap outside the box entirely,
    so the sheet paints full width and starts exactly where the copy starts. */
 .wk-panel__inner {
-  margin-top: calc(var(--wk-panel-hero-h) + var(--wk-panel-pad-y));
-  padding: 0 var(--wk-panel-pad-x) calc(var(--wk-panel-pad-y) * 2);
+  /* The reserved hero height is the margin; the top padding is INSIDE the sheet,
+     so the title has air above it once the sheet scrolls up over the hero. With
+     padding-top at 0 the title sat flush against the sheet's own top edge. */
+  margin-top: var(--wk-panel-hero-h);
+  padding: var(--wk-panel-pad-y) var(--wk-panel-pad-x) calc(var(--wk-panel-pad-y) * 2);
   background: rgb(246, 246, 246);
 }
 

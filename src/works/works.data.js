@@ -42,6 +42,8 @@ const source = [
     // video, the core-features list, the X shoutout with both links, and the App
     // Store CTA — not just a blurb and a pile of images. `content` takes over from
     // `body` when present; every other project still uses the plain `body` array.
+    // Order is the main site's, beat for beat: video, core features, imagery, the
+    // X shoutout, then the feature-nomination shot, then the CTA last.
     content: [
       { type: "media", src: "/xokuri_web.mp4" },
       {
@@ -58,6 +60,8 @@ const source = [
         ],
       },
       { type: "media", src: "/duokuri1_web.webp" },
+      { type: "media", src: "/okuri_hands_web.webp" },
+      { type: "media", src: "/wn3_web.webp" },
       {
         type: "para",
         parts: [
@@ -68,9 +72,9 @@ const source = [
           " on X!",
         ],
       },
-      { type: "media", src: "/okuri_hands_web.webp" },
-      { type: "media", src: "/wn3_web.webp" },
-      { type: "media", src: "/mokuri2_web.webp" },
+      // The feature nominations — the same shot the main site puts right after that
+      // paragraph, and the one this panel used as its hero before.
+      { type: "media", src: "/xokuri_web.webp" },
       {
         type: "cta",
         label: "Download on the App Store",
