@@ -123,15 +123,15 @@ export const EASE = {
 // everything else — sub, blurb, facts, close. Season Serif sits behind Exposure
 // in the stack, from the question about the face on your device; the .otf is loaded.
 export const TYPE = {
-  sans: "'Neue Haas Grotesk Text Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif",
+  sans: "'Neue Haas Grotesk Text', 'Helvetica Neue', Helvetica, Arial, sans-serif",
   serif: "'Exposure', 'Season Serif', Georgia, serif",
 };
 
-// The sans config as specified: 65 Medium, line height 90%, letter spacing -2%.
-// Sizes are left exactly as they were — only weight, leading and tracking change.
+// The sans config as specified: line height 100%, letter spacing -2%.
+// Sizes are left exactly as they were — only leading and tracking change.
 export const SANS = {
-  weight: 500,
-  leading: 0.9,
+  weight: 400,
+  leading: 1,
   tracking: "-0.02em",
 };
 

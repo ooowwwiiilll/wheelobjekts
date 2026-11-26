@@ -35,17 +35,47 @@ const source = [
     subtitle: "Overengineered himekuri calendar",
     discipline: "Visual arts • Utility",
     blurb:
-      "A digital tear-off calendar inspired by the traditional Japanese himekuri, with an over-engineered contemporary spin. Swipe to flip a new sheet each day.",
-    // HERO PENDING — replacement image not supplied yet, so this is still the old one.
-    hero: "/xokuri_web.webp",
-    // Matches the main site's detail body, which leads with the video.
-    body: [
-      "/xokuri_web.mp4",
-      "/mokuri1_web.webp",
-      "/mokuri2_web.webp",
-      "/wn1_web.webp",
-      "/wn2_web.webp",
-      "/wn3_web.webp",
+      "OKURI is a digital tear-off calendar inspired by the traditional Japanese himekuri, with an over-engineered contemporary spin. Swipe to flip a new sheet each day.",
+    hero: "/okuri_hand_web.webp",
+    body: [],
+    // Full parity with the main site's detail body (content/bodies.jsx id 6): the
+    // video, the core-features list, the X shoutout with both links, and the App
+    // Store CTA — not just a blurb and a pile of images. `content` takes over from
+    // `body` when present; every other project still uses the plain `body` array.
+    content: [
+      { type: "media", src: "/xokuri_web.mp4" },
+      {
+        type: "features",
+        title: "Core features",
+        items: [
+          "Realistic paper calendar flipping experience",
+          "Moon phases, zodiac signs, and constellations",
+          "Traditional Japanese rokuyo daily fortune",
+          "Sunrise & sunset times for your location",
+          "Visual widgets for your home screen",
+          "Beautiful iOS calendar events integration",
+          "Skin editions a.k.a. themes, new each month",
+        ],
+      },
+      { type: "media", src: "/duokuri1_web.webp" },
+      {
+        type: "para",
+        parts: [
+          "Under the first month of release, OKURI has been featured by notable advocates like ",
+          { text: "@spottedinprod", href: "https://x.com/spottedinprod/status/2044848759629103493?s=46" },
+          " and ",
+          { text: "Create with Swift", href: "https://x.com/createwithswift/status/2054498700945227836?s=46" },
+          " on X!",
+        ],
+      },
+      { type: "media", src: "/okuri_hands_web.webp" },
+      { type: "media", src: "/wn3_web.webp" },
+      { type: "media", src: "/mokuri2_web.webp" },
+      {
+        type: "cta",
+        label: "Download on the App Store",
+        href: "https://apps.apple.com/id/app/okuri/id6759762270",
+      },
     ],
   },
   {

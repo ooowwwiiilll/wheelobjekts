@@ -512,13 +512,69 @@ export default function WorksApp() {
               ))}
             </dl>
 
-            {(active?.body ?? []).map((src) => (
-              <figure className="wk-panel__plate" key={src} data-wk-reveal>
-                {isVideo(src)
-                  ? <video src={src} loop muted playsInline autoPlay />
-                  : <img src={src} alt="" loading="lazy" decoding="async" />}
-              </figure>
-            ))}
+            {/* A project with `content` carries the main site's full detail body —
+                media, feature lists, rich paragraphs and the CTA, in authored
+                order. Projects without it keep using the plain `body` array. */}
+            {active?.content
+              ? active.content.map((block, i) => {
+                  const key = `${active.id}-${i}`;
+                  if (block.type === "media") {
+                    return (
+                      <figure className="wk-panel__plate" key={key} data-wk-reveal>
+                        {isVideo(block.src)
+                          ? <video src={block.src} loop muted playsInline autoPlay />
+                          : <img src={block.src} alt="" loading="lazy" decoding="async" />}
+                      </figure>
+                    );
+                  }
+                  if (block.type === "features") {
+                    return (
+                      <div className="wk-panel__features" key={key} data-wk-reveal>
+                        <p className="wk-panel__features-title">{block.title}</p>
+                        <ul>
+                          {block.items.map((item) => <li key={item}>{item}</li>)}
+                        </ul>
+                      </div>
+                    );
+                  }
+                  if (block.type === "para") {
+                    return (
+                      <p className="wk-panel__blurb" key={key} data-wk-reveal>
+                        {block.parts.map((part, j) =>
+                          typeof part === "string"
+                            ? <span key={j}>{part}</span>
+                            : (
+                              <a key={j} href={part.href} target="_blank" rel="noreferrer">
+                                {part.text}
+                              </a>
+                            )
+                        )}
+                      </p>
+                    );
+                  }
+                  if (block.type === "cta") {
+                    return (
+                      <a
+                        className="wk-panel__cta"
+                        key={key}
+                        href={block.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        data-wk-reveal
+                      >
+                        {block.label}
+                      </a>
+                    );
+                  }
+                  return null;
+                })
+              : (active?.body ?? []).map((src) => (
+                  <figure className="wk-panel__plate" key={src} data-wk-reveal>
+                    {isVideo(src)
+                      ? <video src={src} loop muted playsInline autoPlay />
+                      : <img src={src} alt="" loading="lazy" decoding="async" />}
+                  </figure>
+                ))}
           </div>
         </div>
 

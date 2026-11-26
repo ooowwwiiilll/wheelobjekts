@@ -17,13 +17,12 @@
   font-display: swap;
 }
 
-/* The sans, taken from your Mac: NHaasGroteskTXPro-65Md.ttf, self-hosted next to
-   Exposure and Season Serif so it renders for everyone, not just machines with it
-   installed. 65 Medium is weight 500. */
+/* The sans, taken from your Mac and self-hosted next to Exposure and Season Serif
+   so it renders for everyone, not just machines with it installed. */
 @font-face {
-  font-family: 'Neue Haas Grotesk Text Pro';
-  src: url('/NHaasGroteskTXPro-65Md.ttf') format('truetype');
-  font-weight: 500;
+  font-family: 'Neue Haas Grotesk Text';
+  src: url('/NeueHaasGroteskText-Regular.otf') format('opentype');
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
@@ -308,6 +307,66 @@
   margin: 0;
   text-align: right;
 }
+
+/* ── the richer detail blocks: feature list, linked paragraph, App Store CTA ── */
+
+.wk-panel__features {
+  font-family: var(--wk-sans);
+  font-weight: var(--wk-sans-weight);
+  font-size: 13px;
+  line-height: var(--wk-sans-leading);
+  letter-spacing: var(--wk-sans-tracking);
+  margin: 26px 0 0;
+}
+
+.wk-panel__features-title {
+  margin: 0 0 12px;
+  font-weight: 700;
+}
+
+.wk-panel__features ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.wk-panel__features li {
+  position: relative;
+  padding-left: 14px;
+  margin-top: 7px;
+}
+
+.wk-panel__features li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--wk-muted);
+}
+
+.wk-panel__blurb a {
+  color: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.wk-panel__cta {
+  display: inline-block;
+  margin: 26px 0 0;
+  padding: 11px 18px;
+  border-radius: 999px;
+  background: var(--wk-text);
+  color: var(--wk-bg);
+  font-family: var(--wk-sans);
+  font-weight: var(--wk-sans-weight);
+  font-size: 12px;
+  line-height: var(--wk-sans-leading);
+  letter-spacing: var(--wk-sans-tracking);
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.wk-panel__cta:hover { opacity: 0.78; }
 
 .wk-panel__plate {
   margin: var(--wk-panel-gap) 0 0;
